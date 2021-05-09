@@ -27,9 +27,9 @@ class FailedTwoFactorLoginResponse
             });
         }
         if ($request->code){
-            return Response::view('admin.auth.two-factor-challenge');
+            return Response::view('admin.Auth.two-factor-challenge');
         }else{
-            return Response::view('admin.auth.two-factor-challenge');
+            return Response::view('admin.Auth.two-factor-challenge');
         }
     }
 }

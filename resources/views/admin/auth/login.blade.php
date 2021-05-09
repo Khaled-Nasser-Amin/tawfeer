@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Login | Zircos - Responsive Bootstrap 4 Admin Dashboard')
+@section('title',__('text.Login'))
 @section('content')
 <div class="account-pages mt-5 mb-5">
         <div class="container">
@@ -9,18 +9,13 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="col-md-8 col-lg-6 col-xl-5" >
                     <div class="card">
 
-                        <div class="text-center account-logo-box">
-                            <div class="mt-2 mb-2">
-                                 <a class='btn btn-secondary waves-effect waves-light' rel="alternate" href="{{App::getLocale() == 'en' ? LaravelLocalization::getLocalizedURL('ar', null, [], true) :   LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
-                                     {{ app()->getLocale() == 'ar'? 'English' : 'العربية' }}
-                                 </a>
-                            </div>
-                        </div>
 
-                        <div class="card-body">
+                       <x-general.authentication-card-logo />
+
+                        <div class="card-body text-white bg-dark">
                             @include('admin.partials.errors')
                             <form action="{{route('login')}}" method='post'>
                                 @csrf
@@ -42,7 +37,7 @@
 
                                 <div class="form-group text-center mt-4 pt-2">
                                     <div class="col-sm-12">
-                                        <a href="{{route('viewForget')}}" class="text-muted"><i class="fa fa-lock mr-1"></i> {{__('text.Forgot your password?')}}</a>
+                                        <a href="{{route('viewForget')}}" class="text-white"><i class="fa fa-lock mr-1"></i> {{__('text.Forgot your password?')}}</a>
                                     </div>
                                 </div>
 

@@ -57,6 +57,11 @@
                 <x-general.input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
                 <x-general.input-error for="name" />
             </div>
+            <div class="form-group">
+                <x-general.label for="phone" value="{{ __('text.Phone Number') }}" />
+                <x-general.input id="phone" type="text" class="{{ $errors->has('phone') ? 'is-invalid' : '' }}" wire:model.defer="state.phone" autocomplete="phone" />
+                <x-general.input-error for="phone" />
+            </div>
 
             <!-- Email -->
             <div class="form-group">

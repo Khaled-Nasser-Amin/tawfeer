@@ -53,12 +53,13 @@
         }
 
         if($options.has_icon){
+
             $('<i class="toast-icon toast-icon-' + type + '"></i>').appendTo($element);
             if( $options.rtl){
                 css["padding-right"] = 50;
             } else {
                 css["padding-left"] = 50;
-            }            
+            }
         }
 
         if($options.has_progress && $options.timeout > 0){
@@ -77,34 +78,34 @@
                 }
                 case "toast-top-right" : {
                     css["top"] = 0;
-                    css["left"] = 0;                    
+                    css["left"] = 0;
                     break;
                 }
                 case "toast-top-center" : {
                     css["top"] = 0;
-                    css["left"] = css["right"] = 0;  
-                    css["width"] = "100%";                  
+                    css["left"] = css["right"] = 0;
+                    css["width"] = "100%";
                     break;
                 }
                 case "toast-bottom-left" : {
                     css["bottom"] = 0;
-                    css["left"] = 0;                     
+                    css["left"] = 0;
                     break;
                 }
                 case "toast-bottom-right" : {
                     css["bottom"] = 0;
-                    css["right"] = 0;                     
+                    css["right"] = 0;
                     break;
                 }
                 case "toast-bottom-center" : {
                     css["bottom"] = 0;
-                    css["left"] = css["right"] = 0;  
-                    css["width"] = "100%";                     
+                    css["left"] = css["right"] = 0;
+                    css["width"] = "100%";
                     break;
                 }
                 default : {
                     break;
-                }                                                                        
+                }
             }
         }
 
@@ -118,7 +119,7 @@
                     css["bottom"] = parseInt($(this).css("bottom")) + this.offsetHeight + spacing;
                 });
             }
-        }        
+        }
 
         $element.css(css);
 
@@ -130,7 +131,7 @@
             $alert.css({display: 'block', opacity: 1});
         }
 
-		function removeToast(){          
+		function removeToast(){
 			$.Toast.remove( $element );
 		}
 
@@ -139,7 +140,7 @@
             if($options.has_progress){
                 $(".toast-progress", $element).animate({"width":"100%"}, $options.timeout);
             }
-		}        
+		}
 
         $(".toast-close", $element).click(removeToast)
 
@@ -147,7 +148,7 @@
     }
 
     $.Toast.remove = function( $element ){
-        "use strict";        
+        "use strict";
 		if($element.fadeOut)
 		{
 			$element.fadeOut(function(){
@@ -156,6 +157,6 @@
 		}
 		else{
 			$element.remove();
-		}        
+		}
     }
 })();

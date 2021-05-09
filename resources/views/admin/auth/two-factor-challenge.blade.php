@@ -1,18 +1,18 @@
 @extends('admin.layouts.app')
-@section('title','Two Factor Authentication')
+@section('title', __('text.Two Factor Authentication'))
 @push('css')
-    @livewireStyles
-
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 @endpush
 @section('content')
     <x-general.authentication-card>
-        <x-slot name="logo">
-            <x-general.authentication-card-logo />
-        </x-slot>
+        <div class="text-center account-logo-box" style="background-image:url('/images/icons/logoTawfeer.png');background-size:cover; height:240px">
+            <div class="mt-2 mb-2">
 
-        <div class="card-body">
+            </div>
+        </div>
+
+        <div class="card-body bg-dark text-white">
             <x-general.input-error for="code"></x-general.input-error>
             <x-general.input-error for="recovery_code"></x-general.input-error>
 
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end mt-3">
-                        <button id="showRecovery"  type="button" class="btn btn-outline-secondary"
+                        <button id="showRecovery"  type="button" class="btn btn-outline-light mx-2"
                                 x-show="! recovery"
                                 x-on:click="
                                             recovery = true;
@@ -61,7 +61,7 @@
                             {{ __('text.Use a recovery code') }}
                         </button>
 
-                        <button id="showCode" type="button" class="btn btn-outline-secondary"
+                        <button id="showCode" type="button" class="btn btn-outline-light mx-2"
                                 x-show="recovery"
                                 x-on:click="
                                             recovery = false;
@@ -70,7 +70,7 @@
                             {{ __('text.Use an authentication code') }}
                         </button>
 
-                        <x-general.button>
+                        <x-general.button class="btn btn-outline-light">
                             {{ __('text.Log in') }}
                         </x-general.button>
                     </div>
@@ -80,7 +80,7 @@
     </x-general.authentication-card>
 @endsection
 @push('js')
-    @livewireScripts
+
     @if ($errors->has('code'))
         <script>
             $(window).on('load',function (){

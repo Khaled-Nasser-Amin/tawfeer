@@ -55,10 +55,10 @@ class UpdateProfileInformationForm extends Component
     }
 
     public function deleteProfilePhoto(){
+        $this->livewireDeleteSingleImage($this->getUserProperty(),'users');
         $this->getUserProperty()->update([
             'image' => null
         ]);
-        $this->livewireDeleteSingleImage($this->getUserProperty(),'users');
         $this->emit('saved');
         $this->emit('refresh-navbar',route('profile.show'));
     }

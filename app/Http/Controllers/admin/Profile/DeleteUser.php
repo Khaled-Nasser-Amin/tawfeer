@@ -15,7 +15,7 @@ class DeleteUser implements DeletesUsers
      */
     public function delete($user)
     {
-        $user->image ? unlink($user->image): null;
+        $user->getAttributes()['image'] ? unlink($user->image): null;
         DB::table('sessions')->where('user_id',$user->id)->delete();
         $user->delete();
     }

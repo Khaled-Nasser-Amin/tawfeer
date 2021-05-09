@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Recover Password | Zircos - Responsive Bootstrap 4 Admin Dashboard')
+@section('title',__('Recover Password'))
 @section('content')
 <div class="account-pages mt-5 mb-5">
     <div class="container">
@@ -7,19 +7,13 @@
             <div class="col-md-8 col-lg-6 col-xl-5">
                 <div class="card">
 
-                    <div class="text-center account-logo-box">
-                        <div class="mt-2 mb-2">
-                            <a class='btn btn-secondary waves-effect waves-light' rel="alternate" href="{{App::getLocale() == 'en' ? LaravelLocalization::getLocalizedURL('ar', null, [], true) :   LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
-                                {{ app()->getLocale() == 'ar'? 'English' : 'العربية' }}
-                            </a>
-                        </div>
-                    </div>
+                    <x-general.authentication-card-logo />
 
-                    <div class="card-body">
+                    <div class="card-body text-white bg-dark">
 
                         <div class="text-center mb-4">
 
-                            <p class="text-muted mb-0">{{__('text.Enter your email address and we\'ll send you an email with instructions to reset your password.')}} </p>
+                            <p class="mb-0 text-white">{{__('text.Enter your email address and we\'ll send you an email with instructions to reset your password.')}} </p>
                         </div>
 
                         <form action="{{route('sendEmail')}}" method="post">

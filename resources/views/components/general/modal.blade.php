@@ -24,7 +24,7 @@ switch ($maxWidth ?? '') {
 @endphp
 
 <!-- Modal -->
-<div 
+<div
     x-data="{
         show: @entangle($attributes->wire('model')).defer,
     }"
@@ -42,15 +42,15 @@ switch ($maxWidth ?? '') {
             show = false
         })
     }"
-    wire:ignore.self 
-    class="modal fade" 
-    tabindex="-1" 
-    id="{{ $id }}" 
-    aria-labelledby="{{ $id }}" 
+    wire:ignore.self
+    class="modal fade"
+    tabindex="-1"
+    id="{{ $id }}"
+    aria-labelledby="{{ $id }}"
     aria-hidden="true"
     x-ref="{{ $id }}"
 >
-    <div class="modal-dialog{{ $maxWidth }}">
+    <div class="mt-5 modal-dialog{{ $maxWidth }}">
         {{ $slot }}
     </div>
 </div>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Logout | Zircos - Responsive Bootstrap 4 Admin Dashboard')
+@section('title',__('text.Logout'))
 @section('content')
     <div class="account-pages mt-5 mb-5">
         <div class="container">
@@ -7,15 +7,11 @@
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div class="card">
 
-                        <div class="text-center account-logo-box">
+                        <div class="text-center account-logo-box" style="background-image:url('/images/icons/logoTawfeer.png');background-size:cover; height:220px">
                             <div class="mt-2 mb-2">
-                                <a href="{{route('index')}}" class="text-success">
-                                    <span><img src="{{asset('images/logo.png')}}" alt="" height="36"></span>
-                                </a>
                             </div>
                         </div>
-
-                        <div class="card-body">
+                        <div class="card-body text-white bg-dark">
 
                             <div class="text-center">
                                 <div class="checkmark mb-3">
@@ -25,21 +21,15 @@
                                     </svg>
                                 </div>
 
-                                <h4>{{__('text.See You Again')}} !</h4>
+                                <h4 class="text-white">{{__('text.See You Again')}} !</h4>
 
-                                <p class="text-muted">{{__('text.You are now successfully sign out')}}.</p>
+                                <p class="text-white">{{__('text.You are now successfully sign out')}}.</p>
+                                <p class="text-muted">{{__('text.Return to')}} <a href="{{route('index')}}" class="text-primary mx-1">{{__('text.Log In')}}</a></p>
+
                             </div>
 
                         </div>
                         <!-- end card-body -->
-                    </div>
-                    <!-- end card -->
-
-                    <div class="row mt-5">
-                        <div class="col-sm-12 text-center">
-
-                            <p class="text-muted">{{__('text.Return to')}} <a href="{{route('index')}}" class="text-primary mx-1">{{__('text.Log In')}}</a></p>
-                        </div>
                     </div>
 
                 </div>

@@ -18,6 +18,7 @@
             <!-- start page title -->
             <x-admin.general.page-title>
                 <li class="breadcrumb-item active">{{__('text.Categories')}}</li>
+                <li class="breadcrumb-item active"><a href="{{route('admin.index')}}">{{__('text.Dashboard')}}</a></li>
                 <x-slot name="title">
                     <h4 class="page-title">{{__('text.Categories')}}</h4>
                 </x-slot>

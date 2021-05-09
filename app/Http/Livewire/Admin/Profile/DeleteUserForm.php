@@ -46,7 +46,7 @@ class DeleteUserForm extends Component
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Jetstream\Contracts\DeletesUsers  $deleter
-     * @param  \Illuminate\Contracts\Auth\StatefulGuard  $auth
+     * @param  \Illuminate\Contracts\Auth\StatefulGuard  $Auth
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function deleteUser(Request $request, DeleteUser $deleter)

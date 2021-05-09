@@ -1,4 +1,4 @@
-@section('title','Products')
+@section('title',__('text.Products'))
 @push('css')
     @livewireStyles
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
@@ -19,6 +19,7 @@
             <!-- start page title -->
             <x-admin.general.page-title>
                 <li class="breadcrumb-item active">{{__('text.Products')}}</li>
+                <li class="breadcrumb-item active"><a href="{{route('admin.index')}}">{{__('text.Dashboard')}}</a></li>
                 <x-slot name="title">
                     <h4 class="page-title">{{__('text.Products')}} </h4>
                 </x-slot>

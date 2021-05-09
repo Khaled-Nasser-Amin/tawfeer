@@ -5,25 +5,36 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title class="mdi mdi-car-hatchback">@yield('title')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('front/images/tire.png')}}">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
+    <title class="mdi mdi-car-hatchback">@yield('title')  | {{ __('text.Tawfeer')}}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('front/images/titleIcon.png')}}">
+
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap.min.css')}}">--}}
+
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap.min.css')}}">
+
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/chosen.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/color-01.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/style.css')}}">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
 
     @stack('css')
-    @if ( LaravelLocalization::getCurrentLocale() == 'ar')
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
+    <style>
+        .form-control:focus{
+            border-color: #f59524!important;
+        }
+    </style>
+@if ( LaravelLocalization::getCurrentLocale() == 'ar')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">    <style>a{text-decoration:none ;}</style>
+        <link href="{{asset('css/app-rtl.min.css')}}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="{{asset('front/css/rtl.css')}}">
     @endif
+
 </head>
-<body class="home-page home-01 ">
+<body class="home-page home-01 bg-white">
 
     <!-- mobile menu -->
     <div class="mercado-clone-wrap">
@@ -55,15 +66,17 @@
             @yield('content')
         </div>
     </main>
-    <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-    <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-    <script src="{{asset('front/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
-    <script src="{{asset('front/js/chosen.jquery.min.js')}}"></script>
-    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
+
+    <script src="{{asset('js/app.js')}}"></script>
+
+    {{-- <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
+           </script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
+      <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
+           <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
+           <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>--}}
     <script src="{{asset('front/js/jquery.sticky.js')}}"></script>
     <script src="{{asset('front/js/functions.js')}}"></script>
+    <script src="{{asset('front/js/chosen.jquery.min.js')}}"></script>
     @stack('script')
 </body>
 </html>

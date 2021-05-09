@@ -1,5 +1,5 @@
 @extends('admin.layouts.appLogged')
-@section('title','')
+@section('title',__('text.Dashboard'))
 @push('css_en')
 @endpush
 @section('content')
@@ -14,12 +14,10 @@
                     <div class="page-title-box">
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Zircos</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard </a></li>
-                                <li class="breadcrumb-item active">Dashboard 2</li>
+                                <li class="breadcrumb-item active">{{__('text.Dashboard')}}</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Dashboard 2</h4>
+                        <h4 class="page-title">{{__('text.Dashboard')}}</h4>
                     </div>
                 </div>
             </div>
@@ -31,12 +29,12 @@
                     <div class="card widget-box-one border border-primary bg-soft-primary">
                         <div class="card-body">
                             <div class="float-right avatar-lg rounded-circle mt-3">
-                                <i class="mdi mdi-chart-areaspline font-30 widget-icon rounded-circle avatar-title text-primary"></i>
+                                <i class="mdi mdi-car-hatchback font-30 widget-icon rounded-circle avatar-title text-primary"></i>
                             </div>
                             <div class="wigdet-one-content">
-                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="Statistics">Statistics</p>
-                                <h2><span data-plugin="counterup">34578</span> <i class="mdi mdi-arrow-up text-success font-24"></i></h2>
-                                <p class="text-muted m-0"><span class="font-weight-medium">Last:</span> 30.4k</p>
+                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="Statistics">
+                                    {{__('text.Categories')}}</p>
+                                <h2><span data-plugin="counterup">{{$categories}}</span> </h2>
                             </div>
                         </div>
                     </div>
@@ -47,12 +45,11 @@
                     <div class="card widget-box-one border border-warning bg-soft-warning">
                         <div class="card-body">
                             <div class="float-right avatar-lg rounded-circle mt-3">
-                                <i class="mdi mdi-layers font-30 widget-icon rounded-circle avatar-title text-warning"></i>
+                                <i class="mdi mdi-car-cruise-control font-30 widget-icon rounded-circle avatar-title text-warning"></i>
                             </div>
                             <div class="wigdet-one-content">
-                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="User This Month">User This Month</p>
-                                <h2><span data-plugin="counterup">52410 </span> <i class="mdi mdi-arrow-up text-success font-24"></i></h2>
-                                <p class="text-muted m-0"><span class="font-weight-medium">Last:</span> 40.33k</p>
+                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="User This Month">{{__('text.Spares')}}</p>
+                                <h2><span data-plugin="counterup">{{$products}} </span> </h2>
                             </div>
                         </div>
                     </div>
@@ -63,12 +60,12 @@
                     <div class="card widget-box-one border border-danger bg-soft-danger">
                         <div class="card-body">
                             <div class="float-right avatar-lg rounded-circle mt-3">
-                                <i class="mdi mdi-av-timer font-30 widget-icon rounded-circle avatar-title text-danger"></i>
+                                <i class="mdi mdi-account font-30 widget-icon rounded-circle avatar-title text-danger"></i>
                             </div>
                             <div class="wigdet-one-content">
-                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="Statistics">Statistics</p>
-                                <h2><span data-plugin="counterup">6352 </span> <i class="mdi mdi-arrow-up text-success font-24"></i></h2>
-                                <p class="text-muted m-0"><span class="font-weight-medium">Last:</span> 956</p>
+                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="Statistics">
+                                    {{__('text.Users')}}</p>
+                                <h2><span data-plugin="counterup">{{$vendors}} </span></h2>
                             </div>
                         </div>
                     </div>
@@ -79,12 +76,11 @@
                     <div class="card widget-box-one border border-success bg-soft-success">
                         <div class="card-body">
                             <div class="float-right avatar-lg rounded-circle mt-3">
-                                <i class="mdi mdi-account-convert font-30 widget-icon rounded-circle avatar-title text-success"></i>
+                                <i class="mdi mdi-car font-30 widget-icon rounded-circle avatar-title text-success"></i>
                             </div>
                             <div class="wigdet-one-content">
-                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="User Today">User Today</p>
-                                <h2><span data-plugin="counterup">895</span> <i class="mdi mdi-arrow-down text-danger font-24"></i></h2>
-                                <p class="text-muted m-0"><span class="font-weight-medium">Last:</span> 1250</p>
+                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="User Today">{{__('text.My Products')}}</p>
+                                <h2><span data-plugin="counterup">{{$myProducts}}</span></h2>
                             </div>
                         </div>
                     </div>
@@ -92,7 +88,7 @@
                 <!-- end col -->
             </div>
 
-            <div class="row">
+           {{-- <div class="row">
                 <div class="col-xl-6">
                     <div class="card-box">
                         <h4 class="header-title mb-4">Total Revenue</h4>
@@ -121,7 +117,7 @@
                 </div>
 
             </div>
-            <!-- end row -->
+            <!-- end row -->--}}
 
         </div>
         <!-- end container-fluid -->
@@ -129,14 +125,7 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{asset('libs/flot-charts/jquery.flot.js')}}"></script>
-    <script src="{{asset('libs/flot-charts/jquery.flot.time.js')}}"></script>
-    <script src="{{asset('libs/flot-charts/jquery.flot.tooltip.min.js')}}"></script>
-    <script src="{{asset('libs/flot-charts/jquery.flot.resize.js')}}"></script>
-    <script src="{{asset('libs/flot-charts/jquery.flot.pie.js')}}"></script>
-    <script src="{{asset('libs/flot-charts/jquery.flot.crosshair.js')}}"></script>
-    <script src="{{asset('libs/flot-charts/jquery.flot.selection.js')}}"></script>
-    <script src="{{asset('libs/moment/moment.min.js')}}"></script>
+
     <script src="{{asset('js/pages/dashboard_2.init.js')}}"></script>
 @endpush
 

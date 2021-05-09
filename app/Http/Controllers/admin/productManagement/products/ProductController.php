@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin\productManagement\products;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\ProductRequest;
 use App\Models\Images;
 use App\Traits\ImageTrait;
 use App\Models\Category;

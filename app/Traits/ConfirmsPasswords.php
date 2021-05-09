@@ -78,7 +78,7 @@ trait ConfirmsPasswords
             ]);
         }
 
-        session(['auth.password_confirmed_at' => time()]);
+        session(['Auth.password_confirmed_at' => time()]);
 
         $this->dispatchBrowserEvent('password-confirmed', [
             'id' => $this->confirmableId,
@@ -95,7 +95,7 @@ trait ConfirmsPasswords
      */
     protected function ensurePasswordIsConfirmed($maximumSecondsSinceConfirmation = null)
     {
-        $maximumSecondsSinceConfirmation = $maximumSecondsSinceConfirmation ?: config('auth.password_timeout', 900);
+        $maximumSecondsSinceConfirmation = $maximumSecondsSinceConfirmation ?: config('Auth.password_timeout', 900);
 
         return $this->passwordIsConfirmed($maximumSecondsSinceConfirmation) ? null : abort(403);
     }
@@ -108,8 +108,8 @@ trait ConfirmsPasswords
      */
     protected function passwordIsConfirmed($maximumSecondsSinceConfirmation = null)
     {
-        $maximumSecondsSinceConfirmation = $maximumSecondsSinceConfirmation ?: config('auth.password_timeout', 900);
+        $maximumSecondsSinceConfirmation = $maximumSecondsSinceConfirmation ?: config('Auth.password_timeout', 900);
 
-        return (time() - session('auth.password_confirmed_at', 0)) < $maximumSecondsSinceConfirmation;
+        return (time() - session('Auth.password_confirmed_at', 0)) < $maximumSecondsSinceConfirmation;
     }
 }

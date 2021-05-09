@@ -20,13 +20,12 @@ class AuthController extends Controller
         $this->middleware('guest')->except(['logout','activeAccount','saveFile']);
     }
     public function index(){
-        return view('admin.auth.login');
+        return view('admin.Auth.login');
     }
 
     public function logout(){
         auth()->logout();
-        session()->flush();
-        return view('admin.auth.logout');
+        return view('admin.Auth.logout');
     }
 
     //login
@@ -49,7 +48,7 @@ class AuthController extends Controller
                 'login.id' => $user->getKey(),
                 'login.remember' => $request->filled('remember'),
             ]);
-            return view('admin.auth.two-factor-challenge');
+            return view('admin.Auth.two-factor-challenge');
         }else{
             if(Auth::guard('web')->attempt($cred,$request->remember_me ? 1 : 0))
             {
@@ -69,7 +68,7 @@ class AuthController extends Controller
 
     //forget password
     public function viewForget(){
-        return view('admin.auth.forgetPassword');
+        return view('admin.Auth.forgetPassword');
     }
 
     public function messageAfterSendingEmailToResetPassword(Request $request){
@@ -87,7 +86,7 @@ class AuthController extends Controller
 
     public function viewResetPassword(Request $request,$token){
         if(session()->has('_token') && session()->has('key') && session()->get('_token').session()->get('key') == $token){
-            return view('admin.auth.reset-password');
+            return view('admin.Auth.reset-password');
         }
         else{
             return abort(404);

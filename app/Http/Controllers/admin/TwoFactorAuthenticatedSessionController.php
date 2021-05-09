@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\TwoFactorLoginRequest;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class TwoFactorAuthenticatedSessionController extends Controller
@@ -26,11 +27,11 @@ class TwoFactorAuthenticatedSessionController extends Controller
         } elseif (! $request->hasValidCode()) {
 
             if ($request->code){
-                return view('admin.auth.two-factor-challenge')->withErrors(['code'=>__('text.The provided two factor authentication code was invalid.')]);
+                return view('admin.Auth.two-factor-challenge')->withErrors(['code'=>__('text.The provided two factor authentication code was invalid.')]);
             }elseif($request->recovery_code){
-                return view('admin.auth.two-factor-challenge')->withErrors(['recovery_code'=>__('text.The provided two factor authentication recovery_code was invalid.')]);
+                return view('admin.Auth.two-factor-challenge')->withErrors(['recovery_code'=>__('text.The provided two factor authentication recovery_code was invalid.')]);
             }else{
-                return view('admin.auth.two-factor-challenge')->withErrors(['recovery_code'=>__('text.Enter your two factor authentication code')]);
+                return view('admin.Auth.two-factor-challenge')->withErrors(['recovery_code'=>__('text.Enter your two factor authentication code')]);
 
             }
         }
@@ -41,4 +42,5 @@ class TwoFactorAuthenticatedSessionController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
 }

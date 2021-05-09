@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    public function __construct(){
+        $this->middleware('guest:vendor')->only(['loginView','registerView']);
+    }
+    public function logout(){
+        auth()->guard('vendor')->logout();
+        return redirect('/'.app()->getLocale());
+    }
     public function loginView(){
-        return view('front.auth.login');
+        return view('front.Auth.login');
     }
     public function registerView(){
-        return view('front.auth.register');
+        return view('front.Auth.register');
     }
 
 }

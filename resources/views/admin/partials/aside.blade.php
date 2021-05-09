@@ -10,7 +10,7 @@
                 <li><a href="{{route('admin.index')}}"><i class="mdi mdi-view-dashboard"></i>{{__('text.Dashboard')}}</a></li>
                 <li><a href="/admin/categories"><i class="mdi mdi-car-hatchback"></i>{{__('text.Categories')}}</a></li>
                 <li><a href="/admin/products"><i class="mdi mdi-car-cruise-control"></i>{{__('text.Products')}}</a></li>
-                <li><a href="#"><i class="mdi mdi-account-multiple"></i>{{__('text.Users')}}</a></li>
+                <li><a href="/admin/vendors"><i class="mdi mdi-account-multiple"></i>{{__('text.Users')}}</a></li>
 
             </ul>
 

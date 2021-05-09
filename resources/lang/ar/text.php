@@ -3,8 +3,31 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'Update Spare' => 'تعديل القطعة',
+    'Full Name' => 'الاسم ثلاثي او رباعي',
     'Login' =>  'تسجيل دخول',
+    'Log in to your account' =>  'سجل الدخول الي حسابك الشخصي',
+    'Account Confirmation' =>  'تفعيل الحساب',
+    'We have sent a verification code to your number' =>  'لقد ارسلنا لك كود التفعيل علي الرقم',
+    'Recover Password' =>  'استعادة كلمة المرور',
+
     'Register' => 'تسجيل حساب',
+    'Add Spare' => 'اضف قطعة',
+    'Tawfeer' => 'توفير',
+    'Type your phone number' => 'اكتب رقم هاتفك الذي سجلت به',
+    'My Accounts' => 'حسابي',
+
+    'Create an account' => 'انشئ حساب',
+    'Personal infomation' => 'بياناتك الشخصية',
+    'Login Information' => 'معلومات الدخول',
+    'This credentials does not match our records.' => 'هذه البيانات لا تتطابق مع سجلاتنا',
+
+
+
+
+
+
+
 
 
 
@@ -100,6 +123,7 @@ return [
     'Price' =>  'السعر',
     'Sale' =>  'السعر بعد التخفيض',
     'Stock' =>  'المخزن',
+    'Spares' =>  'القطع',
     'The category does not have any product yet' =>  'القسم لا يوجد به اي منتجات حتي الان',
 
 

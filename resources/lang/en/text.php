@@ -3,8 +3,34 @@
 return [
     //front end
     'Home' => 'Home',
+    'Update Spare' => 'Update Spare',
+    'Full Name' => 'Full Name',
     'Login' =>  'Login',
+    'Type your phone number' =>  'Type your phone number',
+    'Log in to your account' =>  'Log in to your account',
+    'Recover Password' =>  'Recover Password',
     'Register' => 'Register',
+    'Add Spare' => 'Add Spare',
+    'Tawfeer' => 'Tawfeer',
+    'This credentials does not match our records.' => 'This credentials does not match our records.',
+    'Create an account' => 'Create an account',
+    'Personal infomation' => 'Personal infomation',
+    'Login Information' => 'Login Information',
+    'Account Confirmation' => 'Account Confirmation',
+    'We have sent a verification code to your number' => 'We have sent a verification code to your number',
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -14,7 +40,9 @@ return [
     'Year of Manufacture' => 'Year of Manufacture',
     'Filter Products' => 'Filter Products',
     'My Products' => 'My Products',
+    'My Accounts' => 'My Accounts',
     'All Products' => 'All Products',
+
 
 
 
@@ -81,7 +109,7 @@ return [
     'Store Information' => 'Store Information',
 
     'See You Again' => 'See You Again',
-    'You are now successfully sign out' => 'You are now successfully sign out',
+    'You are now successfully sign out' => 'You are now successfully signed out',
     'Return to' => 'Return to',
 
 
@@ -99,6 +127,7 @@ return [
     'Serial' =>  'Serial',
     'Price' =>  'Price',
     'Sale' =>  'Sale',
+    'Spares' =>  'Spares',
     'Stock' =>  'Stock',
     'The category does not have any product yet' =>  'The category does not have any product yet',
 
