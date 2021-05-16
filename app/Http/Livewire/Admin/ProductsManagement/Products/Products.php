@@ -65,11 +65,17 @@ class Products extends Component
         session()->flash('success',__('text.Product Deleted Successfully') );
     }
     public function updateFeatured($id){
+        $numberOfProducts=Product::where('featured',1)->count();
         $product=Product::findOrFail($id);
-        $featured=$product->featured == 0 ? 1 : 0;
-        $product->update([
-            'featured'=>$featured
-        ]);
+        if ($numberOfProducts < 15 || $product->featured == 1){
+            $featured=$product->featured == 0 ? 1 : 0;
+            $product->update([
+                'featured'=>$featured
+            ]);
+        }else{
+            $this->dispatchBrowserEvent('danger',__('text.You have only 15 special products'));
+        }
+
     }
 
 

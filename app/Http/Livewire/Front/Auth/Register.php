@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Front\Auth;
 
+use App\Models\Vendor;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-
 class Register extends Component
 {
 
-    public $name,$phone,$password,$password_confirmation;
+    public $name,$phone,$password,$password_confirmation,$code;
+
 
     public function updated($fields){
         $this->validateOnly($fields,[
@@ -28,10 +30,56 @@ class Register extends Component
     }
     public function store(){
         $data=$this->validation();
-        session()->put('data',$data);
         $code=implode('',array_rand([0,1,2,3,4,5,6,7,8,9],6));
+        send_sms('+201025070424',__('text.Your activation code is:')." ".$code);
+        session()->put('data',$data);
+        session()->put('code',$code);
+        session()->put('time',time());
+        session()->put('activeCodeField','');
+        $this->dispatchBrowserEvent('success',__('text.Message has been sent successfully'));
+
+
+    }
+
+    public function resend(){
+        $code=implode('',array_rand([0,1,2,3,4,5,6,7,8,9],6));
+        send_sms('+201025070424',__('text.Your activation code is:')." ".$code);
         session()->put('code',$code);
         session()->put('activeCodeField','');
+        session()->forget('time');
+        session()->put('time',time());
+        $this->dispatchBrowserEvent('success',__('text.Message has been sent successfully'));
+        $this->dispatchBrowserEvent('refreshCode',session()->get('time'));
+    }
+
+    public function create(){
+        if (session()->has('code') && $this->code == session()->get('code')){
+            if (session()->has('time') && time() < (session()->get('time')+(5*60)) ){
+                if (session()->has('data')){
+                    $data=session()->pull('data');
+                    $vendor=Vendor::create([
+                        'name' =>  $data['name'],
+                        'phone' => $data['phone'],
+                        'password' => bcrypt($data['password']),
+                    ]);
+                    Auth::guard('vendor')->login($vendor);
+                    $this->dispatchBrowserEvent('success',__('text.Your account activated successfully'));
+                    $this->redirect('/');
+                }
+
+            }else{
+                $this->dispatchBrowserEvent('danger',__('text.CODE EXPIRED,please resend the activation code or cancel the operation.'));
+            }
+        }else{
+            $this->dispatchBrowserEvent('danger',__('text.Invalid Code!'));
+        }
+    }
+
+    public function cancel(){
+        session()->forget('data');
+        session()->forget('code');
+        session()->forget('time');
+        session()->forget('activeCodeField');
     }
 
 

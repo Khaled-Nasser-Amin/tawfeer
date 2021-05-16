@@ -4,6 +4,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <link href="{{asset('libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('css/style.css')}}"rel="stylesheet"type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/toast.style.min.css')}}">
     <style>
         svg{
             width: 20px;
@@ -60,6 +61,16 @@
 
 
 @push('script')
+    <script src="{{asset('js/toast.script.js')}}"></script>
+    <script>
+        window.addEventListener('danger',e=>{
+            $.Toast(e.detail,"",'error',{
+                stack: false,
+                position_class: "toast-top-center",
+                rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
+            });
+        })
+    </script>
     <script src="{{asset('libs/sweetalert2/sweetalert2.min.js')}}"></script>
     @livewireScripts
     <script>

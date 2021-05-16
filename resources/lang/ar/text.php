@@ -3,6 +3,8 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'You have only 15 special products' => 'لديك 15 منتج مميز فقط',
+    'Password Changed Successfully' => 'تم تغير كلمة المرور بنجاح',
     'Update Spare' => 'تعديل القطعة',
     'Full Name' => 'الاسم ثلاثي او رباعي',
     'Login' =>  'تسجيل دخول',
@@ -111,6 +113,10 @@ return [
 
 
     'Details' =>  'التفاصيل',
+    'CODE EXPIRED' =>  'انتهي صلاحية كود التعريف',
+    'Code will expire after : ' =>  'ستنتهي صلاحية الكود بعد',
+    'Message has been sent successfully' =>  'لقد تم ارسال الرسالة بنجاح',
+    'Your activation code is:' =>  'كود التفعيل :',
     'Category Show' =>  'عرض القسم',
     'Category Details' =>  'تفاصيل القسم',
     'Category Name' =>  'اسم القسم',
@@ -124,6 +130,7 @@ return [
     'Sale' =>  'السعر بعد التخفيض',
     'Stock' =>  'المخزن',
     'Spares' =>  'القطع',
+    'Resend?' =>  'اعادة الارسال؟',
     'The category does not have any product yet' =>  'القسم لا يوجد به اي منتجات حتي الان',
 
 
@@ -209,6 +216,9 @@ return [
     'No, cancel!'  => 'لا,إلغاء !',
     'Yes, delete it!'  => 'نعم,حذف !',
     'Cancelled'  => 'تم الالغاء',
+    'Set New Password'  => 'استعادة كلمة المرور',
+    'Forget-Password'  => 'اعادة كلمة المرور',
+    'CODE EXPIRED,please resend the activation code or cancel the operation.'  => 'لقد انتهي صلاحية كود التسجيل,من فضلك قم باعادة ارسال كود التعريف او انهي عملية التسجيل.',
     'Product Added Successfully'  => 'تم اضافة المنتج بنجاح',
     'Whoops! Something went wrong.'  => 'اوبس,لقد حدث خطأ ما',
     'Your imaginary file is safe :)'  => 'البيانات لازالت محفوظة',
@@ -216,6 +226,9 @@ return [
     'Please confirm access to your account by entering the authentication code provided by your authenticator application.'  => 'يرجى تأكيد الوصول إلى حسابك عن طريق إدخال رمز المصادقة المقدم من تطبيق المصادقة الخاص بك.',
     'Please confirm access to your account by entering one of your emergency recovery codes.'  => 'يرجى تأكيد الوصول إلى حسابك عن طريق إدخال أحد رموز الاسترداد في حالات الطوارئ.',
     'Code'  => 'الكود',
+    'Number Confirmation'  => 'تأكيد رقم الهاتف',
+    'Your account activated successfully'  => 'تم تفعيل الحساب بنجاح',
+    'Invalid Code!'  => 'خطأ في كود التسجيل!',
     'Enter your two factor authentication code'  => 'ادخل كود المصادقة الخاص بهذا البريد',
     'Recovery Code'  => 'كود الاسترداد في حالة الطوارئ',
     'Use a recovery code'  => 'استخدم كود الاسترداد',

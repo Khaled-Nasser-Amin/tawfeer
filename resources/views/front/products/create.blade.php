@@ -1,15 +1,7 @@
 @extends('front.layouts.header')
 @section('title',__('text.Add Spare'))
 @push('css')
-    <link rel="stylesheet" href="{{asset('css/toast.style.min.css')}}">
     @livewireStyles
-    <style>
-        i{font-family: FontAwesome!important;}
-
-        .toast-item-wrapper .toast-top-center{
-            margin-top: 40px!important;
-        }
-    </style>
 @endpush
 @section('content')
 
@@ -21,8 +13,8 @@
 
             <div class="wrap-breadcrumb my-5" >
                 <ol class="breadcrumb w-100 bg-white">
-                    <li class="breadcrumb-item"><a href="{{route('front.dashboard')}}" class="text-black-50">{{__('text.Home')}}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{__('text.Add Spare')}}</li>
+                    <li class="breadcrumb-item  active"><a href="{{route('front.dashboard')}}" class="text-black-50">{{__('text.Home')}}</a></li>
+                    <li class="breadcrumb-item" aria-current="page">{{__('text.Add Spare')}}</li>
                 </ol>
             </div>
 
@@ -50,15 +42,5 @@
     <!-- end content -->
 @endsection
 @push('script')
-    <script src="{{asset('js/toast.script.js')}}"></script>
     @livewireScripts
-    <script>
-        window.addEventListener('success',e=>{
-            $.Toast(e.detail,"",'success',{
-                stack: false,
-                position_class: "toast-top-center",
-                rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
-            });
-        })
-    </script>
 @endpush

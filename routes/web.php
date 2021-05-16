@@ -12,6 +12,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Admin\ProductsManagement\Categories\Categories;
 use App\Http\Livewire\Admin\ProductsManagement\Products\Products;
 use App\Http\Controllers\front\Dashboard;
+use App\Http\Livewire\Front\Dashboard\Dashboard as FrontDashboard;
 use App\Http\Livewire\Admin\ProductsManagement\Vendors\Vendors;
 use App\Http\Controllers\front\AuthController as FrontAuthController;
 use App\Http\Controllers\front\products\ProductController as FrontProductController;
@@ -60,15 +61,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     });
 
     Route::name('front.')->group(function(){
-        Route::get('/',[Dashboard::class,'dashboard'])->name('dashboard');
+        Route::get('/',FrontDashboard::class)->name('dashboard');
         Route::get('/login',[FrontAuthController::class,'loginView'])->name('loginView');
         Route::post('/logout',[FrontAuthController::class,'logout'])->name('logout');
+        Route::get('/forget-password',[FrontAuthController::class,'forgetPassword'])->name('forgetPassword');
         Route::get('/register',[FrontAuthController::class,'registerView'])->name('registerView');
 
 
-        Route::get('/user/profile', [FrontUserProfile::class, 'show'])->name('profile.show');
-        Route::get('/add-spare', [FrontProductController::class,'addNewProduct'])->name('AddSpare');
-        Route::get('/products-update/{product}-{slug}', [FrontProductController::class,'updateProduct']);
+        Route::group(['middleware'=>'auth:vendor'],function (){
+            Route::get('/user/profile', [FrontUserProfile::class, 'show'])->name('profile.show');
+            Route::get('/add-spare', [FrontProductController::class,'addNewProduct'])->name('AddSpare');
+            Route::get('/products-update/{product}-{slug}', [FrontProductController::class,'updateProduct']);
+        });
 
     });
 

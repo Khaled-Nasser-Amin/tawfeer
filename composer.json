@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "aloha/twilio": "^4.0",
         "bacon/bacon-qr-code": "^2.0",
         "danharrin/livewire-rate-limiting": "^0.2.0",
         "fideloper/proxy": "^4.4",
@@ -50,7 +51,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/functions/Functions.php"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

@@ -1,3 +1,11 @@
+
+.hover-dark-text:hover{
+    color: #000000!important;
+    cursor: pointer;
+}
+
+
+
 /*------------------------------------------------------------------
 [Stylesheet]
 
@@ -1585,7 +1593,7 @@ li.menu-item .nav-label.sale-label::before{
     width: 100%;
     /*float: left;*/
     text-align: left;
-    background-color: #ff2832;
+    background-color: #f59524;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 700;
@@ -1708,9 +1716,7 @@ li.menu-item .nav-label.sale-label::before{
 /**********************product style 2 ***********************/
 .product-style-2{
     display: inline-block;
-    padding: 19px 9px 13px 9px;
     border: 1px solid transparent;
-    margin-bottom: 9px;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
@@ -1779,9 +1785,9 @@ li.menu-item .nav-label.sale-label::before{
     font-size: 13px;
     line-height: 18px;
     color: #222222;
-    text-align: left;
     display: inline-block;
     width: 100%;
+    text-indent: 5px;
     margin-top: 5px;
 }
 .product .product-info .product-rating,
@@ -1821,7 +1827,6 @@ li.menu-item .nav-label.sale-label::before{
 .product-style-2 .product-info .wrap-price{
     display: inline-block;
     width: 100%;
-    text-align: left;
     margin-top: 3px;
 }
 .product .product-info .wrap-price .product-price,
@@ -2185,7 +2190,7 @@ li.menu-item .nav-label.sale-label::before{
     -ms-transform: translateY(8.5px);
 }
 .coppy-right-box {
-    background: #2d2d2d;
+    background: #444444;
 }
 .coppy-right-box .coppy-right-item{
     display: inline-block;
@@ -3150,7 +3155,6 @@ vertical-align: top;
     font-size: 13px;
     line-height: 19px;
     color: #666666;
-    float: right;
 }
 .wrap-login-item .form-item input[type="checkbox"]{
     display: none;
@@ -6303,6 +6307,7 @@ background-color: #888888;
     }
 }
 
+/*header*/
 @media (max-width: 1024px){
     .sticky-wrapper{
         height: 0 !important;
@@ -6348,7 +6353,7 @@ background-color: #888888;
         justify-content: center;
 	}
 	.header .main-info-area .center-section .right-section{
-        /*order: 3;*/
+        order: 3;
 	    width: initial;
 	}
 	.header .main-info-area .center-section .right-section .show-up-after-1024{
@@ -6359,7 +6364,7 @@ background-color: #888888;
 	    display: inline-block;
 	    float: left;
 	    padding: 3px 0;
-	    /*border: 1px solid #333;*/
+	    border: 1px solid #333;
 	}
 	.header .main-info-area .center-section .right-section .show-up-after-1024 span{
 	    display: inline-block;

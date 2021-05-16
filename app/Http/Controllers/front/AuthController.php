@@ -20,5 +20,8 @@ class AuthController extends Controller
     public function registerView(){
         return view('front.Auth.register');
     }
+    public function forgetPassword(){
+        return view('front.Auth.forget-password');
+    }
 
 }

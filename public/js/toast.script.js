@@ -8,7 +8,7 @@
             fullscreen:false,
             width: 250,
             spacing:20,
-            timeout: 4000,
+            timeout:4000,
             has_close_btn:true,
             has_icon:true,
             sticky:false,
@@ -31,8 +31,8 @@
             "z-index":99999
         }
 
-        $element = $('<div class="toast-item-wrapper ' + type + ' ' + $options.position_class + '"></div>');
-        $('<p class="toast-title">' + title + '</p>').appendTo($element);
+        $element = $('<div class="toast-item-wrapper row justify-content-center align-items-center ' + type + ' ' + $options.position_class + '"></div>');
+        $('<p class="toast-title px-2">' + title + '</p>').appendTo($element);
         $('<p class="toast-message">' + message + '</p>').appendTo($element);
 
         if($options.fullscreen){
@@ -53,8 +53,13 @@
         }
 
         if($options.has_icon){
+            if (type =='success'){
+                $element.prepend('<i class="far fa-check-circle"></i>');
 
-            $('<i class="toast-icon toast-icon-' + type + '"></i>').appendTo($element);
+            }else if(type == 'error'){
+                $element.prepend('<i class="hover-dark-text fa fa-times-circle""></i>');
+
+            }
             if( $options.rtl){
                 css["padding-right"] = 50;
             } else {

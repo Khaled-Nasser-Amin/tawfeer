@@ -20,7 +20,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * @param  array  $input
      * @return void
      */
-    public function update($user, array $input)
+    public function update($user, array $input,$verified = false)
     {
 
         Validator::make($input, [
@@ -40,13 +40,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->save();
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if ($input['phone'] !== $user->phone && $verified) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
                 'name' => $input['name'],
-                'phone' => $input['phone'],
             ])->save();
         }
     }
@@ -61,12 +59,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
             'phone' => $input['phone'],
-            'email_verified_at' => null,
         ])->save();
 
-        $user->sendEmailVerificationNotification();
     }
 
 

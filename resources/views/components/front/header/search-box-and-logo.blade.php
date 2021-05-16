@@ -10,7 +10,7 @@
                 <div class="wrap-search-form w-100">
                     <form action="#" id="form-search-top" class="row mx-0 px-0 w-100" name="form-search-top">
                         <button form="form-search-top" type="button" class="w-5 px-0 align-self-end"><i class="fa fa-search " aria-hidden="true"></i></button>
-                        <div class="wrap-list-cate w-25 align-self-end ">
+                        <div class="wrap-list-cate overflow-hidden w-25 align-self-end ">
                             <input type="hidden" name="product-cate" value="0" id="product-cate">
                             <a href="#" class="link-control px-0">{{__('text.All Categories')}} <i class="fa fa-toggle-down"></i></a>
                             <ul class="list-cate">

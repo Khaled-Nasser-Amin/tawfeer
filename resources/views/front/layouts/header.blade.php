@@ -22,7 +22,9 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
 
     @stack('css')
+    <link rel="stylesheet" href="{{asset('css/toast.style.min.css')}}">
     <style>
+        i{font-family: FontAwesome!important;}
         .form-control:focus{
             border-color: #f59524!important;
         }
@@ -34,7 +36,7 @@
     @endif
 
 </head>
-<body class="home-page home-01 bg-white">
+<body class="home-page home-01 bg-white pb-0">
 
     <!-- mobile menu -->
     <div class="mercado-clone-wrap">
@@ -66,17 +68,36 @@
             @yield('content')
         </div>
     </main>
-
+    @include('front.layouts.footer')
     <script src="{{asset('js/app.js')}}"></script>
 
-    {{-- <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
-           </script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-      <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
-           <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
-           <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>--}}
+   {{-- <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
+     <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
+     </script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
+      <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>--}}
+
+    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
+
     <script src="{{asset('front/js/jquery.sticky.js')}}"></script>
     <script src="{{asset('front/js/functions.js')}}"></script>
     <script src="{{asset('front/js/chosen.jquery.min.js')}}"></script>
+    <script src="{{asset('js/toast.script.js')}}"></script>
+    <script>
+        window.addEventListener('success',e=>{
+            $.Toast(e.detail,"",'success',{
+                stack: false,
+                position_class: "toast-top-center",
+                rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
+            });
+        });
+        window.addEventListener('danger',e=>{
+            $.Toast(e.detail,"",'error',{
+                stack: false,
+                position_class: "toast-top-center",
+                rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
+            });
+        })
+    </script>
     @stack('script')
 </body>
 </html>

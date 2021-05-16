@@ -3,9 +3,11 @@
 return [
     //front end
     'Home' => 'Home',
+    'Password Changed Successfully' => 'Password Changed Successfully',
     'Update Spare' => 'Update Spare',
     'Full Name' => 'Full Name',
     'Login' =>  'Login',
+    'You have only 15 special products' =>  'You have only 15 special products',
     'Type your phone number' =>  'Type your phone number',
     'Log in to your account' =>  'Log in to your account',
     'Recover Password' =>  'Recover Password',
@@ -128,7 +130,10 @@ return [
     'Price' =>  'Price',
     'Sale' =>  'Sale',
     'Spares' =>  'Spares',
+    'Resend?' =>  'Resend?',
+    'Your activation code is:' =>  'Your activation code is:',
     'Stock' =>  'Stock',
+    'Message has been sent successfully' =>  'Message has been sent successfully',
     'The category does not have any product yet' =>  'The category does not have any product yet',
 
 
@@ -190,6 +195,7 @@ return [
     'Regenerate Recovery Codes'  => 'Regenerate Recovery Codes',
     'Show Recovery Codes'  => 'Show Recovery Codes',
     'Disable'  => 'Disable',
+    'Set New Password'  => 'Set New Password',
 
     'Browser Sessions'  => 'Browser Sessions',
     'Manage and log out your active sessions on other browsers and devices.'  => 'Manage and log out your active sessions on other browsers and devices.',
@@ -213,6 +219,9 @@ return [
     'No, cancel!'  => 'No, cancel!',
     'Yes, delete it!'  => 'Yes, delete it!',
     'Cancelled'  => 'Cancelled',
+    'CODE EXPIRED'  => 'CODE EXPIRED',
+    'CODE EXPIRED,please resend the activation code or cancel the operation.'  => 'CODE EXPIRED,please resend the activation code or cancel the operation.',
+    'Code will expire after : '  => 'Code will expire after : ',
     'Product Added Successfully'  => 'Product Added Successfully',
     'Whoops! Something went wrong.'  => 'Whoops! Something went wrong.',
     'Your imaginary file is safe :)'  => 'Your imaginary file is safe :)',
@@ -220,11 +229,15 @@ return [
     'Please confirm access to your account by entering the authentication code provided by your authenticator application.'  => 'Please confirm access to your account by entering the authentication code provided by your authenticator application.',
     'Please confirm access to your account by entering one of your emergency recovery codes.'  => 'Please confirm access to your account by entering one of your emergency recovery codes.',
     'Code'  => 'Code',
+    'Forget-Password'  => 'Forget-Password',
+    'Number Confirmation'  => 'Number Confirmation',
     'Enter your two factor authentication code'  => 'Enter your two factor authentication code',
     'Recovery Code'  => 'Recovery Code',
     'Use a recovery code'  => 'Use a recovery code',
     'Use an authentication code'  => 'Use an authentication code',
     'Log in'  => 'Log in',
+    'Your account activated successfully'  => 'Your account activated successfully',
+    'Invalid Code!'  => 'Invalid Code!',
     'The provided two factor authentication code was invalid.'  => 'The provided two factor authentication code was invalid.',
     'The provided two factor authentication recovery_code was invalid.'  => 'The provided two factor authentication recovery_code was invalid.',
 
