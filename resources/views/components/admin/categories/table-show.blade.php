@@ -52,7 +52,7 @@
             </tr>
 
         @empty
-            <tr><td colspan="6" class="text-center">{{('text.No Data Yet')}}</td></tr>
+            <tr><td colspan="6" class="text-center">{{__('text.No Data Yet')}}</td></tr>
         @endforelse
 
         </tbody>

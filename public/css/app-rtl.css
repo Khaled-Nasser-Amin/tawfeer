@@ -1,5 +1,5 @@
 /*
-Template Name: Zircos - Responsive Bootstrap 4 Admin Dashboard
+Template Name: Zircos - Responsive Bootstrap 4 Admin AllProducts
 Author: CoderThemes
 Version: 3.0.0
 Website: https://coderthemes.com/
@@ -1716,10 +1716,10 @@ Responsive Menu
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;
@@ -2864,7 +2864,7 @@ div.hopscotch-bubble {
     margin: 0 0 0 1em; }
 
 /*
-    Common 
+    Common
   */
 .wizard, .tabcontrol {
   display: block;

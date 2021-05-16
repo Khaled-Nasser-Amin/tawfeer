@@ -98,7 +98,7 @@ return [
     'Read Mail' => 'الرسائل المقروءة',
     'Compose Mail' => 'كتابة رسالة ',
     'Users' => 'المستخدمين',
-    'Dashboard' => 'الرئيسية',
+    'AllProducts' => 'الرئيسية',
 
     'For Help?' => 'للمساعدة',
     'Call' => 'اتصل',
@@ -137,6 +137,7 @@ return [
     'Show All Products' => 'عرض كل المنتجات',
     'Product Name' => 'اسم المنتج',
     'Search' => 'بحث',
+    'Product Details' => 'تفاصيل المنتج',
     'Featured' => 'عرض ك مميز',
     'Add New Product' => 'اضف منتج جديد',
     'No Data Yet' => 'لا يوجد بيانات',

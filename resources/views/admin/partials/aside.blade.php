@@ -7,7 +7,7 @@
 
             <ul class="metismenu" id="side-menu">
                 <li class="menu-title">{{__('text.Navigation')}}</li>
-                <li><a href="{{route('admin.index')}}"><i class="mdi mdi-view-dashboard"></i>{{__('text.Dashboard')}}</a></li>
+                <li><a href="{{route('admin.index')}}"><i class="mdi mdi-view-dashboard"></i>{{__('text.AllProducts')}}</a></li>
                 <li><a href="/admin/categories"><i class="mdi mdi-car-hatchback"></i>{{__('text.Categories')}}</a></li>
                 <li><a href="/admin/products"><i class="mdi mdi-car-cruise-control"></i>{{__('text.Products')}}</a></li>
                 <li><a href="/admin/vendors"><i class="mdi mdi-account-multiple"></i>{{__('text.Users')}}</a></li>

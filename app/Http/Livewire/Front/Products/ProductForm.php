@@ -72,6 +72,7 @@ use WithFileUploads;
     }
     public function render()
     {
+
         return view('components.front.products.product-form');
     }
 

@@ -11,6 +11,9 @@ class ProductController extends Controller
 {
     use ImageTrait;
 
+    public function viewDetail(Product $product, $slug){
+        return view('front.products.detail');
+    }
     public function store($request)
     {
         $data=collect($request)->except(['categoriesIds','image','groupImage'])->toArray();
@@ -63,8 +66,6 @@ class ProductController extends Controller
         $this->authorize('view',$product);
         return view('front.products.edit',compact('product'));
     }
-
-
 
 
 }

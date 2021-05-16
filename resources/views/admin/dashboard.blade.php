@@ -1,5 +1,5 @@
 @extends('admin.layouts.appLogged')
-@section('title',__('text.Dashboard'))
+@section('title',__('text.AllProducts'))
 @push('css_en')
 @endpush
 @section('content')
@@ -14,10 +14,10 @@
                     <div class="page-title-box">
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">{{__('text.Dashboard')}}</li>
+                                <li class="breadcrumb-item active">{{__('text.AllProducts')}}</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">{{__('text.Dashboard')}}</h4>
+                        <h4 class="page-title">{{__('text.AllProducts')}}</h4>
                     </div>
                 </div>
             </div>

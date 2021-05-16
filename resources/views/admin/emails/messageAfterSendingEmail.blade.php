@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Reset Password | Zircos - Responsive Bootstrap 4 Admin Dashboard')
+@section('title','Reset Password | Zircos - Responsive Bootstrap 4 Admin AllProducts')
 @section('content')
     <div class="account-pages mt-5 mb-5">
         <div class="container">

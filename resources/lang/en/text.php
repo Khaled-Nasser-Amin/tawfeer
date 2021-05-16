@@ -3,6 +3,7 @@
 return [
     //front end
     'Home' => 'Home',
+    'Product Details' => 'Product Details',
     'Password Changed Successfully' => 'Password Changed Successfully',
     'Update Spare' => 'Update Spare',
     'Full Name' => 'Full Name',
@@ -103,7 +104,7 @@ return [
     'Read Mail' => 'Read Mail',
     'Compose Mail' => 'Compose Mail',
     'Users' => 'Users',
-    'Dashboard' => 'Dashboard',
+    'AllProducts' => 'AllProducts',
 
     'For Help?' => 'For Help?',
     'Call' => 'Call',

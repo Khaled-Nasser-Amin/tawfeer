@@ -1,11 +1,20 @@
+@extends('front.layouts.header')
 @section('title',__('text.Home'))
 @push('css')
     @livewireStyles
+    <style>
+        svg{
+            width: 20px;
+            height: 20px;
+        }
+    </style>
 @endpush
+@section('content')
+    @livewire('front.dashboard.latest-products')
+    @livewire('front.dashboard.special-products')
+    @livewire('front.dashboard.all-products')
 
-    <x-front.dashboard.latest-products :latestProducts="$latestProducts"/>
-    <x-front.dashboard.special-products :specialProducts="$specialProducts"/>
-
+@endsection
 @push('script')
     @livewireScripts
 

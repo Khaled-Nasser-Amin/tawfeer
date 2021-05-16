@@ -63,7 +63,7 @@
         </div>
     </header>
 
-    <main id="main">
+    <main id="main" class="main-site">
         <div class="container">
             @yield('content')
         </div>
@@ -71,10 +71,10 @@
     @include('front.layouts.footer')
     <script src="{{asset('js/app.js')}}"></script>
 
-   {{-- <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
+   <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
      <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
      </script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-      <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>--}}
+      <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
 
     <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
 

@@ -20,7 +20,7 @@
             <!-- start page title -->
             <x-admin.general.page-title>
                 <li class="breadcrumb-item active">{{__('text.Products')}}</li>
-                <li class="breadcrumb-item active"><a href="{{route('admin.index')}}">{{__('text.Dashboard')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('admin.index')}}">{{__('text.AllProducts')}}</a></li>
                 <x-slot name="title">
                     <h4 class="page-title">{{__('text.Products')}} </h4>
                 </x-slot>
