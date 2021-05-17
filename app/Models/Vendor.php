@@ -34,7 +34,12 @@ class Vendor extends Authenticatable
     public function products(){
         return $this->hasMany(Product::class);
     }
-
+    public function reviews(){
+        return $this->belongsToMany(Product::class,'product_reviews','product_id','vendor_id')->withPivot('review','comment')->withTimestamps();
+    }
+    public function wishList(){
+        return $this->belongsToMany(Product::class,'wish_list');
+    }
 
     public function getImageAttribute($value){
         return $value ? asset('images/users/'.$value):'https://ui-avatars.com/api/?name='.urlencode(auth()->guard('vendor')->user()->name).'&color=7F9CF5&background=EBF4FF';

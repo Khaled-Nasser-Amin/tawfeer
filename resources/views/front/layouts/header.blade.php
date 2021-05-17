@@ -29,7 +29,7 @@
             border-color: #f59524!important;
         }
     </style>
-@if ( LaravelLocalization::getCurrentLocale() == 'ar')
+    @if ( LaravelLocalization::getCurrentLocale() == 'ar')
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">    <style>a{text-decoration:none ;}</style>
         <link href="{{asset('css/app-rtl.min.css')}}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="{{asset('front/css/rtl.css')}}">
@@ -69,12 +69,12 @@
         </div>
     </main>
     @include('front.layouts.footer')
+
     <script src="{{asset('js/app.js')}}"></script>
 
    <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
      <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
      </script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
-      <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
 
     <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
 

@@ -4256,13 +4256,15 @@ article.single-post blockquote p:last-child::after{
 .wrap-product-detail .detail-media{
     display: inline-block;
     width: 54.0229885057%;
-    float: left;
+    /*float: left;*/
     /*padding-right: 3px;*/
 }
 .wrap-product-detail .detail-info{
     display: inline-block;
-    width: 45.9770114943%;
+    width: 39.977011%;
+    /*
     float: left;
+    */
     padding-left: 30px;
     padding-top: 30px;
 }
@@ -4462,7 +4464,7 @@ article.single-post blockquote p:last-child::after{
     font-family: FontAwesome;
     font-size: 14px;
     line-height: 20px;
-    color: #666666;
+    color: #FFFFFF;
     display: inline-block;
     margin-right: 6px;
 }
