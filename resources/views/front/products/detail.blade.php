@@ -19,10 +19,6 @@
                         <div class="product-gallery">
                             <ul class="slides">
 
-                                <li data-thumb="{{asset('front/images/products/digital_18.jpg')}}">
-                                    <img src="{{asset('front/images/products/digital_18.jpg')}}" alt="product thumbnail" />
-                                </li>
-
                                 <li data-thumb="{{asset('front/images/products/digital_17.jpg')}}">
                                     <img src="{{asset('front/images/products/digital_17.jpg')}}" alt="product thumbnail" />
                                 </li>
@@ -54,6 +50,7 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="detail-info">
                         <div class="product-rating">
                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -204,46 +201,6 @@
             </div><!--end main products area-->
 
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
-                <div class="widget widget-our-services ">
-                    <div class="widget-content">
-                        <ul class="our-services">
-
-                            <li class="service">
-                                <a class="link-to-service" href="#">
-                                    <i class="fa fa-truck" aria-hidden="true"></i>
-                                    <div class="right-content">
-                                        <b class="title">Free Shipping</b>
-                                        <span class="subtitle">On Oder Over $99</span>
-                                        <p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="service">
-                                <a class="link-to-service" href="#">
-                                    <i class="fa fa-gift" aria-hidden="true"></i>
-                                    <div class="right-content">
-                                        <b class="title">Special Offer</b>
-                                        <span class="subtitle">Get a gift!</span>
-                                        <p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="service">
-                                <a class="link-to-service" href="#">
-                                    <i class="fa fa-reply" aria-hidden="true"></i>
-                                    <div class="right-content">
-                                        <b class="title">Order Return</b>
-                                        <span class="subtitle">Return within 7 days</span>
-                                        <p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div><!-- Categories widget-->
-
                 <div class="widget mercado-widget widget-product">
                     <h2 class="widget-title">Popular Products</h2>
                     <div class="widget-content">
@@ -307,7 +264,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div><!--end sitebar-->
     </div>
 

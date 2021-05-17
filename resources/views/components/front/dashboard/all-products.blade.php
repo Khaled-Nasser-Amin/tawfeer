@@ -1,11 +1,13 @@
-<div class="wrap-show-advance-info-box style-1 w-100">
+<div class="row">
+
+    <div class="wrap-show-advance-info-box style-1 w-100">
     <h3 class="title-box">All Products</h3>
 
-<div class="row col-12 py-2">
+    <div class="row col-12 py-2">
     @forelse($allProducts as $product)
         <div class="product product-style-2 equal-elem w-25">
             <div class="product-thumnail">
-                <a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+                <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                     <figure><img src="{{$product->image}}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                 </a>
                 <div class="group-flash">
@@ -21,7 +23,7 @@
                 </div>
             </div>
             <div class="product-info">
-                <a href="#" class="product-name"><span>{{app()->getLocale() == 'ar' ?$product->name_ar:$product->name_en}}</span></a>
+                <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" class="product-name"><span>{{app()->getLocale() == 'ar' ?$product->name_ar:$product->name_en}}</span></a>
                 @if ($product->sale != null)
                     <div class="wrap-price"><ins><p class="product-price">${{$product->sale}}</p></ins> <del><p class="product-price">${{$product->price}}</p></del></div>
                 @else
@@ -39,6 +41,9 @@
 </div>
 
 </div>
-<div class="col-12 text-dark!important my-3">
-    {{$allProducts->links()}}
+
+    <div class="col-12 my-3">
+        {{$allProducts->links()}}
+
+    </div>
 </div>

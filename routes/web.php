@@ -66,11 +66,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/forget-password',[FrontAuthController::class,'forgetPassword'])->name('forgetPassword');
         Route::get('/register',[FrontAuthController::class,'registerView'])->name('registerView');
 
+        Route::get('/product-details/{product}-{slug}', [FrontProductController::class, 'viewDetail'])->name('viewDetail');
+
         Route::group(['middleware'=>'Auth:vendor'],function (){
 
             Route::get('/add-spare', [FrontProductController::class,'addNewProduct'])->name('AddSpare');
             Route::get('/user/profile', [FrontUserProfile::class, 'show'])->name('profile.show');
-            Route::get('/product-details/{product}-{slug}', [FrontProductController::class, 'viewDetail'])->name('viewDetail');
             Route::get('/products-update/{product}-{slug}', [FrontProductController::class,'updateProduct']);
         });
 
