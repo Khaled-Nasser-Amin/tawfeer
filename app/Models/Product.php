@@ -25,7 +25,7 @@ class Product extends Model
         return $this->belongsTo(Vendor::class);
     }
     public function reviews(){
-        return $this->belongsToMany(Vendor::class,'product_reviews','vendor_id','product_id','id','id')->withPivot('review','comment')->withTimestamps();
+        return $this->belongsToMany(Vendor::class,'product_reviews')->withPivot('review','comment')->withTimestamps();
     }
     public function wishList(){
         return $this->belongsToMany(Vendor::class,'wish_list');

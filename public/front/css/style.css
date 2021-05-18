@@ -4256,7 +4256,7 @@ article.single-post blockquote p:last-child::after{
 .wrap-product-detail .detail-media{
     display: inline-block;
     width: 54.0229885057%;
-    /*float: left;*/
+    /*float: left;
     /*padding-right: 3px;*/
 }
 .wrap-product-detail .detail-info{

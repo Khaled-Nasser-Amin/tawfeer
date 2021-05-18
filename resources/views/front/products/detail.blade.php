@@ -10,9 +10,7 @@
             padding-left: 20px;
             margin-top: 40px;
         }
-        .slides li{
-            padding-left:50px ;
-        }
+
         .btn.btn-wishlist:hover{
             cursor: pointer;
         }
@@ -114,26 +112,30 @@
                             <div class="wrap-review-form">
 
                                 <div id="comments">
-                                    <h2 class="woocommerce-Reviews-title">01 review for <span>{{app()->getLocale() == 'ar' ? $product->name_ar :$product->name_en}}</span></h2>
+                                    <h2 class="woocommerce-Reviews-title">{{$product->reviews()->count()}} review for <span>{{app()->getLocale() == 'ar' ? $product->name_ar :$product->name_en}}</span></h2>
                                     <ol class="commentlist">
-                                        <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
-                                            <div id="comment-20" class="comment_container">
-                                                <img alt="" src="{{asset('front/images/author-avata.jpg')}}" height="80" width="80">
-                                                <div class="comment-text">
-                                                    <div class="star-rating">
-                                                        <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
-                                                    </div>
-                                                    <p class="meta">
-                                                        <strong class="woocommerce-review__author">admin</strong>
-                                                        <span class="woocommerce-review__dash">–</span>
-                                                        <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >Tue, Aug 15,  2017</time>
-                                                    </p>
-                                                    <div class="description">
-                                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                        @forelse($latestReviews as $review)
+                                            <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
+                                                <div id="comment-20" class="comment_container">
+                                                    <img alt="" src="{{$review->image}}" height="80" width="80">
+                                                    <div class="comment-text px-3">
+                                                        <div class="star-rating">
+                                                            <span style="width: {{$review->pivot->review * 20}}%"></span>
+                                                        </div>
+                                                        <p class="meta">
+                                                            <strong class="woocommerce-review__author">{{$review->name}}</strong>
+                                                            <span class="woocommerce-review__dash">–</span>
+                                                            <time >{{$review->pivot->updated_at->diffForHumans()}}</time>
+                                                        </p>
+                                                        <div class="description">
+                                                            <p>{{$review->pivot->comment}}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        @empty
+                                        @endforelse
+
                                     </ol>
                                 </div><!-- #comments -->
 
@@ -143,7 +145,7 @@
                                         <div id="respond" class="comment-respond">
 
 
-                                            <form wire:submit.prevent="rate" id="commentform" class="comment-form" >
+                                            <form wire:submit.prevent="rate({{$product->id}})" id="commentform" class="comment-form" >
 
                                                 <div class="comment-form-rating">
                                                     <span>Your rating</span>

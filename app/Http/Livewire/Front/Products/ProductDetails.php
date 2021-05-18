@@ -7,12 +7,20 @@ use Livewire\Component;
 
 class ProductDetails extends Component
 {
-    public $product,$rateValue,$comment;
+    public $product,$rateValue,$comment,$latestReviews;
     public function mount(Product $product){
         $this->product=$product;
+        $vendor=auth()->guard('vendor');
+        if($vendor->check() && $vendor->user()->reviews()->exists($product->id)) {
+            $review=$vendor->user()->reviews()->where('product_id',$product->id)->first();
+            $this->comment=$review->pivot->comment;
+            $this->rateValue=$review->pivot->review;
+        }
     }
     public function render()
     {
+        $this->latestReviews=$this->product->reviews()->latest()->take(3)->get();
+
         return view('front.products.detail')->extends('front.layouts.header')->section('content');
     }
     public function updated(){
@@ -31,12 +39,15 @@ class ProductDetails extends Component
     public function rate(Product $product){
         $this->redirectIfNotAuth();
         $this->rateValue=$this->rateValue ?? 5;
-        if(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->reviews()->exists($product->id)){
-            $product->reviews()->detach(auth()->guard('vendor')->user());
-            $product->reviews()->syncWithoutDetaching([auth()->guard('vendor')->user()->id =>['comment' => $this->comment,'review' => $this->rateValue]]);
+        $vendor=auth()->guard('vendor');
+        if($vendor->check() && $vendor->user()->reviews()->exists($product->id)){
+            $product->reviews()->detach($vendor->user());
+            $product->reviews()->syncWithoutDetaching([$vendor->user()->id =>['comment' => $this->comment,'review' => $this->rateValue]]);
+            $this->dispatchBrowserEvent('success',__('text.Your review updated successfully'));
+
         }else {
-            $product->reviews()->syncWithoutDetaching([auth()->guard('vendor')->user()->id =>['comment' => $this->comment,'review' => $this->rateValue]]);
-        $this->dispatchBrowserEvent('success',__('text.Thank you for your review'));
+            $vendor->user()->reviews()->syncWithoutDetaching([$product->id=>['comment' => $this->comment,'review' => $this->rateValue]]);
+            $this->dispatchBrowserEvent('success',__('text.Thank you for your review'));
         }
     }
 

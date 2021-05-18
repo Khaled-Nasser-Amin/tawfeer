@@ -35,7 +35,7 @@ class Vendor extends Authenticatable
         return $this->hasMany(Product::class);
     }
     public function reviews(){
-        return $this->belongsToMany(Product::class,'product_reviews','product_id','vendor_id')->withPivot('review','comment')->withTimestamps();
+        return $this->belongsToMany(Product::class,'product_reviews')->withPivot('review','comment')->withTimestamps();
     }
     public function wishList(){
         return $this->belongsToMany(Product::class,'wish_list');
