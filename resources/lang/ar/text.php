@@ -137,6 +137,7 @@ return [
     'Show All Products' => 'عرض كل المنتجات',
     'Product Name' => 'اسم المنتج',
     'Search' => 'بحث',
+    'Dashboard' => 'الرئيسية',
     'Product Details' => 'تفاصيل المنتج',
     'Featured' => 'عرض ك مميز',
     'Add New Product' => 'اضف منتج جديد',

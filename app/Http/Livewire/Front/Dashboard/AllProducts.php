@@ -11,7 +11,7 @@ class AllProducts extends Component
     use WithPagination;
     public function render()
     {
-        $allProducts = Product::paginate(1);
+        $allProducts = Product::paginate(12);
         return view('components.front.dashboard.all-products',compact('allProducts'));
     }
 }

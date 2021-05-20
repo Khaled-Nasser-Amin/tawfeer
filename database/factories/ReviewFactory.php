@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CategoryFactory extends Factory
+class ReviewFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = Review::class;
 
     /**
      * Define the model's default state.
@@ -21,12 +21,11 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $name_en=$this->faker->word;
         return [
-            'name_ar' => $this->faker->word,
-            'name_en' => ucfirst($name_en) ,
-            'slug' => $name_en,
-            'image' => '1.jpg',
+            'vendor_id' => '1',
+            'product_id' => $this->faker->numberBetween(1,50),
+            'review' => $this->faker->numberBetween(1,5),
+            'comment' => $this->faker->text,
         ];
     }
 }

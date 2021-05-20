@@ -14,9 +14,10 @@ class Product extends Model
         'slug', 'description_ar',
         'description_en', 'phone',
         'YearOfManufacture', 'sale', 'type',
-        'price', 'whatsapp','image','featured'
+        'price', 'whatsapp','image','featured','reviews'
     ];
-    protected $guarded=[];
+
+    protected $guarded=[''];
 
     public function user(){
         return $this->belongsTo(User::class);

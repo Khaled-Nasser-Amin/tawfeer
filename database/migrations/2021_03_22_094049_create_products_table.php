@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('sale')->nullable();
             $table->string('phone');
+            $table->string('reviews')->default(0);
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

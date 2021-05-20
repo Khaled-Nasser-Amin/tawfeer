@@ -4282,7 +4282,7 @@ article.single-post blockquote p:last-child::after{
     text-align: center;
 }
 .flex-control-thumbs .owl-item{
-    float: left;
+    width: 25%!important;
 }
 .flex-control-thumbs{
     margin: 10px 0 0;
@@ -4295,9 +4295,10 @@ article.single-post blockquote p:last-child::after{
     display: inline-block;
 }
 .flex-control-nav{
-    text-align: left;
     position: relative;
-    padding-right: 3px;
+    padding-left:0 ;
+    padding-right: 0 ;
+    width: 100%!important;
 }
 .flex-direction-nav{
     display: none;
@@ -4431,7 +4432,6 @@ article.single-post blockquote p:last-child::after{
 }
 .wrap-product-detail .detail-info .wrap-butons{
     display: inline-block;
-    max-width: 269px;
     width: 100%;
     padding-top: 30px;
 }
@@ -4451,7 +4451,7 @@ article.single-post blockquote p:last-child::after{
     color: #fff;
 }
 .wrap-product-detail .detail-info .wrap-btn .btn{
-    float: left;
+    width: 50%!important;
     padding: 0;
     margin: 0;
     font-size: 14px;

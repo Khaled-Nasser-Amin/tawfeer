@@ -2,26 +2,47 @@
 @push('css')
     @livewireStyles
     <style>
+        .owl-stage{
+            display: flex;
+            flex-direction: row;
+        }
         .owl-item{
             margin-right: 10px!important;
         }
-        .flex-control-nav{
-            width: 100%!important;
-            padding-left: 20px;
-            margin-top: 40px;
+        .slides li{
+            position: relative;
+            right: 41px;
         }
+        @if(app()->getLocale() == 'ar')
+         .slides .flex-active-slide{
+
+        }
+        .slides{
+           transform: none!important;
+        }
+        .flex-viewport{
+            width: -1px!important;
+        }
+        .slides li{
+            display: inline!important;
+            float: none!important;
+        }
+        @endif
 
         .btn.btn-wishlist:hover{
             cursor: pointer;
         }
-        @if(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->exists($product->id))
+        @if(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id))
             .btn.btn-wishlist:hover{
             background-color: #444444!important;
         }
         @endif
     </style>
 
+
 @endpush
+
+
 
 <div>
     <div class="wrap-breadcrumb my-5" >
@@ -57,15 +78,14 @@
 
 
                 {{--product information--}}
+
+
                 <div class="detail-info">
-                    <div class="product-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <a href="#" class="count-review">(05 review)</a>
+                    <div class="star-rating">
+                        <span style="width: {{ $rating*20}}%"></span>
+
                     </div>
+                    <p class="count-review d-inline">({{ $rating}})</p>
 
                     <h2 class="product-name">{{app()->getLocale() == 'ar' ? $product->name_ar : $product->name_en}}</h2>
 
@@ -100,7 +120,9 @@
 
 
 
-                {{--reviews--}}
+
+        {{--//reviews--}}
+
                 <div class="advance-info">
                     <div class="tab-control normal">
                         <a href="#review" class="tab-control-item">Reviews</a>
@@ -137,9 +159,12 @@
                                         @endforelse
 
                                     </ol>
-                                </div><!-- #comments -->
+                                </div>
+                                <!-- #comments -->
 
 
+
+                                <!-- #review_form_wrapper -->
                                 <div id="review_form_wrapper">
                                     <div id="review_form">
                                         <div id="respond" class="comment-respond">
@@ -174,7 +199,7 @@
 
                                         </div><!-- .comment-respond-->
                                     </div><!-- #review_form -->
-                                </div><!-- #review_form_wrapper -->
+                                </div>
 
                             </div>
                         </div>
@@ -185,68 +210,35 @@
         <!--end main products area-->
 
 
-        {{--highest previews--}}
 
+{{--highest reviews--}}
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
             <div class="widget mercado-widget widget-product">
                 <h2 class="widget-title">Popular Products</h2>
                 <div class="widget-content">
                     <ul class="products">
-                        <li class="product-item">
+                        @forelse($highest_products_review as $product_review)
+                            <li class="product-item">
                             <div class="product product-widget-style">
                                 <div class="thumbnnail">
-                                    <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                        <figure><img src="{{asset('front/images/products/digital_01.jpg')}}" alt=""></figure>
+                                    <a href="{{route('front.viewDetail',[$product_review->id,$product_review->slug])}}" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
+                                        <figure><img src="{{$product_review->image}}" alt=""></figure>
                                     </a>
                                 </div>
                                 <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                    <div class="wrap-price"><span class="product-price">$168.00</span></div>
+                                    <a href="{{route('front.viewDetail',[$product_review->id,$product_review->slug])}}" class="product-name"><span>{{app()->getLocale() == 'ar' ? $product_review->name_ar:$product_review->name_en}} ({{$product_review->reviews}})</span></a>
+                                    @if ($product_review->sale != null)
+                                        <div class="wrap-price"><ins><p class="product-price">${{$product_review->sale}}</p></ins> <del><p class="product-price">${{$product_review->price}}</p></del></div>
+                                    @else
+                                        <div class="wrap-price"><span class="product-price">${{$product_review->price}}</span></div>
+
+                                    @endif
                                 </div>
                             </div>
                         </li>
 
-                        <li class="product-item">
-                            <div class="product product-widget-style">
-                                <div class="thumbnnail">
-                                    <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                        <figure><img src="{{asset('front/images/products/digital_17.jpg')}}" alt=""></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                    <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="product-item">
-                            <div class="product product-widget-style">
-                                <div class="thumbnnail">
-                                    <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                        <figure><img src="{{asset('front/images/products/digital_18.jpg')}}" alt=""></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                    <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="product-item">
-                            <div class="product product-widget-style">
-                                <div class="thumbnnail">
-                                    <a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                        <figure><img src="{{asset('front/images/products/digital_20.jpg')}}" alt=""></figure>
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-                                    <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                </div>
-                            </div>
-                        </li>
+                        @empty
+                        @endforelse
 
                     </ul>
                 </div>
@@ -262,10 +254,10 @@
 @push('script')
 
     <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
-
     @livewireScripts
     @if (LaravelLocalization::getCurrentLocale() == 'ar')
         <script>
+            // Can also be used with $(document).ready()
             $('.owl-carousel').owlCarousel({
                 rtl:true,
                 loop:false,
@@ -289,5 +281,6 @@
             $('.owl-prev').html('<i class="fa fa-angle-left" aria-hidden="true"></i>')
         </script>
     @endif
+
 
 @endpush

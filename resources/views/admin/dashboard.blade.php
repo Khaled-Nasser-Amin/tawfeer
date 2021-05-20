@@ -1,5 +1,5 @@
 @extends('admin.layouts.appLogged')
-@section('title',__('text.AllProducts'))
+@section('title',__('text.Dashboard'))
 @push('css_en')
 @endpush
 @section('content')

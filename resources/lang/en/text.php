@@ -3,6 +3,7 @@
 return [
     //front end
     'Home' => 'Home',
+    'Dashboard' => 'Dashboard',
     'Product Details' => 'Product Details',
     'Password Changed Successfully' => 'Password Changed Successfully',
     'Update Spare' => 'Update Spare',
