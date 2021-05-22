@@ -1,4 +1,4 @@
-<div class="w-100 mx-0 px-0 row justify-content-center align-items-center ">
+<div class="w-100 mx-0 px-0">
     <div class="container">
         <div class="mid-section main-info-area">
 
@@ -48,8 +48,19 @@
                 </div>
             </div>
 
-            <div class="row h-100 mx-1 add-section w-50 row justify-content-center align-items-center mx-auto" >
-                <a href="{{route('front.AddSpare')}}" id="addProduct" class="btn w-100 d-block m-auto" style="background-color: #f59524; color: #ffffff"><i class="fa fa-plus-square"></i> {{__('text.Add Spare')}}</a>
+            <div class="row h-100 mx-1 add-section w-100 row justify-content-center align-items-center mx-auto" >
+                <div class="wrap-icon right-section w-50">
+                    <div class="wrap-icon-section wishlist">
+                    <a href="#" class="link-direction">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <div class="left-info">
+                            <span class="index">0 item</span>
+                            <span class="title">Wishlist</span>
+                        </div>
+                    </a>
+                </div>
+                </div>
+                <a href="{{route('front.AddSpare')}}" id="addProduct" class="btn w-50 d-block m-auto" style="background-color: #f59524; color: #ffffff"><i class="fa fa-plus-square"></i> {{__('text.Add Spare')}}</a>
             </div>
 
         </div>

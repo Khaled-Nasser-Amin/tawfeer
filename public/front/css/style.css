@@ -200,6 +200,9 @@ input,textarea{
     padding: 0 50px;
     text-transform: uppercase;
 }
+.all-products .product-style-2{
+    width: 25%;
+}
 .mercado-clone-wrap .mercado-panels {
     background: inherit;
     border-color: inherit;
@@ -581,7 +584,6 @@ input,textarea{
 }
 .main-info-area .right-section .wrap-icon-section{
 	display: inline-block;
-	width: 50%;
 	float: left;
 }
 header.fill-color .right-section .wrap-icon-section .title{
@@ -1591,8 +1593,6 @@ li.menu-item .nav-label.sale-label::before{
 .wrap-show-advance-info-box .title-box{
     display: inline-block;
     width: 100%;
-    /*float: left;*/
-    text-align: left;
     background-color: #f59524;
     font-size: 14px;
     text-transform: uppercase;
@@ -1847,7 +1847,6 @@ li.menu-item .nav-label.sale-label::before{
 .product-style-2 .product-info .wrap-price ins>p{
     font-weight: 600;
     color: #ff2832;
-    text-align: left;
     padding-right: 8px;
 }
 .wrap-product-detail .detail-info .wrap-price del>p,
@@ -2476,11 +2475,9 @@ li.menu-item .nav-label.sale-label::before{
     text-transform: uppercase;
     margin: 0;
     width: 100%;
-    text-align: left;
     border-bottom: 1px solid #e6e6e6;
     padding-bottom: 19px;
     margin-bottom: 18px;
-    float: left;
 }
 .widget ul li a{
     font-size: 14px;
@@ -2835,17 +2832,15 @@ vertical-align: top;
     font-size: 14px;
     line-height: 20px;
     color: #666666;
-    text-align: left;
     margin: 0;
 }
-.wrap-product-detail .detail-info .short-desc li::before,
+
 .product-list-style .product-info .desc li::before{
     content: "\f111";
     font-family: FontAwesome;
     font-size: 6px;
     line-height: 20px;
     color: #666666;
-    float: left;
     margin-right: 8px;
 }
 .product-list-style .product-attribute{
@@ -2857,7 +2852,6 @@ vertical-align: top;
 }
 .product-list-style .product-attribute ul li{
     display: block;
-    float: left;
     margin: 0 10px 0 0;
     padding: 0;
 }
@@ -2884,6 +2878,9 @@ vertical-align: top;
 .product-list-style .product-info .desc li{
     list-style: none;
 }
+.wrap-product-detail .detail-info .short-desc li{
+    margin:10px 0;
+}
 .product-list-style .product-thumnail{
     margin: 0;
     padding: 0;
@@ -2900,7 +2897,6 @@ vertical-align: top;
     font-size: 13px;
     line-height: 18px;
     color: #444444;
-    text-align: left;
     margin: 0;
     padding: 0 0 6px 0;
     border-bottom: 1px solid #e6e6e6;
@@ -2912,7 +2908,6 @@ vertical-align: top;
 .product-list-style .advance-info .wrap-price{
     display: inline-block;
     width: 100%;
-    text-align: left;
     margin-top: 19px;
     margin-bottom: 17px;
 }
@@ -2929,7 +2924,6 @@ vertical-align: top;
 .product-list-style .advance-info .wrap-price ins>p{
     font-weight: 600;
     color: #ff2832;
-    text-align: left;
     padding-right: 8px;
 }
 .product-list-style .advance-info .wrap-price del>p{
@@ -2974,7 +2968,6 @@ vertical-align: top;
     line-height: 40px;
     color: #666666;
     float: left;
-    text-align: left;
     padding: 0;
     margin: 0;
 }
@@ -2989,8 +2982,6 @@ vertical-align: top;
     content: "\f079";
 }
 .product-list-style .advance-info .wrap-btn .btn.btn-wishlist{
-    text-align: right;
-    float: right;
 }
 .product-list-style .advance-info .wrap-btn .btn-wishlist::before{
     content: "\f004";
@@ -3002,7 +2993,6 @@ vertical-align: top;
 }
 .wrap-login-item .form-item{
     display: block;
-    float: left;
 }
 .wrap-login-item .form-item.login-form{
     padding-right: 70px;
@@ -3022,7 +3012,6 @@ vertical-align: top;
 }
 .wrap-login-item .form-item fieldset{
     display: block;
-    float: left;
     width: 100%;
     margin-bottom: 2px;
 }
@@ -4255,22 +4244,18 @@ article.single-post blockquote p:last-child::after{
 }
 .wrap-product-detail .detail-media{
     display: inline-block;
-    width: 54.0229885057%;
-    /*float: left;
-    /*padding-right: 3px;*/
+    width: 59.0229885057%;
+
 }
 .wrap-product-detail .detail-info{
     display: inline-block;
     width: 39.977011%;
-    /*
-    float: left;
-    */
-    padding-left: 30px;
-    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
 }
 .wrap-product-detail .advance-info{
     display: block;
-    float: left;
     width: 100%;
     margin-top: 65px;
 }
@@ -4451,7 +4436,6 @@ article.single-post blockquote p:last-child::after{
     color: #fff;
 }
 .wrap-product-detail .detail-info .wrap-btn .btn{
-    width: 50%!important;
     padding: 0;
     margin: 0;
     font-size: 14px;
@@ -4468,9 +4452,7 @@ article.single-post blockquote p:last-child::after{
     display: inline-block;
     margin-right: 6px;
 }
-.wrap-product-detail .detail-info .wrap-btn .btn.btn-wishlist{
-    float: right;
-}
+
 .wrap-product-detail .detail-info .wrap-btn .btn.btn-wishlist::before{
     content: "\f004";
 }
@@ -4482,7 +4464,6 @@ article.single-post blockquote p:last-child::after{
 .wrap-product-detail .detail-info .wrap-price{
     display: inline-block;
     width: 100%;
-    text-align: left;
 }
 .wrap-product-detail .detail-info .wrap-price .product-price{
     font-size: 22px;
@@ -4493,7 +4474,6 @@ article.single-post blockquote p:last-child::after{
 .wrap-product-detail .detail-info .wrap-price ins>p{
     font-weight: 600;
     color: #ff2832;
-    text-align: left;
     padding-right: 8px;
 }
 .wrap-product-detail .detail-info .wrap-price del>p{
@@ -4516,14 +4496,13 @@ article.single-post blockquote p:last-child::after{
 .wrap-product-detail .advance-info .tab-contents{
     display: inline-block;
     width: 100%;
-    float: left;
 }
 .wrap-product-detail .advance-info .tab-contents{
     position: relative;
 }
 .wrap-product-detail .advance-info .tab-control a{
     display: block;
-    float: left;
+    float: right;
     font-size: 14px;
     line-height: 20px;
     color: #666666;
@@ -4574,7 +4553,6 @@ article.single-post blockquote p:last-child::after{
 }
 #comments .commentlist li .comment_container img{
     max-width: 80px;
-    float: left;
 }
 #comments .commentlist li .comment_container .comment-text{
     float: left;
@@ -4629,6 +4607,7 @@ article.single-post blockquote p:last-child::after{
     font-size: 14px;
     color: #666666;
     font-weight: 400;
+    float: left;
 }
 #review_form_wrapper #review_form .comment-form p.comment-form-author,
 #review_form_wrapper #review_form .comment-form p.comment-form-email{
@@ -4684,7 +4663,6 @@ article.single-post blockquote p:last-child::after{
     font-size: 14px;
     line-height: 20px;
     display: block;
-    float: left;
     margin-right: 7px;
     color: #666;
 }
@@ -4700,7 +4678,6 @@ article.single-post blockquote p:last-child::after{
 }
 .comment-form-rating .stars label{
     display: block;
-    float: left;
     margin: 0;
     padding: 0 2px;
 }
@@ -6337,12 +6314,18 @@ background-color: #888888;
     .header .main-info-area .add-section{
 		width: 100%!important;
 	    order: 2;
-	    text-align: center;
 	    margin: 25px auto;
-        display: block;
+        display: flex;
 	}
     .header .main-info-area .add-section #addProduct{
-        width: 50%!important;
+        width: 25%!important;
+        margin: 0 10px!important;
+    }
+    .header .main-info-area .add-section .wrap-icon{
+        width: 25%!important;
+    }
+    .all-products .product-style-2{
+        width: 33%!important;
     }
 
 	.header .main-info-area .center-section{
@@ -6530,6 +6513,9 @@ background-color: #888888;
         text-align: left;
         padding-left: 0;
     }
+    .all-products .product-style-2{
+        width: 50%!important;
+    }
     .wrap-articles article .info{
         padding-top: 15px !important;
     }
@@ -6679,6 +6665,9 @@ background-color: #888888;
         width: 100%;
         margin-right: 0 !important;
         margin-left: 0 !important;
+    }
+    .all-products .product-style-2{
+        width: 100%!important;
     }
     .summary-checkout{
         display: inline-block;

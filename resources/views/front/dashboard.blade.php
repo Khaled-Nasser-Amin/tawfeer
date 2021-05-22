@@ -2,6 +2,8 @@
 @section('title',__('text.Home'))
 @push('css')
     @livewireStyles
+    <link rel="stylesheet" type="text/css" href="{{asset('front/css/owl.carousel.min.css')}}">
+
     <style>
         svg{
             width: 20px;
@@ -12,35 +14,11 @@
 @section('content')
     @livewire('front.dashboard.latest-products')
     @livewire('front.dashboard.special-products')
+    @livewire('front.dashboard.highest-products')
     @livewire('front.dashboard.all-products')
-
 @endsection
 @push('script')
     @livewireScripts
+    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
 
-    @if (LaravelLocalization::getCurrentLocale() == 'ar')
-        <script>
-            $('.owl-carousel').owlCarousel({
-                rtl:true,
-                loop:false,
-                margin:10,
-                nav:true,
-                navClass:["owl-next","owl-prev"],
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:3
-                    },
-                    1000:{
-                        items:5
-                    },
-                }
-            })
-
-            $('.owl-next').html('<i class="fa fa-angle-right" aria-hidden="true"></i>')
-            $('.owl-prev').html('<i class="fa fa-angle-left" aria-hidden="true"></i>')
-        </script>
-    @endif
 @endpush

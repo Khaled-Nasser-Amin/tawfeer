@@ -1,6 +1,8 @@
 @section('title',__('text.Product Details'))
 @push('css')
     @livewireStyles
+    <link rel="stylesheet" type="text/css" href="{{asset('front/css/owl.carousel.min.css')}}">
+
     <style>
         .owl-stage{
             display: flex;
@@ -14,18 +16,15 @@
             right: 41px;
         }
         @if(app()->getLocale() == 'ar')
-         .slides .flex-active-slide{
-
-        }
-        .slides{
-           transform: none!important;
-        }
-        .flex-viewport{
-            width: -1px!important;
-        }
         .slides li{
             display: inline!important;
-            float: none!important;
+            float: right!important;
+            position: relative;
+            right: 0;
+        }
+        .owl-stage-outer{
+            position: relative;
+            right: -8px;
         }
         @endif
 
@@ -89,12 +88,13 @@
 
                     <h2 class="product-name">{{app()->getLocale() == 'ar' ? $product->name_ar : $product->name_en}}</h2>
 
+
                     <div class="short-desc">
                         <ul>
-                            <li>Year of Manufacture : {{$product->YearOfManufacture}}</li>
-                            <li>{{__('text.Description')}} : {{app()->getLocale() == 'ar' ?  $product->description_ar : $product->description_en}}</li>
-                            <li><i class="fa fa-whatsapp text-success"></i> {{$product->whatsapp}}</li>
-                            <li><i class="fa fa-phone"></i> {{$product->phone}}</li>
+                            <li><span class="font-weight-bold">{{__('text.Year of Manufacture')}}</span>: {{$product->YearOfManufacture}}</li>
+                            <li><span class="font-weight-bold">{{__('text.Description')}}</span> : {{app()->getLocale() == 'ar' ?  $product->description_ar : $product->description_en}}</li>
+                            <li><span class="font-weight-bold"><i class="fa fa-whatsapp text-success"></i></span> {{$product->whatsapp}}</li>
+                            <li><span class="font-weight-bold"><i class="fa fa-phone"></i></span> {{$product->phone}}</li>
                         </ul>
                     </div>
                     @if ($product->sale != null)
@@ -106,11 +106,11 @@
                     <div class="wrap-butons mt-3">
                         <div class="wrap-btn w-100 row justify-content-center align-items-center">
                             @if(!auth()->guard('vendor')->check())
-                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#444444;border-radius: 10px"> Add to Wishlist </a>
-                            @elseif(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->exists($product->id))
-                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#f59524;border-radius: 10px"> Remove from Wishlist </a>
-                            @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->exists($product->id))
-                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#444444;border-radius: 10px"> Add to Wishlist </a>
+                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#444444;border-radius: 10px"> {{__('text.Add to Wishlist')}} </a>
+                            @elseif(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id))
+                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
+                            @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->find($product->id))
+                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#444444;border-radius: 10px"> {{__('text.Add to Wishlist')}} </a>
                             @endif
                         </div>
                     </div>
@@ -125,7 +125,7 @@
 
                 <div class="advance-info">
                     <div class="tab-control normal">
-                        <a href="#review" class="tab-control-item">Reviews</a>
+                        <a href="#review" class="tab-control-item">{{__('text.Reviews')}}</a>
                     </div>
                     <div class="tab-contents">
 
@@ -134,7 +134,7 @@
                             <div class="wrap-review-form">
 
                                 <div id="comments">
-                                    <h2 class="woocommerce-Reviews-title">{{$product->reviews()->count()}} review for <span>{{app()->getLocale() == 'ar' ? $product->name_ar :$product->name_en}}</span></h2>
+                                    <h2 class="woocommerce-Reviews-title">{{$product->reviews()->count()}} {{__('text.Review for')}} <span>{{app()->getLocale() == 'ar' ? $product->name_ar :$product->name_en}}</span></h2>
                                     <ol class="commentlist">
                                         @forelse($latestReviews as $review)
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
@@ -173,8 +173,8 @@
                                             <form wire:submit.prevent="rate({{$product->id}})" id="commentform" class="comment-form" >
 
                                                 <div class="comment-form-rating">
-                                                    <span>Your rating</span>
-                                                    <p class="stars">
+                                                    <span>{{__('text.Your Rating')}}</span>
+                                                    <p class="stars ">
                                                         <label for="rated-1"></label>
                                                         <input type="radio" wire:model="rateValue" id="rated-1" name="rating" value="1">
                                                         <label for="rated-2"></label>
@@ -188,12 +188,12 @@
                                                     </p>
                                                 </div>
                                                 <p class="comment-form-comment">
-                                                    <label for="comment">Your comment <span class="required">*</span>
+                                                    <label for="comment" class="float-none">{{__('text.Your Comment')}} <span class="required">*</span>
                                                     </label>
                                                     <textarea wire:model="comment" id="comment" name="comment" cols="45" rows="8"></textarea>
                                                 </p>
                                                 <p class="form-submit">
-                                                    <input name="submit" wire:loading.attr="disabled" type="submit" id="submit" class="submit" value="Submit">
+                                                    <input name="submit" wire:loading.attr="disabled" type="submit" id="submit" class="submit" value="{{__('text.Submit')}}">
                                                 </p>
                                             </form>
 
@@ -214,7 +214,7 @@
 {{--highest reviews--}}
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
             <div class="widget mercado-widget widget-product">
-                <h2 class="widget-title">Popular Products</h2>
+                <h2 class="widget-title">{{__('text.Popular Products')}}</h2>
                 <div class="widget-content">
                     <ul class="products">
                         @forelse($highest_products_review as $product_review)
@@ -253,34 +253,8 @@
 
 @push('script')
 
+    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
     @livewireScripts
-    @if (LaravelLocalization::getCurrentLocale() == 'ar')
-        <script>
-            // Can also be used with $(document).ready()
-            $('.owl-carousel').owlCarousel({
-                rtl:true,
-                loop:false,
-                margin:10,
-                nav:true,
-                navClass:["owl-next","owl-prev"],
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:3
-                    },
-                    1000:{
-                        items:5
-                    },
-                }
-            })
-
-            $('.owl-next').html('<i class="fa fa-angle-right" aria-hidden="true"></i>')
-            $('.owl-prev').html('<i class="fa fa-angle-left" aria-hidden="true"></i>')
-        </script>
-    @endif
-
 
 @endpush

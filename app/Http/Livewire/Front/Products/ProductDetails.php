@@ -34,9 +34,12 @@ class ProductDetails extends Component
         $this->redirectIfNotAuth();
         if(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id)){
             $product->wishList()->detach(auth()->guard('vendor')->user());
+            $this->dispatchBrowserEvent('success',__('text.Removed successfully from your favorite list'));
 
         }else {
             $product->wishList()->syncWithoutDetaching(auth()->guard('vendor')->user());
+            $this->dispatchBrowserEvent('success',__('text.Added successfully to your favorite list'));
+
         }
     }
 

@@ -1,6 +1,6 @@
-@if($specialProducts->count() > 0)
+@if($highestProducts->count() > 0)
 <div class="wrap-show-advance-info-box style-1 w-100">
-    <h3 class="title-box">{{__('text.Special Products')}}</h3>
+    <h3 class="title-box">{{__('text.Popular Products')}}</h3>
 
     <div class="wrap-products">
         <div class="wrap-product-tab tab-style-1">
@@ -8,7 +8,7 @@
                 <div class="tab-content-item active p-0 pl-2" id="digital_1a">
                     <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container row " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}' >
 
-                        @foreach($specialProducts as $product)
+                        @foreach($highestProducts as $product)
                             <div class="product product-style-2 equal-elem ">
                                 <div class="product-thumnail">
                                     <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
@@ -29,11 +29,10 @@
                                             <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class="btn btn-wishlist function-link text-white px-2 " style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
                                         @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->find($product->id))
                                             <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class="function-link" > {{__('text.Add to Wishlist')}} </a>
-                                        @endif
-                                    </div>
+                                        @endif                                    </div>
                                 </div>
                                 <div class="product-info">
-                                    <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" class="product-name"><span>{{app()->getLocale() == 'ar' ?$product->name_ar:$product->name_en}}</span></a>
+                                    <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" class="product-name"><span>{{app()->getLocale() == 'ar' ?$product->name_ar:$product->name_en}} ( {{$product->reviews}} {{__('text.Review')}} )</span></a>
                                     @if ($product->sale != null)
                                         <div class="wrap-price"><ins><p class="product-price">${{$product->sale}}</p></ins> <del><p class="product-price">${{$product->price}}</p></del></div>
                                     @else
@@ -41,8 +40,9 @@
 
                                     @endif
                                 </div>
+
                             </div>
-                        @endforeach
+                            @endforeach
                     </div>
                 </div>
             </div>

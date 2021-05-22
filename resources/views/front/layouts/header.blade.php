@@ -11,12 +11,12 @@
     {{--<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/animate.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap.min.css')}}">--}}
+    <link rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap.min.css')}}">
+       <link rel="stylesheet" type="text/css" href="{{asset('front/css/chosen.min.css')}}">
+--}}
 
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/font-awesome.min.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('front/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('front/css/chosen.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/color-01.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/style.css')}}">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
@@ -38,66 +38,69 @@
 </head>
 <body class="home-page home-01 bg-white pb-0">
 
-    <!-- mobile menu -->
-    <div class="mercado-clone-wrap">
-        <div class="mercado-panels-actions-wrap">
-            <a class="mercado-close-btn mercado-close-panels" href="#">x</a>
-        </div>
-        <div class="mercado-panels"></div>
+<!-- mobile menu -->
+<div class="mercado-clone-wrap">
+    <div class="mercado-panels-actions-wrap">
+        <a class="mercado-close-btn mercado-close-panels" href="#">x</a>
     </div>
+    <div class="mercado-panels"></div>
+</div>
 
-    <!--header-->
-    <header id="header" class="header header-style-1">
-        <div class="container-fluid">
-            <div class="row">
+<!--header-->
+<header id="header" class="header header-style-1">
+    <div class="container-fluid">
+        <div class="row">
 
-                {{--top bar--}}
-                <x-front.header.top-bar />
+            {{--top bar--}}
+            <x-front.header.top-bar />
 
-                {{--search box and logo--}}
-               <x-front.header.search-box-and-logo />
+            {{--search box and logo--}}
+            <x-front.header.search-box-and-logo />
 
-                {{--nav-bar--}}
-                <x-front.header.nav-bar />
-            </div>
+            {{--nav-bar--}}
+            <x-front.header.nav-bar />
         </div>
-    </header>
+    </div>
+</header>
 
-    <main id="main" class="main-site">
-        <div class="container">
-            @yield('content')
-        </div>
-    </main>
-    @include('front.layouts.footer')
+<main id="main" class="main-site">
+    <div class="container">
+        @yield('content')
+    </div>
+</main>
+@include('front.layouts.footer')
 
-    <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 
-   <script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
-     <script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
-     </script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>
+{{--<script src="{{asset('front/js/chosen.jquery.min.js')}}"></script>
+<script src="{{asset('front/js/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('front/js/jquery-1.12.4.minb8ff.js?ver=1.12.4')}}">
+</script> <script src="{{asset('front/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4')}}"></script>--}}
 
-    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
 
-    <script src="{{asset('front/js/jquery.sticky.js')}}"></script>
-    <script src="{{asset('front/js/functions.js')}}"></script>
-    <script src="{{asset('front/js/chosen.jquery.min.js')}}"></script>
-    <script src="{{asset('js/toast.script.js')}}"></script>
-    <script>
-        window.addEventListener('success',e=>{
-            $.Toast(e.detail,"",'success',{
-                stack: false,
-                position_class: "toast-top-center",
-                rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
-            });
+<script src="{{asset('front/js/jquery.sticky.js')}}"></script>
+<script src="{{asset('front/js/functions.js')}}"></script>
+<script src="{{asset('js/toast.script.js')}}"></script>
+<script>
+    window.addEventListener('success',e=>{
+        $.Toast(e.detail,"",'success',{
+            stack: false,
+            position_class: "toast-top-center",
+            rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
         });
-        window.addEventListener('danger',e=>{
-            $.Toast(e.detail,"",'error',{
-                stack: false,
-                position_class: "toast-top-center",
-                rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
-            });
-        })
-    </script>
-    @stack('script')
+    });
+    window.addEventListener('danger',e=>{
+        $.Toast(e.detail,"",'error',{
+            stack: false,
+            position_class: "toast-top-center",
+            rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
+        });
+    })
+    window.addEventListener('success',e=> {
+        $('.owl-carousel').owlCarousel();
+    })
+</script>
+@stack('script')
+
 </body>
 </html>

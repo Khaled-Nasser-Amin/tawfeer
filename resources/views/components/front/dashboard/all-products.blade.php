@@ -1,25 +1,31 @@
 <div class="row">
 
     <div class="wrap-show-advance-info-box style-1 w-100">
-    <h3 class="title-box">All Products</h3>
+    <h3 class="title-box">{{__('text.All Products')}}</h3>
 
-    <div class="row col-12 py-2">
+    <div class="row col-12 py-2 all-products">
     @forelse($allProducts as $product)
-        <div class="product product-style-2 equal-elem w-25">
+        <div class="product product-style-2 equal-elem ">
             <div class="product-thumnail">
                 <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                     <figure><img src="{{$product->image}}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                 </a>
                 <div class="group-flash">
                     @if ($product->type == 'group')
-                        <span class="flash-item new-label">group</span>
+                        <span class="flash-item new-label">{{__('text.Group')}}</span>
                     @endif
                     @if ($product->sale != null)
-                        <span class="flash-item sale-label">sale</span>
+                        <span class="flash-item sale-label">{{__('text.sale')}}</span>
                     @endif
                 </div>
                 <div class="wrap-btn">
-                    <a href="#" class="function-link">Add to favorite</a>
+                    @if(!auth()->guard('vendor')->check())
+                        <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class=" function-link " > {{__('text.Add to Wishlist')}} </a>
+                    @elseif(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id))
+                        <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class="btn btn-wishlist function-link text-white px-2 " style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
+                    @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->find($product->id))
+                        <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class="function-link" > {{__('text.Add to Wishlist')}} </a>
+                    @endif
                 </div>
             </div>
             <div class="product-info">

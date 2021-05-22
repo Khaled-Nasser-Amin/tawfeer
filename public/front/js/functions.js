@@ -51,6 +51,18 @@
 					loop	: false,
 					navText	: ['<i class="fa fa-angle-left " aria-hidden="true"></i>','<i class="fa fa-angle-right " aria-hidden="true"></i>'],
 				};
+
+				if ($('html').attr('dir') == 'rtl'){
+                    var config = {
+                        margin	: 10,
+                        nav 	: true,
+                        dots 	: false,
+                        navClass:["owl-next","owl-prev"],
+                        loop	: false,
+                        rtl:true,
+                        navText	: ['<i class="fa fa-angle-right " aria-hidden="true"></i>','<i class="fa fa-angle-left " aria-hidden="true"></i>'],
+                    };
+                }
 				config.responsive = { 0	:{items:"2"}, 370	:{items:"3"}, 480	:{items:"4"}, 768	:{items:"4"}, 992	:{items:"3"}, 1200:{items:"4"} };
 				$(".flex-control-thumbs").owlCarousel(config);
     		}
@@ -275,7 +287,13 @@
                     _animateIn  = _this.data('animatein'),
                     _slidespeed = _this.data('slidespeed');
 
-                _config.navText 	= ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'];
+                _config.navText = ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'];
+
+                if ($('html').attr('dir') == 'rtl'){
+                    _config.rtl=true;
+                    _config.navText = ['<i class="fa fa-angle-right" aria-hidden="true"></i>','<i class="fa fa-angle-left" aria-hidden="true"></i>'];
+                    _config.navClass=["owl-next","owl-prev"];
+                }
                 if(typeof _animateOut != 'undefined' ){
                     _config.animateOut = _animateOut;
                 }
@@ -357,7 +375,7 @@
 	                    _this.addClass('active');
 	                    _this.parents().siblings('.tab-contents').find('.active').removeClass('active');
 	                    _this.parents().siblings('.tab-contents').find(_this.attr('href')).addClass('active');
-                    }  
+                    }
                 });
             }
 
@@ -602,7 +620,7 @@
 	/* ---------------------------------------------
 	 Scripts resize
 	 --------------------------------------------- */
-	$(window).on("resize", function() {
-		MERCADO_JS.onResize();
-	});
+    $(window).on("resize", function() {
+        MERCADO_JS.onResize();
+    });
 })(window.Zepto || window.jQuery, window, document);

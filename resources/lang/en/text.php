@@ -3,6 +3,22 @@
 return [
     //front end
     'Home' => 'Home',
+    'Your review updated successfully' => 'Your review updated successfully',
+    'Thank you for your review' => 'Thank you for your review',
+    'Reviews' => 'Reviews',
+    'Review' => 'Review',
+    'Special Products' => 'Special Products',
+    'Latest Products' => 'Latest Products',
+    'sale' => 'sale',
+    'Added successfully to your favorite list' => 'Added successfully to your favorite list',
+    'Removed successfully from your favorite list' => 'Removed successfully from your favorite list',
+
+    'Popular Products' => 'Popular Products',
+    'Review for' => 'Review for',
+    'Your Comment' => 'Your Comment',
+    'Your Rating' => 'Your Rating',
+    'Remove from Wishlist' => 'Remove from Wishlist',
+    'Add to Wishlist' => 'Add to Wishlist',
     'Dashboard' => 'Dashboard',
     'Product Details' => 'Product Details',
     'Password Changed Successfully' => 'Password Changed Successfully',
