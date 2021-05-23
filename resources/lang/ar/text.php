@@ -3,6 +3,10 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'Search Result' => 'نتائج البحث',
+    'No Categories available Yet' => "لا يوجد اقسام حتي الان",
+    'Your Wishlist' => 'قائمتك المفضلة',
+    'Wishlist' => 'المفضلة',
     'Your review updated successfully' => 'تم تعديل تقيمك بنجاح',
     'Thank you for your review' => 'شكرا لتقيمك',
     'Special Products' => 'منتجات مميزة',
@@ -85,6 +89,7 @@ return [
     'Product' => 'منتج',
     'Parent Category' => 'تصنيف رئيسي',
     'Image' => 'صورة',
+    'My Products' => 'منتجاتي',
     'Action' => 'اجراء',
     'Edit' => 'تعديل',
     'Delete' => 'حذف',

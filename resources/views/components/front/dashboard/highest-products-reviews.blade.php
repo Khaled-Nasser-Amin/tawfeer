@@ -24,12 +24,13 @@
                                     </div>
                                     <div class="wrap-btn">
                                         @if(!auth()->guard('vendor')->check())
-                                            <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class=" function-link " > {{__('text.Add to Wishlist')}} </a>
+                                            <a data-product-id="{{$product->id}}" href="#" class="function-link add_product_to_Wishlist" > {{__('text.Add to Wishlist')}} </a>
                                         @elseif(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id))
-                                            <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class="btn btn-wishlist function-link text-white px-2 " style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
+                                            <a data-product-id="{{$product->id}}" href="#" class="function-link text-white px-2 add_product_to_Wishlist" style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
                                         @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->find($product->id))
-                                            <a wire:click.prevent="updateWishList({{$product->id}})" href="#" class="function-link" > {{__('text.Add to Wishlist')}} </a>
-                                        @endif                                    </div>
+                                            <a data-product-id="{{$product->id}}" href="#" class="function-link add_product_to_Wishlist" > {{__('text.Add to Wishlist')}} </a>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="product-info">
                                     <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" class="product-name"><span>{{app()->getLocale() == 'ar' ?$product->name_ar:$product->name_en}} ( {{$product->reviews}} {{__('text.Review')}} )</span></a>

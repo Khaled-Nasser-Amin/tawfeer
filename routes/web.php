@@ -12,6 +12,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Admin\ProductsManagement\Categories\Categories;
 use App\Http\Livewire\Admin\ProductsManagement\Products\Products;
 use App\Http\Controllers\front\Dashboard;
+use App\Http\Livewire\Front\Products\MyProducts;
 use App\Http\Livewire\Front\Products\ProductDetails;
 use App\Http\Livewire\Admin\ProductsManagement\Vendors\Vendors;
 use App\Http\Controllers\front\AuthController as FrontAuthController;
@@ -66,14 +67,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::post('/logout',[FrontAuthController::class,'logout'])->name('logout');
         Route::get('/forget-password',[FrontAuthController::class,'forgetPassword'])->name('forgetPassword');
         Route::get('/register',[FrontAuthController::class,'registerView'])->name('registerView');
+        Route::get('/search',[FrontProductController::class,'search'])->name('search');
 
         Route::get('/product-details/{product}-{slug}', ProductDetails::class)->name('viewDetail');
 
         Route::group(['middleware'=>'Auth:vendor'],function (){
 
             Route::get('/add-spare', [FrontProductController::class,'addNewProduct'])->name('AddSpare');
+            Route::get('/my-products', [FrontProductController::class,'myProducts'])->name('myProducts');
+            Route::get('/wish-list', [FrontProductController::class,'wishList'])->name('wishList');
             Route::get('/user/profile', [FrontUserProfile::class, 'show'])->name('profile.show');
             Route::get('/products-update/{product}-{slug}', [FrontProductController::class,'updateProduct']);
+            Route::get('/wish-list/add/{product}', [FrontProductController::class,'AddProductToWishList']);
         });
 
     });

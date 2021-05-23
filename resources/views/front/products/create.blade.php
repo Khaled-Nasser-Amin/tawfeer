@@ -1,7 +1,6 @@
 @extends('front.layouts.header')
 @section('title',__('text.Add Spare'))
 @push('css')
-    @livewireStyles
 @endpush
 @section('content')
 
@@ -42,5 +41,4 @@
     <!-- end content -->
 @endsection
 @push('script')
-    @livewireScripts
 @endpush

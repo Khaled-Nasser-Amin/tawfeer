@@ -39,6 +39,7 @@ use WithFileUploads;
         foreach ($this->product->groups as $child){
             $this->productsIndex[]=['product_id' => $child->id,'quantity' => $child->pivot->quantity];
         }
+        $k=[];
         $this->name_ar= $this->product->name_ar;
         $this->name_en=$this->product->name_en;
         $this->description_ar=$this->product->description_ar;
@@ -50,11 +51,15 @@ use WithFileUploads;
         $this->phone=$this->product->phone;
         $this->whatsapp=$this->product->whatsapp;
         $this->YearOfManufacture=$this->product->YearOfManufacture;
-        $this->categoriesIds=$this->product->categories->pluck('id');
+        foreach ($this->product->categories->pluck('id') as $id)
+            $k+=[$id-1 => $id];
+        $this->categoriesIds=$k;
 
     }
 
     public function update($id){
+        $this->categoriesIds=array_filter($this->categoriesIds);
+
         $productUpdate=new ProductController();
         $data=$this->validationForUpdate($id);
         $product=$productUpdate->update($data,$id);

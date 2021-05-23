@@ -1,8 +1,6 @@
 @extends('front.layouts.header')
-@section('title',__('text.Home'))
+@section('title',__('text.Search'))
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('front/css/owl.carousel.min.css')}}">
-
     <style>
         svg{
             width: 20px;
@@ -11,14 +9,29 @@
     </style>
 @endpush
 @section('content')
-    @livewire('front.dashboard.latest-products')
-    @livewire('front.dashboard.special-products')
-    @livewire('front.dashboard.highest-products')
-    @livewire('front.dashboard.all-products')
+
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+
+            <div class="wrap-breadcrumb my-5" >
+                <ol class="breadcrumb w-100 bg-white">
+                    <li class="breadcrumb-item  active"><a href="{{route('front.dashboard')}}" class="text-black-50">{{__('text.Home')}}</a></li>
+                    <li class="breadcrumb-item" aria-current="page">{{__('text.Search')}}</li>
+                </ol>
+            </div>
+
+          <x-front.products.search :products="$products" />
+
+        </div>
+        <!-- end container-fluid -->
+
+    </div>
+    <!-- end content -->
 @endsection
 @push('script')
-    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
-
     <script>
         $('.add_product_to_Wishlist').on('click',function (e){
             e.preventDefault()

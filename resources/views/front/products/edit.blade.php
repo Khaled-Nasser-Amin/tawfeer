@@ -2,7 +2,6 @@
 @section('title',__('text.Update Spare'))
 @push('css')
     <link rel="stylesheet" href="{{asset('css/toast.style.min.css')}}">
-    @livewireStyles
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 @endpush
@@ -12,16 +11,12 @@
         <!-- Start Content-->
         <div class="container-fluid">
 
-            <!-- start page title -->
-            <x-admin.general.page-title>
-                <li class="breadcrumb-item"><a href="/admin/products">{{__('text.Products')}}</a></li>
-                <li class="breadcrumb-item active"> {{__('text.Edit Product')}}</li>
-                <x-slot name="title">
-                    <h4 class="page-title">{{__('text.Edit')}} </h4>
-                </x-slot>
-            </x-admin.general.page-title>
-            <!-- end page title -->
-            @include('admin.partials.success')
+            <div class="wrap-breadcrumb my-5" >
+                <ol class="breadcrumb w-100 bg-white">
+                    <li class="breadcrumb-item  active"><a href="{{route('front.dashboard')}}" class="text-black-50">{{__('text.Home')}}</a></li>
+                    <li class="breadcrumb-item" aria-current="page">{{__('text.Edit Product')}}
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card-box">
@@ -42,7 +37,6 @@
 @endsection
 @push('script')
     <script src="{{asset('js/toast.script.js')}}"></script>
-    @livewireScripts
     <script>
         window.addEventListener('success',e=>{
             $.Toast(e.detail," ",'success',{

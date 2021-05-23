@@ -8,32 +8,21 @@
 
             <div class="wrap-search center-section w-50">
                 <div class="wrap-search-form w-100">
-                    <form action="#" id="form-search-top" class="row mx-0 px-0 w-100" name="form-search-top">
-                        <button form="form-search-top" type="button" class="w-5 px-0 align-self-end"><i class="fa fa-search " aria-hidden="true"></i></button>
+                    <form action="{{route('front.search')}}" id="form-search-top" class="row mx-0 px-0 w-100" name="form-search-top">
+                        <button form="form-search-top" type="button" class="w-5 px-0 align-self-end" id="search-btn-icon"><i class="fa fa-search " aria-hidden="true"></i></button>
                         <div class="wrap-list-cate overflow-hidden w-25 align-self-end ">
-                            <input type="hidden" name="product-cate" value="0" id="product-cate">
+                            <input type="hidden" name="product-cate" id="product-cate">
                             <a href="#" class="link-control px-0">{{__('text.All Categories')}} <i class="fa fa-toggle-down"></i></a>
                             <ul class="list-cate">
-                                <li class="level-0">{{__('text.All Categories')}}</li>
-                                <li class="level-1">-Electronics</li>
-                                <li class="level-2">Batteries & Chargens</li>
-                                <li class="level-2">Headphone & Headsets</li>
-                                <li class="level-2">Mp3 Player & Acessories</li>
-                                <li class="level-1">-Smartphone & Table</li>
-                                <li class="level-2">Batteries & Chargens</li>
-                                <li class="level-2">Mp3 Player & Headphones</li>
-                                <li class="level-2">Table & Accessories</li>
-                                <li class="level-1">-Electronics</li>
-                                <li class="level-2">Batteries & Chargens</li>
-                                <li class="level-2">Headphone & Headsets</li>
-                                <li class="level-2">Mp3 Player & Acessories</li>
-                                <li class="level-1">-Smartphone & Table</li>
-                                <li class="level-2">Batteries & Chargens</li>
-                                <li class="level-2">Mp3 Player & Headphones</li>
-                                <li class="level-2">Table & Accessories</li>
+                                <li class="level-0" value="">{{__('text.All Categories')}}</li>
+                                @forelse(\App\Models\Category::all() as $category)
+                                    <li class="level-{{$loop->index+1}}" value="{{$category->id}}">{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</li>
+                                @empty
+                                    <li class="level-0" value="">{{__('text.No Categories available Yet')}}</li>
+                                @endforelse
                             </ul>
                         </div>
-                        <input type="text" name="search" value="" class="w-50 align-items-start" placeholder="Search here...">
+                        <input type="text" name="input_search" value="{{request()->query('input_search')}}" class="w-50 align-items-start" style="border:none" placeholder="{{__('text.Search')}}...">
                     </form>
 
                 </div>
@@ -49,13 +38,13 @@
             </div>
 
             <div class="row h-100 mx-1 add-section w-100 row justify-content-center align-items-center mx-auto" >
-                <div class="wrap-icon right-section w-50">
+                <div class="wrap-icon wish-list-section right-section w-50">
                     <div class="wrap-icon-section wishlist">
-                    <a href="#" class="link-direction">
+                    <a href="{{route('front.wishList')}}" class="link-direction">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                         <div class="left-info">
-                            <span class="index">0 item</span>
-                            <span class="title">Wishlist</span>
+                            <span class="index">{{auth()->guard('vendor')->check() ? auth()->guard('vendor')->user()->wishList->count():'0'}} {{__('text.Product')}}</span>
+                            <span class="title">{{__('text.Wishlist')}}</span>
                         </div>
                     </a>
                 </div>
@@ -67,3 +56,11 @@
     </div>
 
 </div>
+
+<script>
+    let element=document.getElementById('search-btn-icon');
+    element.addEventListener('click',function (e){
+        e.preventDefault()
+       document.getElementById('form-search-top').submit();
+    })
+</script>

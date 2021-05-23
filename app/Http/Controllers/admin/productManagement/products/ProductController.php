@@ -46,6 +46,9 @@ class ProductController extends Controller
         }
         $product->update($data);
         $product->save();
+        if ($product->categories->count() > 0 ){
+            $product->categories()->detach();
+        }
         $product->categories()->syncWithoutDetaching($request['categoriesIds']);
         return $product;
     }

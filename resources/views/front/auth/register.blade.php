@@ -1,7 +1,6 @@
 @extends('front.layouts.header')
 @section('title',__('text.Register'))
 @push('css')
-    @livewireStyles
 @endpush
 @section('content')
     <div class="wrap-breadcrumb my-5" >
@@ -14,5 +13,4 @@
    @livewire('front.auth.register')
 @endsection
 @push('script')
-    @livewireScripts
 @endpush

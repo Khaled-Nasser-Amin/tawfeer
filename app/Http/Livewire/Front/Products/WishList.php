@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\Front\Dashboard;
+namespace App\Http\Livewire\Front\Products;
 
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AllProducts extends Component
+class WishList extends Component
 {
     use WithPagination;
-
+    public $search;
     public function updateWishList(Product $product){
         $this->redirectIfNotAuth();
         if(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id)){
@@ -30,7 +30,13 @@ class AllProducts extends Component
     }
     public function render()
     {
-        $allProducts = Product::paginate(12);
-        return view('components.front.dashboard.all-products',compact('allProducts'));
+        $wishList=auth()->guard('vendor')->user()->wishList()
+            ->when($this->search,function ($q){
+                return $q->where('price',$this->search)
+                    ->orWhere('name_ar','like','%'.$this->search.'%')
+                    ->orWhere('name_en','like','%'.$this->search.'%');
+            })
+            ->latest()->paginate(15);
+        return view('components.front.products.wish-list',compact('wishList'));
     }
 }

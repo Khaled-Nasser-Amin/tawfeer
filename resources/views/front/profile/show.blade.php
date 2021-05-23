@@ -1,7 +1,6 @@
 @extends('front.layouts.header')
 @section('title',__('text.Profile'))
 @push('css')
-    @livewireStyles
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 @endpush
 @section('content')
@@ -30,7 +29,6 @@
     </div>
 @endsection
 @push('script')
-    @livewireScripts
 
     <script>
         window.livewire.on('refresh-navbar',route=>{

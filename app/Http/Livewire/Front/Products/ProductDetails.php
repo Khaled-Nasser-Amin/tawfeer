@@ -41,6 +41,8 @@ class ProductDetails extends Component
             $this->dispatchBrowserEvent('success',__('text.Added successfully to your favorite list'));
 
         }
+        $this->dispatchBrowserEvent('refresh-wish-list',route('front.wishList'));
+
     }
 
     public function rate(Product $product){

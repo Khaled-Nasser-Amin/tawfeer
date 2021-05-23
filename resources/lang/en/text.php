@@ -3,6 +3,10 @@
 return [
     //front end
     'Home' => 'Home',
+    'Search Result' => 'Search Result',
+    'No Categories available Yet' => 'No Categories available Yet',
+    'Your Wishlist' => 'Your Wishlist',
+    'Wishlist' => 'Wishlist',
     'Your review updated successfully' => 'Your review updated successfully',
     'Thank you for your review' => 'Thank you for your review',
     'Reviews' => 'Reviews',

@@ -1,7 +1,6 @@
 @extends('front.layouts.header')
 @section('title',__('text.Login'))
 @push('css')
-@livewireStyles
 @endpush
 @section('content')
      <div class="wrap-breadcrumb my-5" >
@@ -16,5 +15,4 @@
 
 @endsection
 @push('script')
-@livewireScripts
 @endpush

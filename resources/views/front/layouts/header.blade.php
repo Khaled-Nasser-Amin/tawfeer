@@ -22,6 +22,8 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
 
     @stack('css')
+    @livewireStyles
+
     <link rel="stylesheet" href="{{asset('css/toast.style.min.css')}}">
     <style>
         i{font-family: FontAwesome!important;}
@@ -96,10 +98,20 @@
             rtl: {{app()->getLocale()=='ar' ? "true" : 'false'}}
         });
     })
-    window.addEventListener('success',e=> {
-        $('.owl-carousel').owlCarousel();
+
+    window.addEventListener('refresh-wish-list',route=>{
+        $.ajax({
+            'url':route.detail,
+            'method':'get',
+            success:function (result){
+                let wishlist=$('.wish-list-section');
+                wishlist.empty();
+                wishlist.html($('.wish-list-section',result).html());
+            }
+        })
     })
 </script>
+@livewireScripts
 @stack('script')
 
 </body>

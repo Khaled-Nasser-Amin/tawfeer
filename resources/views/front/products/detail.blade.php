@@ -1,6 +1,5 @@
 @section('title',__('text.Product Details'))
 @push('css')
-    @livewireStyles
     <link rel="stylesheet" type="text/css" href="{{asset('front/css/owl.carousel.min.css')}}">
 
     <style>
@@ -95,6 +94,15 @@
                             <li><span class="font-weight-bold">{{__('text.Description')}}</span> : {{app()->getLocale() == 'ar' ?  $product->description_ar : $product->description_en}}</li>
                             <li><span class="font-weight-bold"><i class="fa fa-whatsapp text-success"></i></span> {{$product->whatsapp}}</li>
                             <li><span class="font-weight-bold"><i class="fa fa-phone"></i></span> {{$product->phone}}</li>
+                            <li><span class="text-pink">{{__('text.Category Name')}}</span></li>
+                            <ul class="slimscroll listCatScroll" >
+                                @foreach($product->categories as $cat)
+                                    <li>
+                                        | <span class="text-pink">
+                                        <a href="#" >{{app()->getLocale() == 'ar'? $cat->name_ar : $cat->name_en}}</a></span> |
+                                    </li>
+                                @endforeach
+                            </ul>
                         </ul>
                     </div>
                     @if ($product->sale != null)
@@ -255,6 +263,5 @@
 
     <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
-    @livewireScripts
 
 @endpush
