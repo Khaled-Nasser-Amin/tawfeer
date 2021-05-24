@@ -56,7 +56,10 @@ class UpdateProfileInformationForm extends Component
             session()->put('phone',$this->state['phone']);
             $this->resend();
         }
-        $this->updatePhone($updater);
+
+        if($this->state['phone'] != $this->getUserProperty()->phone){
+            $this->updatePhone($updater);
+        }
 
 
 

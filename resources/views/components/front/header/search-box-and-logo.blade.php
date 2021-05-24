@@ -11,12 +11,13 @@
                     <form action="{{route('front.search')}}" id="form-search-top" class="row mx-0 px-0 w-100" name="form-search-top">
                         <button form="form-search-top" type="button" class="w-5 px-0 align-self-end" id="search-btn-icon"><i class="fa fa-search " aria-hidden="true"></i></button>
                         <div class="wrap-list-cate overflow-hidden w-25 align-self-end ">
-                            <input type="hidden" name="product-cate" id="product-cate">
-                            <a href="#" class="link-control px-0">{{__('text.All Categories')}} <i class="fa fa-toggle-down"></i></a>
+                            <input type="hidden" name="product-cate" id="product-cate" value="{{request()->query('product-cate')}}">
+                            <a href="#" class="link-control px-0">{{__('text.All Categories')}}
+                                <i class="fas fa-toggle-down"></i></a>
                             <ul class="list-cate">
                                 <li class="level-0" value="">{{__('text.All Categories')}}</li>
                                 @forelse(\App\Models\Category::all() as $category)
-                                    <li class="level-{{$loop->index+1}}" value="{{$category->id}}">{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</li>
+                                    <li class="level-{{$category->id}}" value="{{$category->id}}">{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</li>
                                 @empty
                                     <li class="level-0" value="">{{__('text.No Categories available Yet')}}</li>
                                 @endforelse
@@ -49,7 +50,7 @@
                     </a>
                 </div>
                 </div>
-                <a href="{{route('front.AddSpare')}}" id="addProduct" class="btn w-50 d-block m-auto" style="background-color: #f59524; color: #ffffff"><i class="fa fa-plus-square"></i> {{__('text.Add Spare')}}</a>
+                <a href="{{route('front.AddSpare')}}" id="addProduct" class="btn w-50 d-block m-auto" style="background-color: #efc82e; color: #ffffff"><i class="fa fa-plus-square"></i> {{__('text.Add Spare')}}</a>
             </div>
 
         </div>
@@ -63,4 +64,11 @@
         e.preventDefault()
        document.getElementById('form-search-top').submit();
     })
+
 </script>
+@if (request()->query('product-cate') != null)
+    <script>
+        let cate=document.getElementsByClassName('level-{{request()->query("product-cate")}}')[0].innerHTML;
+        document.getElementsByClassName('link-control')[0].innerHTML=cate+' <i class="fas fa-toggle-down"></i>';
+    </script>
+@endif

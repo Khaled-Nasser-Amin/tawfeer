@@ -28,7 +28,7 @@
     <style>
         i{font-family: FontAwesome!important;}
         .form-control:focus{
-            border-color: #f59524!important;
+            border-color: #efc82e!important;
         }
     </style>
     @if ( LaravelLocalization::getCurrentLocale() == 'ar')

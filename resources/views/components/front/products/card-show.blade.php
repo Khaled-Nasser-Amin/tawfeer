@@ -1,6 +1,6 @@
 <div style="min-height: 550px;" class="my-5">
     <div class="row justify-content-center my-2">
-        <input wire:model="search" type="text" class="form-control col-4" placeholder="{{__('text.Search')}}...">
+        <input wire:model="search" type="text" class="form-control col-4" style="width: 33.33%!important;" placeholder="{{__('text.Search')}}...">
     </div>
     @forelse($myProducts as $product)
         <div class="myProducts-front col-4 px-0">
@@ -8,14 +8,18 @@
                 <div class="news-grid-image h-auto">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div class="carousel-item active"@if (app()->getLocale() == 'ar')
+                            style="float: left!important;margin-left: 0!important;margin-right: -100%"
+                                @endif>
                                 @if ($product->type == 'group')
                                     <span class="property-label badge badge-warning" style="position: absolute">{{__('text.Group')}}</span>
                                 @endif
                                 <img src="{{$product->image}}" class="d-block w-100" alt="...">
                             </div>
                             @foreach($product->images as $image)
-                                <div class="carousel-item">
+                                <div class="carousel-item" @if (app()->getLocale() == 'ar')
+                                    style="float: left!important;margin-left: 0!important;margin-right: -100%"
+                                @endif>
                                     @if ($product->type == 'group')
                                         <span class="property-label badge badge-warning" style="position: absolute">{{__('text.Group')}}</span>
                                     @endif

@@ -21,7 +21,8 @@ class MyProducts extends Component
                     ->orWhere('phone','like','%'.$this->search.'%')
                     ->orWhere('name_ar','like','%'.$this->search.'%')
                     ->orWhere('name_en','like','%'.$this->search.'%')
-                    ->orWhere('price',$this->search);
+                    ->orWhere('price',$this->search)
+                    ->orWhere('sale',$this->search);
             })
             ->latest()->paginate(15);
         return view('components.front.products.card-show',compact('myProducts'));

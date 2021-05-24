@@ -26,7 +26,7 @@
                                             @if(!auth()->guard('vendor')->check())
                                                 <a data-product-id="{{$product->id}}" href="#" class="function-link add_product_to_Wishlist" > {{__('text.Add to Wishlist')}} </a>
                                             @elseif(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id))
-                                                <a data-product-id="{{$product->id}}" href="#" class="function-link text-white px-2 add_product_to_Wishlist" style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
+                                                <a data-product-id="{{$product->id}}" href="#" class="function-link text-white px-2 add_product_to_Wishlist" style="background-color:#efc82e;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
                                             @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->find($product->id))
                                                 <a data-product-id="{{$product->id}}" href="#" class="function-link add_product_to_Wishlist" > {{__('text.Add to Wishlist')}} </a>
                                             @endif

@@ -35,7 +35,8 @@ class Products extends Component
         $categories=Category::all();
         $products=Product::with('categories')
             ->when($this->price,function ($q) {
-                $q->where('products.price',$this->price);
+                $q->where('products.price',$this->price)
+                ->orWhere('products.sale',$this->price);
             })->when($this->searchText,function ($q){
                 return $q->where('products.name_ar','like','%'.$this->searchText.'%')
                     ->orWhere('products.name_en','like','%'.$this->searchText.'%');

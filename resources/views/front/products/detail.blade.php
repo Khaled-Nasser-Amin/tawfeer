@@ -116,7 +116,7 @@
                             @if(!auth()->guard('vendor')->check())
                                 <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#444444;border-radius: 10px"> {{__('text.Add to Wishlist')}} </a>
                             @elseif(auth()->guard('vendor')->check() && auth()->guard('vendor')->user()->wishList()->find($product->id))
-                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#f59524;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
+                                <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#efc82e;border-radius: 10px"> {{__('text.Remove from Wishlist')}} </a>
                             @elseif(auth()->guard('vendor')->check() && !auth()->guard('vendor')->user()->wishList()->find($product->id))
                                 <a wire:click="updateWishList({{$product->id}})" class="btn btn-wishlist text-white px-2 " style="background-color:#444444;border-radius: 10px"> {{__('text.Add to Wishlist')}} </a>
                             @endif

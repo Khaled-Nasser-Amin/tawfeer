@@ -138,6 +138,6 @@
     <!-- end row -->
 
     <div class="text-center">
-        <button class="btn btn-sign d-block mx-auto text-white"  wire:loading.attr="disabled" style="background-color: #f59524;">{{__('text.Submit')}}</button>
+        <button class="btn btn-sign d-block mx-auto text-white"  wire:loading.attr="disabled" style="background-color: #efc82e;">{{__('text.Submit')}}</button>
     </div>
 </form>

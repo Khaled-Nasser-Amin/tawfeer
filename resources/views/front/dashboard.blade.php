@@ -11,6 +11,7 @@
     </style>
 @endpush
 @section('content')
+    <x-front.dashboard.main-slider />
     @livewire('front.dashboard.latest-products')
     @livewire('front.dashboard.special-products')
     @livewire('front.dashboard.highest-products')
@@ -33,7 +34,7 @@
                 success:function (e){
                     if (e == 'attaching'){
                         item.addClass('text-white');
-                        item.css({'background-color':'#f59524','border-radius':'10px'});
+                        item.css({'background-color':'#efc82e','border-radius':'10px'});
                         item.html("{{__('text.Remove from Wishlist')}}");
                         $.Toast("{{__('text.Added successfully to your favorite list')}}","",'success',{
                             stack: false,
