@@ -12,12 +12,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Admin\ProductsManagement\Categories\Categories;
 use App\Http\Livewire\Admin\ProductsManagement\Products\Products;
 use App\Http\Controllers\front\Dashboard;
-use App\Http\Livewire\Front\Products\MyProducts;
 use App\Http\Livewire\Front\Products\ProductDetails;
 use App\Http\Livewire\Admin\ProductsManagement\Vendors\Vendors;
 use App\Http\Controllers\front\AuthController as FrontAuthController;
 use App\Http\Controllers\front\products\ProductController as FrontProductController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +68,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/search',[FrontProductController::class,'search'])->name('search');
 
         Route::get('/product-details/{product}-{slug}', ProductDetails::class)->name('viewDetail');
+        Route::get('/shop', [Dashboard::class,'shop'])->name('shop');
 
         Route::group(['middleware'=>'Auth:vendor'],function (){
 

@@ -8,6 +8,9 @@
             width: 20px;
             height: 20px;
         }
+        .banner-item:hover{
+            cursor: pointer;
+        }
     </style>
 @endpush
 @section('content')
@@ -15,7 +18,6 @@
     @livewire('front.dashboard.latest-products')
     @livewire('front.dashboard.special-products')
     @livewire('front.dashboard.highest-products')
-    @livewire('front.dashboard.all-products')
 @endsection
 @push('script')
     <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
@@ -65,6 +67,16 @@
 
                 }
             })
+        })
+    </script>
+
+    <script>
+        $('.link-banner').on('click',function (e){
+            e.preventDefault();
+            let cate_id=$(this).data('cate-id');
+            document.cookie='cate_id='+cate_id;
+            window.location='/shop';
+
         })
     </script>
 

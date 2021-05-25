@@ -3,6 +3,18 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'Show' => 'عرض',
+    'Shop' => 'المتجر',
+    'Sort by price: high to low' => 'ترتيب السعر من حيث الاعلي الي الاقل',
+    'Sort by price: low to high' => 'ترتيب السعر من حيث الاقل الي الاعلي',
+    'Sort by oldest' => 'ترتيب المنتجات من حيث الاقدم',
+    'Sort by popularity' => 'ترتيب المنتجات من حيث الاكثر تقييماٌ',
+    'Default Sorting by newest' => 'ترتيب المنتجات من حيث الاحدث',
+    'per page' => 'لكل صفحة',
+    'Show more' => 'عرض المزيد',
+    'Show less' => 'عرض اقل',
+    'Min Price' => 'اقل سعر',
+    'Max Price' => 'اكبر سعر',
     'Search Result' => 'نتائج البحث',
     'No Categories available Yet' => "لا يوجد اقسام حتي الان",
     'Your Wishlist' => 'قائمتك المفضلة',

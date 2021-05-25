@@ -14,3 +14,18 @@
         </div>
     </div>
 </div>
+@if(\App\Models\Category::count()>0)
+    <div class="wrap-banner style-twin-default">
+    @foreach(\App\Models\Category::all() as $category)
+            <div class="banner-item " style="width:19%">
+                <a class="link-banner banner-effect-1" data-cate-id="{{$category->id}}">
+                    <span class="text-muted" >{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</span>
+                    <figure><img src="{{$category->image}}" ></figure>
+                </a>
+            </div>
+    @endforeach
+    </div>
+@endif
+
+
+

@@ -15,17 +15,19 @@ class ProductController extends Controller
     public function search(Request $request){
 
         $products=Product::when($request->input('product-cate'),function ($q)use($request){
-            return  $q->join('products_categories','products_categories.product_id','=','products.id')
+            $q->join('products_categories','products_categories.product_id','=','products.id')
                 ->join('categories','categories.id','=','products_categories.category_id')
-                ->select('products.*')->where('categories.id',$request->input('product-cate'));
-        })
-            ->when($request->input('input_search'),function ($q)use($request){
-               return $q->where('products.name_ar','like','%'.$request->input('input_search').'%')
-                   ->orWhere('products.name_en','like','%'.$request->input('input_search').'%')
-                   ->orWhere('products.price',$request->input('input_search'))
-                   ->orWhere('products.sale','like',$request->input('input_search'));
-            })
-            ->latest()->paginate(12);
+                ->where('categories.id',$request->input('product-cate'))
+                ->select('products.*');
+        })->where(function ($q) use($request){
+            $q->  when($request->input('input_search'),function ($q)use($request){
+                $q->where('products.name_ar','like','%'.$request->input('input_search').'%')
+                    ->orWhere('products.name_en','like','%'.$request->input('input_search').'%')
+                    ->orWhere('products.price',$request->input('input_search'))
+                    ->orWhere('products.sale','like',$request->input('input_search'));
+            });
+        })->latest('products.created_at')->paginate(12);
+
         return view('front.products.search',compact('products'));
     }
 

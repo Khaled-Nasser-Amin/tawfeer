@@ -11,4 +11,8 @@ class Dashboard extends Controller
 
         return view('front.dashboard');
     }
+    public function shop(){
+
+        return view('front.shop.shop');
+    }
 }

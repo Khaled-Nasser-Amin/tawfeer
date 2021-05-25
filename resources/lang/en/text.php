@@ -3,6 +3,18 @@
 return [
     //front end
     'Home' => 'Home',
+    'Show' => 'Show',
+    'Sort by price: high to low' => 'Sort by price: high to low',
+    'Sort by price: low to high' => 'Sort by price: low to high',
+    'Sort by oldest' => 'Sort by oldest',
+    'Sort by popularity' => 'Sort by popularity',
+    'Default Sorting by newest' => 'Default Sorting by newest',
+    'Show more' => 'Show more',
+    'Show less' => 'Show less',
+    'per page' => 'per page',
+    'Shop' => 'Shop',
+    'Min Price' => 'Min Price',
+    'Max Price' => 'Max Price',
     'Search Result' => 'Search Result',
     'No Categories available Yet' => 'No Categories available Yet',
     'Your Wishlist' => 'Your Wishlist',
