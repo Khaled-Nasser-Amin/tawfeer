@@ -21,11 +21,17 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call(UserSeeder::class);
-        Category::factory()->has(
+        Category::create([
+            'name_ar' => 'انواع اخرى',
+            'name_en' => 'Other cars',
+            'slug' =>'other-cars',
+            'image' => '1.jpg'
+        ]);
+        /*Category::factory()->has(
             Product::factory()->has(
                 Images::factory()->count(4)
             )->count(5)
-        )->count(10)->create();
+        )->count(10)->create();*/
 
 
 

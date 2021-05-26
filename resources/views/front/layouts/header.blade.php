@@ -68,7 +68,7 @@
     </div>
 </header>
 
-<main id="main" class="main-site">
+<main id="main" class="main-site" style="min-height: 800px">
     <div class="container">
         @yield('content')
     </div>

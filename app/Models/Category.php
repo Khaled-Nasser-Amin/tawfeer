@@ -28,4 +28,7 @@ class Category extends Model
     public function getSlugAttribute($value){
         return Str::slug($value);
     }
+    public function models(){
+        return $this->hasMany(\App\Models\Model::class);
+    }
 }

@@ -41,6 +41,7 @@
                         </form>
                     @else
                         <form wire:submit.prevent="store" class="form-stl" name="frm-login" >
+                            {{session()->get('code')}}
                             <div class="row form-group">
                                 <div class=" w-100 row justify-content-between align-items-center">
                                     <h3 class="form-title px-3">{{__('text.Account Confirmation')}}</h3>

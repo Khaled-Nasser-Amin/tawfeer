@@ -99,7 +99,7 @@
                                 @foreach($product->categories as $cat)
                                     <li>
                                         | <span class="text-pink">
-                                        <a href="#" >{{app()->getLocale() == 'ar'? $cat->name_ar : $cat->name_en}}</a></span> |
+                                        <a href="#" class="cate_name" data-cate-id="{{$cat->id}}">{{app()->getLocale() == 'ar'? $cat->name_ar : $cat->name_en}}</a></span> |
                                     </li>
                                 @endforeach
                             </ul>
@@ -234,5 +234,22 @@
 
     <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('front/js/jquery.flexslider.js')}}"></script>
+    <script>
+        $('.cate_name').on('click',function (e){
+            e.preventDefault();
+            let cate_id=$(this).data('cate-id');
+            $.ajax({
+                url:"{{route('front.shopSetCategory')}}",
+                method:"post",
+                data:{
+                    '_token':"{{csrf_token()}}",
+                    'cate_id':cate_id
+                },
+                success:function (){
+                    window.location='/shop'
+                }
+            })
 
+        })
+    </script>
 @endpush

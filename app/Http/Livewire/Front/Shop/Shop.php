@@ -13,8 +13,8 @@ class Shop extends Component
     use WithPagination;
     public $search ,$highest_products_review,$sort,$pagination,$min_price,$max_price,$category;
     public function mount(){
-        $this->category=$_COOKIE['cate_id']??null;
-        setcookie("cate_id", "", time() - 3600);
+
+        $this->category=session()->has('cate_id')? session()->pull('cate_id'):null;
         $this->sort="date-newest";
         $this->min_price=0;
         $this->max_price=999999;

@@ -15,4 +15,7 @@ class Dashboard extends Controller
 
         return view('front.shop.shop');
     }
+    public function shopSetCategory(Request $request){
+        session()->put('cate_id',$request->cate_id);
+    }
 }

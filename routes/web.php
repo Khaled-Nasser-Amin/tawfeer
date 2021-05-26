@@ -12,6 +12,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Livewire\Admin\ProductsManagement\Categories\Categories;
 use App\Http\Livewire\Admin\ProductsManagement\Products\Products;
 use App\Http\Controllers\front\Dashboard;
+use App\Http\Livewire\Admin\ProductsManagement\Models\Models;
 use App\Http\Livewire\Front\Products\ProductDetails;
 use App\Http\Livewire\Admin\ProductsManagement\Vendors\Vendors;
 use App\Http\Controllers\front\AuthController as FrontAuthController;
@@ -52,6 +53,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/dashboard',[AdminController::class,'index'])->name('admin.index');
         Route::get('/user/profile', [UserProfileController::class, 'show'])->name('profile.show');
         Route::get('/categories', Categories::class);
+        Route::get('/models', Models::class);
         Route::get('/vendors', Vendors::class);
         Route::get('/category/{category}-{slug}', [CategoryController::class,'show'])->name('category.show');
         Route::get('/products', Products::class);
@@ -69,6 +71,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         Route::get('/product-details/{product}-{slug}', ProductDetails::class)->name('viewDetail');
         Route::get('/shop', [Dashboard::class,'shop'])->name('shop');
+        Route::post('/shop', [Dashboard::class,'shopSetCategory'])->name('shopSetCategory');
 
         Route::group(['middleware'=>'Auth:vendor'],function (){
 

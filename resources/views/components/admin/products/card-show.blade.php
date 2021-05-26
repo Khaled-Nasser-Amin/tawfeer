@@ -44,10 +44,10 @@
                     </div>
                 @endif
                 <ul>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i> {{date('M d Y',strtotime($product->created_at))}}</li>
-                    <li><i class="fa fa-user" aria-hidden="true"></i> {{auth()->user()->name}}</li>
+                    <li><i class="mdi mdi-calendar" aria-hidden="true"></i> {{date('M d Y',strtotime($product->created_at))}}</li>
+                    <li><i class="mdi mdi-account" aria-hidden="true"></i> {{auth()->user()->name}}</li>
                 </ul>
-                <ul>
+                <ul class="row">
                     <li><i class="mdi mdi-whatsapp" aria-hidden="true"></i> {{$product->whatsapp}}</li>
                     <li><i class="mdi mdi-cellphone" aria-hidden="true"></i> {{$product->phone}}</li>
                 </ul>
@@ -70,7 +70,7 @@
                 <span class="text-pink">{{__('text.Description')}}</span>
                 <div class="slimscroll description_scroll mb-0">{{app()->getLocale() == 'ar' ?$product->description_ar:$product->description_en}}</div>
                 <hr>
-                <button id="changeFeatured" wire:click.prevent="updateFeatured({{$product->id}})" class="btn btn-{{$product->featured == 0 ? "secondary":"primary"}} mt-3 btn-rounded btn-bordered waves-effect width-md waves-light text-white d-block mx-auto w-75">{{__('text.Featured')}} <i class="far fa-star"></i></button>
+                <button id="changeFeatured" wire:click.prevent="updateFeatured({{$product->id}})" class="btn btn-{{$product->featured == 0 ? "secondary":"primary"}} mt-3 btn-rounded btn-bordered waves-effect width-md waves-light text-white d-block mx-auto w-100">{{__('text.Featured')}} <i class="far fa-star"></i></button>
             </div>
         </div>
     </div>

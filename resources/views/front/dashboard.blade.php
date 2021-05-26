@@ -11,6 +11,15 @@
         .banner-item:hover{
             cursor: pointer;
         }
+        .owl-item{
+            right:5px;
+        }
+        @if(app()->getLocale() == 'ar')
+        .carousel-item{
+            margin-left: 0!important;
+                float: left!important;
+        }
+        @endif
     </style>
 @endpush
 @section('content')
@@ -71,13 +80,22 @@
     </script>
 
     <script>
-        $('.link-banner').on('click',function (e){
-            e.preventDefault();
-            let cate_id=$(this).data('cate-id');
-            document.cookie='cate_id='+cate_id;
-            window.location='/shop';
+            $('.link-banner').on('click',function (e){
+                e.preventDefault();
+                let cate_id=$(this).data('cate-id');
+                $.ajax({
+                    url:"{{route('front.shopSetCategory')}}",
+                    method:"post",
+                    data:{
+                        '_token':"{{csrf_token()}}",
+                        'cate_id':cate_id
+                },
+                success:function (){
+                    window.location='/shop'
+                }
+                })
 
-        })
+            })
     </script>
 
 @endpush

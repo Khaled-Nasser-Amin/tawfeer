@@ -5,10 +5,10 @@
         <h2 class="widget-title">@lang('text.All Categories')</h2>
         <div class="widget-content">
             <ul class="list-style vertical-list list-limited" data-show="6">
-                @forelse(\App\Models\Category::all() as $category)
-                    <li class="list-item category_name {{$loop->index > 5 ? 'default-hiden':''}}" style=" height: 100px; background-image: url('{{$category->image}}');background-size: cover">
+                @forelse(\App\Models\Category::latest()->get() as $category)
+                    <li class="list-item category_name {{$loop->index > 5 ? 'default-hiden':''}}" style=" height: 150px;border-radius: 20px;padding: 3px; background-image: url('{{$category->id == 1 ? (app()->getLocale() == "ar" ? asset("images/categories/other_ar.png"):asset("images/categories/other_en.png")) : $category->image}}');background-size: cover">
                         <input id="cat-{{$loop->index}}" name="category" type="radio" value="{{$category->id}}" wire:model="category">
-                        <label for="cat-{{$loop->index}}" style="position: absolute;width: 100%;height: 100px">{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</label>
+                        <label for="cat-{{$loop->index}}" class="mx-1" style="position: absolute;width: 100%;height: 100px"> {{$category->id != 1 ?(app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en):''}}</label>
                     </li>
                 @empty
                     <li class="list-item">{{__('text.No Categories available Yet')}}</li>

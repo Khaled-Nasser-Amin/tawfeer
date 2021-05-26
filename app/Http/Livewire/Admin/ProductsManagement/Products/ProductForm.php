@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\ProductsManagement\Products;
 use App\Http\Controllers\admin\productManagement\products\ProductController;
 use App\Models\Category;
 use App\Models\Images;
+use App\Models\Model;
 use App\Models\Product;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -15,12 +16,12 @@ class ProductForm extends Component
 use WithFileUploads;
     public $name_ar, $name_en,
         $description_ar,$description_en,
-        $sale,$whatsapp,$phone,$categoriesIds,
-        $image,$groupImage,$price,$type,$slug,$YearOfManufacture,$search;
+        $sale,$whatsapp,$phone,
+        $image,$groupImage,$price,$type,$slug,$YearOfManufacture,$search,$models,$models_ids=[];
 
     public $products;     //all products
     public $productsIndex=[];     //no. of fields if the product is consist of a group of products
-
+    public $categoriesIds=[];
     public $categories;
 
     public $action; // action for change form action between add new product and update product
@@ -29,7 +30,7 @@ use WithFileUploads;
 
     protected $listeners=['edit'];
     public function mount(){
-        $this->categories=Category::all();
+        $this->categories=Category::latest()->get();
         $this->products=Product::where('type','single')->where('user_id',auth()->user()->id)->get();
         $this->productsIndex[]=['product_id' => '','quantity' => '' ];
     }
@@ -59,25 +60,39 @@ use WithFileUploads;
 
     public function update($id){
         $this->categoriesIds=array_filter($this->categoriesIds);
-
         $productUpdate=new ProductController();
         $data=$this->validationForUpdate($id);
+        $data=$this->setSlug($data);
         $product=$productUpdate->update($data,$id);
         $this->groupType($product);
         $this->dispatchBrowserEvent('success', __('text.Product Updated Successfully'));
     }
 
     public function store(){
+        dd($this->models_ids);
         $productStore=new ProductController();
         $data=$this->validation();
+        $data=$this->setSlug($data);
         $product=$productStore->store($data);
         auth()->user()->products()->save($product);
         $this->groupType($product);
         $this->resetVariables();
         $this->dispatchBrowserEvent('success', __('text.Product Added Successfully'));
     }
+
     public function render()
     {
+        $this->models=[];
+        if ($this->categoriesIds != null){
+            foreach ($this->categoriesIds as $key=>$cat){
+                if ($cat == false){
+                    unset($this->models[$key]);
+                }else{
+                    $this->models+=[$key=>Model::where('category_id',$cat)->get()];
+
+                }
+            }
+        }
         return view('components.admin.products.product-form');
     }
 
@@ -86,7 +101,7 @@ use WithFileUploads;
         return $this->validate([
             'name_ar' => 'required|string|max:255|',
             'name_en' => 'required|string|max:255|',
-            'slug' => 'required|string|max:255|',
+            'slug' => 'nullable|string|max:255|',
             'description_ar' => 'required|string|max:255|',
             'description_en' => 'required|string|max:255|',
             'type' => ['required', Rule::in(['single','group'])],
@@ -97,6 +112,8 @@ use WithFileUploads;
             'YearOfManufacture' => 'required|integer',
             'categoriesIds' => 'required|array|min:1',
             'categoriesIds.*' => 'exists:categories,id',
+            'models_ids' => 'required|array|min:1',
+            'models_ids.*' => 'exists:models,id',
             'image' => 'required|mimes:jpg,png,jpeg,gif',
             'groupImage' => 'required|array|min:1',
             'groupImage.*' => 'mimes:jpeg,jpg,png',
@@ -111,7 +128,7 @@ use WithFileUploads;
         return $this->validate([
             'name_ar' => 'required|string|max:255|',
             'name_en' => 'required|string|max:255|',
-            'slug' => 'required|string|max:255|',
+            'slug' => 'nullable|string|max:255|',
             'description_ar' => 'required|string|max:255|',
             'description_en' => 'required|string|max:255|',
             'type' => ['required', Rule::in(['single','group'])],
@@ -119,6 +136,8 @@ use WithFileUploads;
             'sale' => 'nullable|numeric|lt:price',
             'categoriesIds' => 'required|array|min:1',
             'categoriesIds.*' => 'exists:categories,id',
+            'models_ids' => 'required|array|min:1',
+            'models_ids.*' => 'exists:models,id',
             'image' => 'nullable|mimes:jpg,png,jpeg,gif',
             'phone' => 'required|numeric',
             'whatsapp' => 'required|numeric',
@@ -158,9 +177,10 @@ use WithFileUploads;
         $this->phone=null;
         $this->whatsapp=null;
         $this->YearOfManufacture=null;
-        $this->categoriesIds=null;
+        $this->categoriesIds=[];
         $this->groupImage=null;
         $this->productsIndex=[];
+        $this->models=[];
     }
 
     public function addProduct(){
@@ -171,5 +191,10 @@ use WithFileUploads;
         unset($this->productsIndex[$index]);
         array_values($this->productsIndex);
     }
-
+    public function setSlug($data){
+        if ($this->slug == null){
+            $data['slug'] = $this->name_en.'-'.$this->name_ar;
+        }
+        return $data;
+    }
 }

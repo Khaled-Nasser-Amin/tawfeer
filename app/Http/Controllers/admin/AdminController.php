@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-        $categories=Category::count();
+        $categories=Category::where('id','!=',1)->count();
         $products=Product::count();
         $vendors=Vendor::count();
         $myProducts=auth()->user()->products()->count();

@@ -1,7 +1,6 @@
 @section('title',__('text.Products'))
 @push('css')
     @livewireStyles
-    <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <link href="{{asset('libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('css/style.css')}}"rel="stylesheet"type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/toast.style.min.css')}}">

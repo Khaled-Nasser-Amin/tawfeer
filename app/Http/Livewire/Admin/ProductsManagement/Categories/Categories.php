@@ -30,6 +30,7 @@ class Categories extends Component
         $category=new CategoryController();
         $data=$this->validateData();
         /*$data['parent']=$this->parent;*/
+        $data=$this->setSlug($data);
         $category->store($data);
         session()->flash('success', __('text.Category Created Successfully'));
         $this->resetVariables();
@@ -49,14 +50,15 @@ class Categories extends Component
     }
 
     public function update(){
-
-        $data=$this->UpdateCategoryRequestValidate($this->ids);
-        $category=new CategoryController();
-        $category->update($data,$this->ids);
-        session()->flash('success',__('text.Category Updated Successfully'));
-        $this->resetVariables();
-        $this->emit('updatedCategory');
-
+        if ($this->ids != 1){
+            $data=$this->UpdateCategoryRequestValidate($this->ids);
+            $data=$this->setSlug($data);
+            $category=new CategoryController();
+            $category->update($data,$this->ids);
+            session()->flash('success',__('text.Category Updated Successfully'));
+            $this->resetVariables();
+            $this->emit('updatedCategory');
+        }
     }
 
     public function confirmDelete($id){
@@ -70,7 +72,7 @@ class Categories extends Component
 
     public function render()
     {
-        $categories=Category::/*with('child_categories')->*/when($this->search,function ($q){
+        $categories=Category::/*with('child_categories')->*/where('id','!=',1)->when($this->search,function ($q){
             return $q->where('name_ar','like','%'.$this->search.'%')
                 ->orWhere('name_en','like','%'.$this->search.'%');
         })->paginate(10);
@@ -82,7 +84,7 @@ class Categories extends Component
        return $this->validate([
             'name_ar' => 'required|string|max:255|unique:categories|unique:categories,name_en',
             'name_en' => 'required|string|max:255|unique:categories|unique:categories,name_ar',
-            'slug' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
            'image' => 'required|mimes:jpg,png,jpeg,gif',
             /*'parent' => 'nullable|exists:categories,id',
             'type' => ['required',Rule::in(['Category','Product'])],*/
@@ -93,7 +95,7 @@ class Categories extends Component
         return $this->validate([
             'name_ar' =>['required' , Rule::unique('categories','name_ar')->ignore($categoryId), Rule::unique('categories','name_en')->ignore($categoryId)],
             'name_en' =>['required' , Rule::unique('categories','name_ar')->ignore($categoryId), Rule::unique('categories','name_en')->ignore($categoryId)],
-            'slug' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
             'image' => 'nullable|mimes:jpg,png,jpeg,gif',
            /* 'parent' => ['nullable',Rule::exists('categories','id')->whereNot('id',$categoryId)],
             'type' => ['required',Rule::in(['Category','Product'])],*/
@@ -110,5 +112,13 @@ class Categories extends Component
         /*$this->parent=null;
         $this->type=null;*/
         $this->ids=null;
+    }
+
+    public function setSlug($data){
+        if ($this->slug == null){
+            $data['slug'] = $this->name_en.'-'.$this->name_ar;
+        }
+        return $data;
+
     }
 }

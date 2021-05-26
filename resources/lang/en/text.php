@@ -3,6 +3,12 @@
 return [
     //front end
     'Home' => 'Home',
+    'Index' => 'Index',
+    'Add New Model' => 'Add New Model',
+    'Model' => 'Model',
+    'Model Name' => 'Model Name',
+    'Select Category' => 'Select Category',
+    'Models' => 'Models',
     'Show' => 'Show',
     'Sort by price: high to low' => 'Sort by price: high to low',
     'Sort by price: low to high' => 'Sort by price: low to high',
@@ -26,6 +32,10 @@ return [
     'Special Products' => 'Special Products',
     'Latest Products' => 'Latest Products',
     'sale' => 'sale',
+    'No models available yet' => 'No models available yet',
+    'Model Created Successfully' => 'Model Created Successfully',
+    'Model Updated Successfully' => 'Model Updated Successfully',
+    'Model Deleted Successfully' => 'Model Deleted Successfully',
     'Added successfully to your favorite list' => 'Added successfully to your favorite list',
     'Removed successfully from your favorite list' => 'Removed successfully from your favorite list',
 

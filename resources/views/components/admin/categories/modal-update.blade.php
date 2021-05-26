@@ -64,7 +64,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">{{__('text.Close')}}</button>
-                <button type="button" class="btn btn-info waves-effect waves-light" wire:click.prevent="update">{{__('text.Save')}}</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" wire:click.prevent="update">{{__('text.Submit')}}</button>
             </div>
         </div>
     </div>

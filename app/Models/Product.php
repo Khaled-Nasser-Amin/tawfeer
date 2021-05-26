@@ -35,6 +35,9 @@ class Product extends Model
     public function categories(){
         return $this->belongsToMany(Category::class,'products_categories');
     }
+    public function models(){
+        return $this->belongsToMany(Model::class,'products_models');
+    }
     //this relation about Images that belongs to specific product in table images
 
     public function images(){

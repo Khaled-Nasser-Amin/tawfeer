@@ -59,6 +59,7 @@ use WithFileUploads;
         $this->categoriesIds=array_filter($this->categoriesIds);
         $productUpdate=new ProductController();
         $data=$this->validationForUpdate($id);
+        $data=$this->setSlug($data);
         $product=$productUpdate->update($data,$id);
         $this->groupType($product);
         $this->dispatchBrowserEvent('success', __('text.Product Updated Successfully'));
@@ -67,6 +68,7 @@ use WithFileUploads;
     public function store(){
         $productStore=new ProductController();
         $data=$this->validation();
+        $data=$this->setSlug($data);
         $product=$productStore->store($data);
         auth()->guard('vendor')->user()->products()->save($product);
         $this->groupType($product);
@@ -84,9 +86,9 @@ use WithFileUploads;
         return $this->validate([
             'name_ar' => 'required|string|max:255|',
             'name_en' => 'required|string|max:255|',
-            'slug' => 'required|string|max:255|',
-            'description_ar' => 'required|string|max:255|',
-            'description_en' => 'required|string|max:255|',
+            'slug' => 'nullable|string|max:255|',
+            'description_ar' => 'nullable|string|max:255|',
+            'description_en' => 'nullable|string|max:255|',
             'type' => ['required', Rule::in(['single','group'])],
             'price' => 'required|numeric',
             'sale' => 'nullable|numeric|lt:price',
@@ -109,9 +111,9 @@ use WithFileUploads;
         return $this->validate([
             'name_ar' => 'required|string|max:255|',
             'name_en' => 'required|string|max:255|',
-            'slug' => 'required|string|max:255|',
-            'description_ar' => 'required|string|max:255|',
-            'description_en' => 'required|string|max:255|',
+            'slug' => 'nullable|string|max:255|',
+            'description_ar' => 'nullable|string|max:255|',
+            'description_en' => 'nullable|string|max:255|',
             'type' => ['required', Rule::in(['single','group'])],
             'price' => 'required|numeric',
             'sale' => 'nullable|numeric|lt:price',
@@ -168,6 +170,13 @@ use WithFileUploads;
     public function deleteProduct($index){
         unset($this->productsIndex[$index]);
         array_values($this->productsIndex);
+    }
+    public function setSlug($data){
+        if ($this->slug == null){
+            $data['slug'] = $this->name_en.'-'.$this->name_ar;
+        }
+        return $data;
+
     }
 
 }

@@ -3,6 +3,12 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'Index' => 'الرقم',
+    'Models' => 'الموديلات',
+    'Add New Model' => 'اضف موديل جديد',
+    'Model' => 'الموديل',
+    'Model Name' => 'اسم الموديل',
+    'Select Category' => 'اختر قسم',
     'Show' => 'عرض',
     'Shop' => 'المتجر',
     'Sort by price: high to low' => 'ترتيب السعر من حيث الاعلي الي الاقل',
@@ -25,9 +31,14 @@ return [
     'Latest Products' => 'اخر المنتجات',
     'Reviews' => 'التقيمات',
     'Review' => 'تقيم',
+    'No models available yet' => 'لا يوجد موديلات متاحة الان',
+
     'Added successfully to your favorite list' => 'تم اضافة المنتج الي قائمتك المفضلة بنجاح',
     'Removed successfully from your favorite list' => 'تم ازالة المنتج من قائمتك المفضلة بنجاح',
     'sale' => 'تخفيض',
+    'Model Created Successfully' => 'تم انشاء الموديل بنجاح',
+    'Model Updated Successfully' => 'تم تعديل الموديل بنجاح',
+    'Model Deleted Successfully' => 'تم مسج المنتج بنجاح',
     'Your Comment' => 'تعليقك',
     'Your Rating' => 'تقيمك',
     'Popular Products' => 'اشهر المنتجات',

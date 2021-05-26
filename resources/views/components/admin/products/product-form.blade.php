@@ -70,6 +70,30 @@
                     <!-- end row -->
                 </div>
 
+                <div class="form-group mb-4">
+                    <label class="mb-3">{{__('text.Models')}}</label>
+                    <div class="row">
+                        <div class="col-12 w-100 row">
+                            @forelse(collect($models)->collapse() as $model)
+                                <div class="checkbox checkbox-primary mb-3 col-4 w-50">
+                                    <input wire:model="models_ids.{{$loop->index}}" id="check-{{$model['id']}}" type="checkbox" value="{{$model['id']}}">
+                                    <label for="check-{{$model['id']}}" class="mb-0">
+                                        {{$model['name']}}
+                                    </label>
+                                </div>
+                            @empty
+                                <p class="text-muted">{{__('text.No models available yet')}}</p>
+                            @endforelse
+
+                        </div>
+                        <x-general.input-error for="models_ids" />
+                        <!-- end col -->
+
+                    </div>
+                    <!-- end row -->
+                </div>
+
+
 
 
             </div>
