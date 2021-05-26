@@ -53,7 +53,7 @@
                         <div class="col-12 w-100 row">
                             @forelse($categories as $category)
                                 <div class="checkbox checkbox-primary mb-3 col-4 w-50">
-                                    <input wire:model="categoriesIds.{{$loop->index}}" id="checkbox-{{$category->id}}" type="checkbox" value="{{$category->id}}">
+                                    <input wire:model="categoriesIds.{{$category->id}}" id="checkbox-{{$category->id}}" type="checkbox" value="{{$category->id}}">
                                     <label for="checkbox-{{$category->id}}" class="mb-0">
                                         {{app()->getLocale() =='ar' ? $category->name_ar : $category->name_en}}
                                     </label>
@@ -70,8 +70,28 @@
                     <!-- end row -->
                 </div>
 
+                <div class="form-group mb-4">
+                    <label class="mb-3">{{__('text.Models')}}</label>
+                    <div class="row">
+                        <div class="col-12 w-100 row">
+                            @forelse(collect($models)->collapse() as $model)
+                                <div class="checkbox checkbox-primary mb-3 col-4 w-50">
+                                    <input wire:model="models_ids.{{$model->id}}" id="check-{{$model['id']}}" type="checkbox" value="{{$model['id']}}">
+                                    <label for="check-{{$model['id']}}" class="mb-0">
+                                        {{$model['name']}}
+                                    </label>
+                                </div>
+                            @empty
+                                <p class="text-muted">{{__('text.No models available yet')}}</p>
+                            @endforelse
 
+                        </div>
+                        <x-general.input-error for="models_ids" />
+                        <!-- end col -->
 
+                    </div>
+                    <!-- end row -->
+                </div>
             </div>
             <div class="form-group mb-4">
                 <label>{{__('text.Product Image')}} </label>

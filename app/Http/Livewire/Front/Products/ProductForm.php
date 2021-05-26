@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Front\Products;
 
 use App\Http\Controllers\front\products\ProductController;
 use App\Models\Category;
+use App\Models\Model;
 use App\Models\Product;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -14,11 +15,12 @@ class ProductForm extends Component
 use WithFileUploads;
     public $name_ar, $name_en,
         $description_ar,$description_en,
-        $sale,$whatsapp,$phone,$categoriesIds,
-        $image,$groupImage,$price,$type,$slug,$YearOfManufacture,$search;
+        $sale=0,$whatsapp,$phone,
+        $image,$groupImage,$price,$type,$slug,$YearOfManufacture,$search,$models,$models_ids=[];
 
     public $products;     //all products
     public $productsIndex=[];     //no. of fields if the product is consist of a group of products
+    public $categoriesIds=[];
 
     public $categories;
 
@@ -28,7 +30,7 @@ use WithFileUploads;
 
     protected $listeners=['edit'];
     public function mount(){
-        $this->categories=Category::all();
+        $this->categories=Category::latest()->get();
         $this->products=Product::where('type','single')->where('vendor_id',auth()->guard('vendor')->user()->id)->get();
         $this->productsIndex[]=['product_id' => '','quantity' => '' ];
     }
@@ -39,6 +41,7 @@ use WithFileUploads;
             $this->productsIndex[]=['product_id' => $child->id,'quantity' => $child->pivot->quantity];
         }
         $k=[];
+        $arr=[];
         $this->name_ar= $this->product->name_ar;
         $this->name_en=$this->product->name_en;
         $this->description_ar=$this->product->description_ar;
@@ -50,24 +53,39 @@ use WithFileUploads;
         $this->phone=$this->product->phone;
         $this->whatsapp=$this->product->whatsapp;
         $this->YearOfManufacture=$this->product->YearOfManufacture;
+        foreach ($this->product->models->pluck('id') as $id)
+            $arr+=[$id => $id];
         foreach ($this->product->categories->pluck('id') as $id)
-        $k+=[$id-1 => $id];
+            $k+=[$id => $id];
+        $this->models_ids=$arr;
         $this->categoriesIds=$k;
     }
 
     public function update($id){
         $this->categoriesIds=array_filter($this->categoriesIds);
+        $this->models_ids=array_filter($this->models_ids);
         $productUpdate=new ProductController();
+        foreach ($this->categoriesIds as $cate){
+            $ids[]=Model::where('category_id',$cate)->pluck('id');
+        }
         $data=$this->validationForUpdate($id);
-        $data=$this->setSlug($data);
+        $collection=collect($ids)->collapse(); // all models ids for selected categories
+        $data['models']=$collection->intersect($this->models_ids);        $data=$this->setSlug($data);
         $product=$productUpdate->update($data,$id);
         $this->groupType($product);
         $this->dispatchBrowserEvent('success', __('text.Product Updated Successfully'));
     }
 
     public function store(){
+        $this->categoriesIds=array_filter($this->categoriesIds);
+        $this->models_ids=array_filter($this->models_ids);
         $productStore=new ProductController();
+        foreach ($this->categoriesIds as $cate){
+            $ids[]=Model::where('category_id',$cate)->pluck('id');
+        }
         $data=$this->validation();
+        $collection=collect($ids)->collapse(); // all models ids for selected categories
+        $data['models']=$collection->intersect($this->models_ids);
         $data=$this->setSlug($data);
         $product=$productStore->store($data);
         auth()->guard('vendor')->user()->products()->save($product);
@@ -77,6 +95,17 @@ use WithFileUploads;
     }
     public function render()
     {
+        $this->models=[];
+        if ($this->categoriesIds != null){
+            foreach ($this->categoriesIds as $key=>$cat){
+                if ($cat == false){
+                    unset($this->models[$key]);
+                }else{
+                    $this->models+=[$key=>Model::where('category_id',$cat)->get()];
+
+                }
+            }
+        }
 
         return view('components.front.products.product-form');
     }
@@ -97,6 +126,8 @@ use WithFileUploads;
             'YearOfManufacture' => 'required|integer',
             'categoriesIds' => 'required|array|min:1',
             'categoriesIds.*' => 'exists:categories,id',
+            'models_ids' => 'nullable|array',
+            'models_ids.*' => 'exists:models,id',
             'image' => 'required|mimes:jpg,png,jpeg,gif',
             'groupImage' => 'required|array|min:1',
             'groupImage.*' => 'mimes:jpeg,jpg,png',
@@ -119,6 +150,8 @@ use WithFileUploads;
             'sale' => 'nullable|numeric|lt:price',
             'categoriesIds' => 'required|array|min:1',
             'categoriesIds.*' => 'exists:categories,id',
+            'models_ids' => 'nullable|array',
+            'models_ids.*' => 'exists:models,id',
             'image' => 'nullable|mimes:jpg,png,jpeg,gif',
             'phone' => 'required|numeric',
             'whatsapp' => 'required|numeric',
@@ -158,9 +191,10 @@ use WithFileUploads;
         $this->phone=null;
         $this->whatsapp=null;
         $this->YearOfManufacture=null;
-        $this->categoriesIds=null;
+        $this->categoriesIds=[];
         $this->groupImage=null;
         $this->productsIndex=[];
+        $this->models=[];
     }
 
     public function addProduct(){

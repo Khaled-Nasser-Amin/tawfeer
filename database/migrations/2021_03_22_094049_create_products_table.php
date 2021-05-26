@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name_ar');
             $table->string('name_en');
             $table->string('slug');
-            $table->string('description_ar');
-            $table->string('description_en');
+            $table->string('description_ar')->nullable();
+            $table->string('description_en')->nullable();
             $table->integer('YearOfManufacture');
             $table->string('whatsapp');
             $table->integer('featured')->default(0);

@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as RealModel;
 use Illuminate\Support\Str;
 
-class Product extends Model
+class Product extends RealModel
 {
     use HasFactory;
     protected $fillable=[

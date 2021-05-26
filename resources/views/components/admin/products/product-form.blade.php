@@ -53,7 +53,7 @@
                         <div class="col-12 w-100 row">
                             @forelse($categories as $category)
                                 <div class="checkbox checkbox-primary mb-3 col-4 w-50">
-                                    <input wire:model="categoriesIds.{{$loop->index}}" id="checkbox-{{$category->id}}" type="checkbox" value="{{$category->id}}">
+                                    <input wire:model="categoriesIds.{{$category->id}}" id="checkbox-{{$category->id}}" type="checkbox" value="{{$category->id}}">
                                     <label for="checkbox-{{$category->id}}" class="mb-0">
                                         {{app()->getLocale() =='ar' ? $category->name_ar : $category->name_en}}
                                     </label>
@@ -76,7 +76,7 @@
                         <div class="col-12 w-100 row">
                             @forelse(collect($models)->collapse() as $model)
                                 <div class="checkbox checkbox-primary mb-3 col-4 w-50">
-                                    <input wire:model="models_ids.{{$loop->index}}" id="check-{{$model['id']}}" type="checkbox" value="{{$model['id']}}">
+                                    <input wire:model="models_ids.{{$model->id}}" id="check-{{$model['id']}}" type="checkbox" value="{{$model['id']}}">
                                     <label for="check-{{$model['id']}}" class="mb-0">
                                         {{$model['name']}}
                                     </label>
@@ -92,9 +92,6 @@
                     </div>
                     <!-- end row -->
                 </div>
-
-
-
 
             </div>
             <div class="form-group mb-4">
@@ -114,7 +111,7 @@
             </div>
             <div class="form-group">
                 <label for="sale">{{__('text.Sale')}}</label>
-                <input type="number" wire:model="sale" class="form-control" value="0" id="sale"  name="sale" autocomplete="none">
+                <input type="number" wire:model="sale" class="form-control" id="sale"  name="sale" autocomplete="none">
                 <x-general.input-error for="sale" />
             </div>
             <div class="form-group">

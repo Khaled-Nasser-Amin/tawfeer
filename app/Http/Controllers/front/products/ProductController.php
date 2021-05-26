@@ -39,6 +39,9 @@ class ProductController extends Controller
         $imagesNames=$this->livewireGroupImages($request,'products');
         $this->associateImagesWithProduct($imagesNames,$product);
         $product->categories()->syncWithoutDetaching($request['categoriesIds']);
+        if($request['models']){
+            $product->models()->syncWithoutDetaching($request['models']);
+        }
         return $product;
     }
 
@@ -67,6 +70,9 @@ class ProductController extends Controller
                 $product->categories()->detach();
             }
             $product->categories()->syncWithoutDetaching($request['categoriesIds']);
+            if($request['models']){
+                $product->models()->syncWithoutDetaching($request['models']);
+            }
             return $product;
         }else{
             return response('',403);

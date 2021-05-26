@@ -16,7 +16,7 @@ class ProductForm extends Component
 use WithFileUploads;
     public $name_ar, $name_en,
         $description_ar,$description_en,
-        $sale,$whatsapp,$phone,
+        $sale=0,$whatsapp,$phone,
         $image,$groupImage,$price,$type,$slug,$YearOfManufacture,$search,$models,$models_ids=[];
 
     public $products;     //all products
@@ -41,6 +41,7 @@ use WithFileUploads;
             $this->productsIndex[]=['product_id' => $child->id,'quantity' => $child->pivot->quantity];
         }
         $k=[];
+        $arr=[];
         $this->name_ar= $this->product->name_ar;
         $this->name_en=$this->product->name_en;
         $this->description_ar=$this->product->description_ar;
@@ -52,16 +53,26 @@ use WithFileUploads;
         $this->phone=$this->product->phone;
         $this->whatsapp=$this->product->whatsapp;
         $this->YearOfManufacture=$this->product->YearOfManufacture;
+        foreach ($this->product->models->pluck('id') as $id)
+            $arr+=[$id => $id];
         foreach ($this->product->categories->pluck('id') as $id)
-            $k+=[$id-1 => $id];
+            $k+=[$id => $id];
+        $this->models_ids=$arr;
         $this->categoriesIds=$k;
+
 
     }
 
     public function update($id){
         $this->categoriesIds=array_filter($this->categoriesIds);
+        $this->models_ids=array_filter($this->models_ids);
         $productUpdate=new ProductController();
+        foreach ($this->categoriesIds as $cate){
+            $ids[]=Model::where('category_id',$cate)->pluck('id');
+        }
         $data=$this->validationForUpdate($id);
+        $collection=collect($ids)->collapse(); // all models ids for selected categories
+        $data['models']=$collection->intersect($this->models_ids);
         $data=$this->setSlug($data);
         $product=$productUpdate->update($data,$id);
         $this->groupType($product);
@@ -69,9 +80,15 @@ use WithFileUploads;
     }
 
     public function store(){
-        dd($this->models_ids);
+        $this->categoriesIds=array_filter($this->categoriesIds);
+        $this->models_ids=array_filter($this->models_ids);
         $productStore=new ProductController();
+        foreach ($this->categoriesIds as $cate){
+            $ids[]=Model::where('category_id',$cate)->pluck('id');
+        }
         $data=$this->validation();
+        $collection=collect($ids)->collapse(); // all models ids for selected categories
+        $data['models']=$collection->intersect($this->models_ids);
         $data=$this->setSlug($data);
         $product=$productStore->store($data);
         auth()->user()->products()->save($product);
@@ -102,8 +119,8 @@ use WithFileUploads;
             'name_ar' => 'required|string|max:255|',
             'name_en' => 'required|string|max:255|',
             'slug' => 'nullable|string|max:255|',
-            'description_ar' => 'required|string|max:255|',
-            'description_en' => 'required|string|max:255|',
+            'description_ar' => 'nullable|string|max:255|',
+            'description_en' => 'nullable|string|max:255|',
             'type' => ['required', Rule::in(['single','group'])],
             'price' => 'required|numeric',
             'sale' => 'nullable|numeric|lt:price',
@@ -112,7 +129,7 @@ use WithFileUploads;
             'YearOfManufacture' => 'required|integer',
             'categoriesIds' => 'required|array|min:1',
             'categoriesIds.*' => 'exists:categories,id',
-            'models_ids' => 'required|array|min:1',
+            'models_ids' => 'nullable|array',
             'models_ids.*' => 'exists:models,id',
             'image' => 'required|mimes:jpg,png,jpeg,gif',
             'groupImage' => 'required|array|min:1',
@@ -129,14 +146,14 @@ use WithFileUploads;
             'name_ar' => 'required|string|max:255|',
             'name_en' => 'required|string|max:255|',
             'slug' => 'nullable|string|max:255|',
-            'description_ar' => 'required|string|max:255|',
-            'description_en' => 'required|string|max:255|',
+            'description_ar' => 'nullable|string|max:255|',
+            'description_en' => 'nullable|string|max:255|',
             'type' => ['required', Rule::in(['single','group'])],
             'price' => 'required|numeric',
             'sale' => 'nullable|numeric|lt:price',
             'categoriesIds' => 'required|array|min:1',
             'categoriesIds.*' => 'exists:categories,id',
-            'models_ids' => 'required|array|min:1',
+            'models_ids' => 'nullable|array',
             'models_ids.*' => 'exists:models,id',
             'image' => 'nullable|mimes:jpg,png,jpeg,gif',
             'phone' => 'required|numeric',
