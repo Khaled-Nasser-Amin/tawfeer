@@ -12,18 +12,20 @@
                         <button form="form-search-top" type="button" class="w-5 px-0 align-self-end" id="search-btn-icon"><i class="fa fa-search " aria-hidden="true"></i></button>
                         <div class="wrap-list-cate overflow-hidden w-25 align-self-end ">
                             <input type="hidden" name="product-cate" id="product-cate" value="{{request()->query('product-cate')}}">
-                            <a href="#" class="link-control px-0">{{__('text.All Categories')}}
-                                <i class="fas fa-toggle-down"></i></a>
-                            <ul class="list-cate">
-                                <li class="level-0" value="">{{__('text.All Categories')}}</li>
-                                @forelse(\App\Models\Category::all() as $category)
-                                    <li class="level-{{$category->id}}" value="{{$category->id}}">{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</li>
+                            <a href="#" class="link-control px-0">{{__('text.Categories')}}<i class="fas fa-toggle-down"></i></a>
+                            <ul class="list-cate" id="cate">
+                                <li class="level-0" onclick="getModels('all')" value="">{{__('text.Categories')}}</li>
+                                @forelse(\App\Models\Category::latest()->get() as $category)
+                                    <li onclick="getModels({{$category->id}})" class="level-{{$category->id}}" value="{{$category->id}}">{{app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en}}</li>
                                 @empty
-                                    <li class="level-0" value="">{{__('text.No Categories available Yet')}}</li>
+                                    <p>{{__('text.No Categories available Yet')}}<p>
                                 @endforelse
                             </ul>
                         </div>
-                        <input type="text" name="input_search" value="{{request()->query('input_search')}}" class="w-50 align-items-start" style="border:none" placeholder="{{__('text.Search')}}...">
+                        <select name="model" id="models" style="width: 20%;height: auto;background-color: #f6f6f6" class="form-control border-0 p-0">
+                            <option value="" >@lang('text.Models')</option>
+                        </select>
+                        <input type="text" name="input_search" value="{{request()->query('input_search')}}" class="align-items-start" style="border:none;width: 40%" placeholder="{{__('text.Search')}}...">
                     </form>
 
                 </div>
@@ -39,7 +41,7 @@
             </div>
 
             <div class="row h-100 mx-1 add-section w-100 row justify-content-center align-items-center mx-auto" >
-                <div class="wrap-icon wish-list-section right-section w-50">
+                <div class="wrap-icon wish-list-section right-section w-50 px-2">
                     <div class="wrap-icon-section wishlist">
                     <a href="{{route('front.wishList')}}" class="link-direction">
                         <i class="fa fa-heart" aria-hidden="true"></i>
@@ -65,10 +67,11 @@
        document.getElementById('form-search-top').submit();
     })
 
+
 </script>
 @if (request()->query('product-cate') != null)
     <script>
         let cate=document.getElementsByClassName('level-{{request()->query("product-cate")}}')[0].innerHTML;
-        document.getElementsByClassName('link-control')[0].innerHTML=cate+' <i class="fas fa-toggle-down"></i>';
+        document.getElementsByClassName('link-control')[0].innerHTML=cate+'<i class="fas fa-toggle-down"></i>';
     </script>
 @endif

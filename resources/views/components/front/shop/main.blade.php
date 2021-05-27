@@ -8,7 +8,7 @@
 
     <div class="wrap-shop-control">
 
-        <div class="wrap-right">
+        <div class="wrap-right row justify-content-center w-100">
 
             <div class="sort-item orderby ">
                 <select name="orderby" class="form-control" wire:model="sort">
@@ -31,6 +31,17 @@
                     <option value="32">@lang('text.Show') 32 @lang('text.per page')</option>
                 </select>
             </div>
+            @if(count($models) > 0)
+            <div class="sort-item product-per-page">
+                <select name="post-per-page" class="form-control" wire:model="model_id">
+                    <option value="" selected="selected">@lang('text.All Models')</option>
+                    @foreach($models as $model)
+                        <option value="{{$model->id}}">{{$model->name}}</option>
+                    @endforeach
+                    <option value="other">@lang('text.Other Models')</option>
+                </select>
+            </div>
+            @endif
 
 
         </div>

@@ -32,7 +32,7 @@ class Products extends Component
     public function render()
     {
 
-        $categories=Category::all();
+        $categories=Category::latest()->get();
         $products=Product::with('categories')
             ->when($this->price,function ($q) {
                 $q->where('products.price',$this->price)

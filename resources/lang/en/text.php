@@ -3,6 +3,9 @@
 return [
     //front end
     'Home' => 'Home',
+    'Register New Account?' => 'Register New Account?',
+    'Other Models' => 'Other Models',
+    'All Models' => 'All Models',
     'Index' => 'Index',
     'Add New Model' => 'Add New Model',
     'Model' => 'Model',

@@ -76,11 +76,24 @@
                     <div class="card widget-box-one border border-success bg-soft-success">
                         <div class="card-body">
                             <div class="float-right avatar-lg rounded-circle mt-3">
-                                <i class="mdi mdi-car font-30 widget-icon rounded-circle avatar-title text-success"></i>
+                                <i class="mdi mdi-car font-30 widget-icon   rounded-circle avatar-title text-success"></i>
                             </div>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-uppercase font-weight-bold text-muted" title="User Today">{{__('text.My Products')}}</p>
                                 <h2><span data-plugin="counterup">{{$myProducts}}</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card widget-box-one border border-success bg-soft-info">
+                        <div class="card-body">
+                            <div class="float-right avatar-lg rounded-circle mt-3">
+                                <i class="mdi mdi-car font-30 widget-icon rounded-circle avatar-title text-success"></i>
+                            </div>
+                            <div class="wigdet-one-content">
+                                <p class="m-0 text-uppercase font-weight-bold text-muted" title="User Today">{{__('text.Models')}}</p>
+                                <h2><span data-plugin="counterup">{{$models}}</span></h2>
                             </div>
                         </div>
                     </div>

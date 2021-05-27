@@ -35,7 +35,9 @@
     @foreach(\App\Models\Category::latest()->get() as $category)
             <div class="banner-item mx-1" style="width:18%;height: 200px">
                 <a class="link-banner banner-effect-1" data-cate-id="{{$category->id}}">
-                    <div style="border-radius: 20px;height: 100%;background-image: url('{{$category->id == 1 ? (app()->getLocale() == "ar" ? asset("images/categories/other_ar.png"):asset("images/categories/other_en.png")) : $category->image}}');background-size: cover"></div>
+                    <div style="border-radius: 20px;height: 100%;">
+                        <img class="w-100 h-100" style="border-radius: 20px" src="{{$category->id == 1 ? (app()->getLocale() == "ar" ? asset("images/categories/other_ar.png"):asset("images/categories/other_en.png")) : $category->image}}" alt="">
+                    </div>
                 </a>
             </div>
     @endforeach

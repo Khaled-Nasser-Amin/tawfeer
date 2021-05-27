@@ -103,6 +103,15 @@
                                     </li>
                                 @endforeach
                             </ul>
+                            <li><span class="text-pink">{{__('text.Models')}}</span></li>
+                            <ul class="slimscroll listCatScroll" >
+                                @foreach($product->models as $model)
+                                    <li>
+                                        | <span class="text-pink">
+                                        <a href="#" class="cate_name" data-cate-id="{{$model->category_id}}">{{$model->name}}</a></span> |
+                                    </li>
+                                @endforeach
+                            </ul>
                         </ul>
                     </div>
                     @if ($product->sale != null)

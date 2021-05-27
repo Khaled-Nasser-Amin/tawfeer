@@ -35,7 +35,6 @@
         }
     </style>
     @if ( LaravelLocalization::getCurrentLocale() == 'ar')
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">    <style>a{text-decoration:none ;}</style>
         <link href="{{asset('css/app-rtl.min.css')}}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="{{asset('front/css/rtl.css')}}">
     @endif
@@ -115,6 +114,34 @@
             }
         })
     })
+
+function getModels(id){
+    if (id == 'all'){
+        $('.models_added').remove();
+    }else if(id != ''){
+        console.log(id)
+        $('.models_added').remove();
+        $.ajax({
+            method:'get',
+            url:"/getALlModelsForCategory/"+id,
+            success:function (result){
+                let ids= Object.values(result)
+                let names= Object.keys(result)
+                for (i=0; i<names.length; i++){
+                    $('#models').append('<option class="models_added" value="'+ids[i]+'" >'+names[i]+'</option>')
+                }
+                $('#models').append('<option class="models_added" value="other" >@lang('text.Other Models')</option>')
+
+            }
+        })
+    }
+
+}
+
+$(document).ready(function (){
+    getModels($('#product-cate').val());
+})
+
 </script>
 @livewireScripts
 @stack('script')

@@ -10,6 +10,17 @@
 
     <link rel="icon" href="{{asset('images/icons/car-estate.png')}}" type="image/icon type">
 
+    <style>
+        .enlarged .left-side-menu #sidebar-menu>ul>li{
+            margin-left: 5px;
+            margin-right: 5px;
+            overflow: hidden;
+        }
+        .enlarged .left-side-menu #sidebar-menu>ul>li:hover{
+            overflow: initial;
+        }
+
+    </style>
     @stack('css')
     <!-- App css -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />

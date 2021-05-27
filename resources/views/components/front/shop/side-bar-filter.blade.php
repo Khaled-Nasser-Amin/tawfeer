@@ -6,9 +6,10 @@
         <div class="widget-content">
             <ul class="list-style vertical-list list-limited" data-show="6">
                 @forelse(\App\Models\Category::latest()->get() as $category)
-                    <li class="list-item category_name {{$loop->index > 5 ? 'default-hiden':''}}" style=" height: 150px;border-radius: 20px;padding: 3px; background-image: url('{{$category->id == 1 ? (app()->getLocale() == "ar" ? asset("images/categories/other_ar.png"):asset("images/categories/other_en.png")) : $category->image}}');background-size: cover">
-                        <input id="cat-{{$loop->index}}" name="category" type="radio" value="{{$category->id}}" wire:model="category">
-                        <label for="cat-{{$loop->index}}" class="mx-1" style="position: absolute;width: 100%;height: 100px"> {{$category->id != 1 ?(app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en):''}}</label>
+                    <li class="list-item my-1 category_name {{$loop->index > 5 ? 'default-hiden':''}}" style=" height: 150px;border-radius: 20px;padding: 3px; position: relative">
+                        <img class="w-100 h-100 " src="{{$category->id == 1 ? (app()->getLocale() == "ar" ? asset("images/categories/other_ar.png"):asset("images/categories/other_en.png")) : $category->image}}" alt="">
+                        <input style="position: absolute;top: 5px;left: 5px" id="cat-{{$loop->index}}" name="category" type="radio" value="{{$category->id}}" wire:model="category">
+                        <label for="cat-{{$loop->index}}" class="mx-1 {{app()->getLocale() == 'ar' ? '':'pl-4'}}" style="position: absolute;width: 100%;height: 100%; right: 0"> {{$category->id != 1 ?(app()->getLocale() == 'ar' ? $category->name_ar:$category->name_en):''}}</label>
                     </li>
                 @empty
                     <li class="list-item">{{__('text.No Categories available Yet')}}</li>

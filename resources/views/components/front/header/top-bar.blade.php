@@ -13,7 +13,6 @@
             <ul>
         @guest('vendor')
             <li class="menu-item" ><a title="Register or Login" href="{{route('front.loginView')}}">{{__('text.Login')}}</a></li>
-            <li class="menu-item" ><a title="Register or Login" href="{{route('front.registerView')}}">{{__('text.Register')}}</a></li>
         @endguest
         @auth('vendor')
 

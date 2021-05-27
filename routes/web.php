@@ -68,6 +68,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/forget-password',[FrontAuthController::class,'forgetPassword'])->name('forgetPassword');
         Route::get('/register',[FrontAuthController::class,'registerView'])->name('registerView');
         Route::get('/search',[FrontProductController::class,'search'])->name('search');
+        Route::get('/getALlModelsForCategory/{category}',[FrontProductController::class,'getALlModelsForCategory'])->name('getALlModelsForCategory');
 
         Route::get('/product-details/{product}-{slug}', ProductDetails::class)->name('viewDetail');
         Route::get('/shop', [Dashboard::class,'shop'])->name('shop');

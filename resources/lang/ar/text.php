@@ -3,6 +3,9 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'Register New Account?' => 'تسجيل حساب جديد؟',
+    'Other Models' => 'موديلات اخرى',
+    'All Models' => 'كل الموديلات',
     'Index' => 'الرقم',
     'Models' => 'الموديلات',
     'Add New Model' => 'اضف موديل جديد',
@@ -100,7 +103,7 @@ return [
     'Categories' => 'الاقسام',
     'All Categories' => 'كل الاقسام',
     'Add New Category' => 'اضف قسم جديد',
-    'Save' => 'تسجيل',
+    'Save' => 'حفظ',
     'Category' => 'قسم',
     'Name_ar' => 'الاسم باللغة العربية',
     'Name_en' => 'الاسم باللغة الانجليزية',

@@ -23,7 +23,10 @@
                                 <input name="rememberme" class="form-control" wire:model="check" id="rememberme" value="forever" type="checkbox"><span>{{__('text.Remember me')}}</span>
                             </label>
                             <br>
+                            <a class="link-function left-position font-weight-bold" style="font-size: 16px" href="{{route('front.registerView')}}" title="Forgotten password?">{{__('text.Register New Account?')}}</a><br>
+
                             <a class="link-function left-position" href="{{route('front.forgetPassword')}}" title="Forgotten password?">{{__('text.Forgot your password?')}}</a>
+
                         </fieldset>
                         <button class="btn btn-sign d-block mx-auto"  wire:loading.attr="disabled" >{{__('text.Login')}}</button>
                     </form>

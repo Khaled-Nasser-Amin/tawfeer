@@ -14,7 +14,6 @@
                 @endauth
                 @guest('vendor')
                 <li class="menu-item"><a href="{{route('front.loginView')}}" class="link-term mercado-item-title">{{__('text.Login')}}</a></li>
-                <li class="menu-item"><a href="{{route('front.registerView')}}" class="link-term mercado-item-title">{{__('text.Register')}}</a></li>
                 @endguest
             </ul>
         </div>

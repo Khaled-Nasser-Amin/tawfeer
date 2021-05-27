@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\front\products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Images;
 use App\Traits\ImageTrait;
 use App\Models\Product;
@@ -13,12 +14,20 @@ class ProductController extends Controller
     use ImageTrait;
 
     public function search(Request $request){
-
         $products=Product::when($request->input('product-cate'),function ($q)use($request){
             $q->join('products_categories','products_categories.product_id','=','products.id')
                 ->join('categories','categories.id','=','products_categories.category_id')
                 ->where('categories.id',$request->input('product-cate'))
                 ->select('products.*');
+        })->when($request->input('model'),function ($q) use($request){
+            if ($request->input('model') != 'other'){
+                return $q->join('products_models', 'products_models.product_id', '=', 'products.id')
+                    ->join('models', 'models.id', '=', 'products_models.model_id')->where('products_models.model_id', $request->input('model'))
+                    ->select('products.*');
+            }else{
+                return $q->doesntHave('models');
+            }
+
         })->where(function ($q) use($request){
             $q->  when($request->input('input_search'),function ($q)use($request){
                 $q->where('products.name_ar','like','%'.$request->input('input_search').'%')
@@ -29,6 +38,9 @@ class ProductController extends Controller
         })->latest('products.created_at')->paginate(12);
 
         return view('front.products.search',compact('products'));
+    }
+    public function getALlModelsForCategory(Category $category){
+        return $category->models->pluck('id','name');
     }
 
     public function store($request)

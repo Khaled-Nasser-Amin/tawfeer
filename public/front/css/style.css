@@ -7082,6 +7082,14 @@ background-color: #888888;
         padding-left: 0;
         padding-right: 0 ;
     }
+    .center-section .wrap-search-form #models{
+        width: 34%!important;
+        padding-left: 0;
+        padding-right: 0 ;
+    }
+    .center-section .wrap-search-form input[type=search]{
+        width: 75%!important;
+    }
     .wrap-main-slide-2 .wrap-banners.type-1 .desc{
         line-height: 24px;
     }
