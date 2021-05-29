@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Front\Auth;
 
 use App\Models\Vendor;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 class Register extends Component
 {
-
+    use WithRateLimiting;
     public $name,$phone,$password,$password_confirmation,$code;
 
 
@@ -29,9 +31,16 @@ class Register extends Component
         ]);
     }
     public function store(){
+        try {
+            $this->rateLimit(2);
+        } catch (TooManyRequestsException $exception) {
+            $this->setErrorBag(["name"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.')]);
+            $this->dispatchBrowserEvent('danger', __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'));
+            return ;
+        }
         $data=$this->validation();
         $code=implode('',array_rand([0,1,2,3,4,5,6,7,8,9],6));
-        send_sms('+201025070424',__('text.Your activation code is:')." ".$code);
+        send_sms('+2'.$this->phone,__('text.Your activation code is:')." ".$code);
         session()->put('data',$data);
         session()->put('code',$code);
         session()->put('time',time());
@@ -42,8 +51,15 @@ class Register extends Component
     }
 
     public function resend(){
+        try {
+            $this->rateLimit(3);
+        } catch (TooManyRequestsException $exception) {
+            $this->setErrorBag(["code"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'),"phone"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.')]);
+            $this->dispatchBrowserEvent('danger', __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'));
+            return ;
+        }
         $code=implode('',array_rand([0,1,2,3,4,5,6,7,8,9],6));
-        send_sms('+201025070424',__('text.Your activation code is:')." ".$code);
+        send_sms('+2'.$this->phone,__('text.Your activation code is:')." ".$code);
         session()->put('code',$code);
         session()->put('activeCodeField','');
         session()->forget('time');
@@ -53,6 +69,13 @@ class Register extends Component
     }
 
     public function create(){
+        try {
+            $this->rateLimit(5);
+        } catch (TooManyRequestsException $exception) {
+            $this->setErrorBag(["code"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'),"phone"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.')]);
+            $this->dispatchBrowserEvent('danger', __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'));
+            return ;
+        }
         if (session()->has('code') && $this->code == session()->get('code')){
             if (session()->has('time') && time() < (session()->get('time')+(5*60)) ){
                 if (session()->has('data')){

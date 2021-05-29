@@ -54,6 +54,7 @@ class ProductController extends Controller
             $product->categories()->detach();
         }
         $product->categories()->syncWithoutDetaching($request['categoriesIds']);
+        $product->models()->detach();
         if($request['models']){
             $product->models()->syncWithoutDetaching($request['models']);
         }

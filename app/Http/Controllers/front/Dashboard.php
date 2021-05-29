@@ -17,5 +17,6 @@ class Dashboard extends Controller
     }
     public function shopSetCategory(Request $request){
         session()->put('cate_id',$request->cate_id);
+        session()->put('model_id',$request->model_id);
     }
 }

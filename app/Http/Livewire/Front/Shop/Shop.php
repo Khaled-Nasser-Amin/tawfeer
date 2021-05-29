@@ -14,10 +14,15 @@ use Livewire\WithPagination;
 class Shop extends Component
 {
     use WithPagination;
-    public $search ,$highest_products_review,$sort,$pagination,$min_price,$max_price,$category,$models,$model_id;
+    public $search ,$highest_products_review,$sort,$pagination,$min_price,$max_price,$category,$models,$model_id,$spare_name,$yearOfManufacture;
     public function mount(){
 
         $this->category=session()->has('cate_id')? session()->pull('cate_id'):null;
+        if (session()->has('model_id')){
+            $this->model_id=session()->pull('model_id');
+            $this->category=Model::find($this->model_id)->category_id;
+        }
+
         $this->sort="date-newest";
         $this->min_price=0;
         $this->max_price=999999;
@@ -71,44 +76,44 @@ class Shop extends Component
         $sortBy=$this->sortBy();
         $this->pagination=(int)$this->pagination > 32 ? 12 :(int)$this->pagination;
         if ($this->sort == 'price-asc' || $this->sort == 'date-oldest'){
-            $allProducts = Product::when($this->category,function($q){
-                    return $q->join('products_categories','products_categories.product_id','=','products.id')
-                        ->join('categories','categories.id','=','products_categories.category_id')->where('products_categories.category_id',$this->category)
-                        ->select('products.*');
-                })->when($this->model_id,function ($q){
-                if ($this->model_id != 'other'){
-                    return $q->join('products_models', 'products_models.product_id', '=', 'products.id')
-                        ->join('models', 'models.id', '=', 'products_models.model_id')->where('products_models.model_id', $this->model_id)
-                        ->select('products.*');
-                }else{
-                    return $q->doesntHave('models');
-                }
-
-            })
+            $q = new Product();
+            $allProducts=$this->query($q)
                 ->whereBetween('products.price', [$this->min_price, $this->max_price])->orderBy('products.' . $sortBy)->paginate($this->pagination);
 
         }else{
-            $allProducts = Product::
-               when($this->category, function ($q) {
-                    return $q->join('products_categories', 'products_categories.product_id', '=', 'products.id')
-                        ->join('categories', 'categories.id', '=', 'products_categories.category_id')->where('products_categories.category_id', $this->category)
-                        ->select('products.*');
-
-            })->when($this->model_id,function ($q){
-                if ($this->model_id != 'other'){
-                    return $q->join('products_models', 'products_models.product_id', '=', 'products.id')
-                        ->join('models', 'models.id', '=', 'products_models.model_id')->where('products_models.model_id', $this->model_id)
-                        ->select('products.*');
-                }else{
-                    return $q->doesntHave('models');
-                }
-
-            })->whereBetween('products.price',[$this->min_price,$this->max_price])->orderByDesc('products.'.$sortBy)->paginate($this->pagination);
+            $q = new Product();
+            $allProducts=$this->query($q)->
+            whereBetween('products.price',[$this->min_price,$this->max_price])->orderByDesc('products.'.$sortBy)->paginate($this->pagination);
 
 
         }
 
         return view('components.front.shop.shop',compact('allProducts'));
+    }
+
+    protected function query($q){
+        return $q->when($this->category, function ($q) {
+            return $q->join('products_categories', 'products_categories.product_id', '=', 'products.id')
+                ->join('categories', 'categories.id', '=', 'products_categories.category_id')->where('products_categories.category_id', $this->category)
+                ->select('products.*');
+
+        })->when($this->model_id,function ($q){
+            if ($this->model_id != 'other'){
+                return $q->join('products_models', 'products_models.product_id', '=', 'products.id')
+                    ->join('models', 'models.id', '=', 'products_models.model_id')->where('products_models.model_id', $this->model_id)
+                    ->select('products.*');
+            }else{
+                return $q->doesntHave('models');
+            }
+
+        })->where(function ($q){
+            $q-> when($this->spare_name,function ($q){
+                return $q->where('products.name_ar','like','%'.$this->spare_name.'%')
+                    ->orWhere('products.name_en','like','%'.$this->spare_name.'%');
+            })->when($this->yearOfManufacture,function ($q){
+                return   $q->where('products.YearOfManufacture','like','%'.$this->yearOfManufacture.'%');
+            });
+        });
     }
 
 }

@@ -1,4 +1,4 @@
-@section('title',__('text.Users'))
+@section('title',__('text.Banners'))
 @push('css')
     @livewireStyles
     <link href="{{asset('libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
@@ -12,47 +12,33 @@
 @endpush
     <div class="content">
         <!-- Start Content-->
-        <div class="container-fluid">
+        <div class="container-fluid pt-2">
 
             <!-- start page title -->
             <x-admin.general.page-title>
-                <li class="breadcrumb-item active">{{__('text.Users')}}</li>
+                <li class="breadcrumb-item active">{{__('text.Banners')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('admin.index')}}">{{__('text.Dashboard')}}</a></li>
                 <x-slot name="title">
-                    <h4 class="page-title">{{__('text.Users')}}</h4>
+                    <h4 class="page-title">{{__('text.Banners')}}</h4>
                 </x-slot>
             </x-admin.general.page-title>
 
             @include('admin.partials.success')
 
             <div class="row">
-                <div class="col-12">
-                    <input type="text" wire:model="search" class="form-control col-4 my-3" placeholder="{{__('text.Search')}}...">
-                    <table class="table table-striped table-dark col-12">
-
-                        <tr>
-                            <th>{{__('text.Image')}}</th>
-                            <th>{{__('text.Name')}}</th>
-                            <th>{{__('text.Phone Number')}}</th>
-                            <th>{{__('text.Number of Spares')}}</th>
-                            <th>{{__('text.Action')}}</th>
-                        </tr>
-                        @forelse ($users as $user)
-                            <tr>
-                                <td><img src="{{$user->image}}" class="rounded-circle" style="width: 50px;height: 50px" alt="user-image"></td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->phone}}</td>
-                                <td>{{$user->products->count()}}</td>
-                                <td><button class="btn btn-danger" wire:click.prevent="confirmDelete({{$user->id}})">{{__('text.Delete')}}</button></td>
-                            </tr>
-                        @empty
-                            <tr><td colspan="4" class="text-center">{{__('text.No Data Yet')}}</td></tr>
-                        @endforelse
-
-                    </table>
-
-                    {{$users->links()}}
+                <br>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <x-admin.banners.modal-add  />
+                        <x-admin.banners.modal-update  />
+                        <!-- Responsive modal -->
+                        <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#AddNewBanner">
+                            {{__('text.Add New Banner')}}
+                        </button>
+                    </div>
                 </div>
+                <br>
+                <x-admin.banners.table-show :banners="$banners" />
             </div>
 
 
@@ -63,8 +49,14 @@
     @livewireScripts
 
     <script>
+        window.Livewire.on('addedBanner',()=>{
+            $('#AddNewBanner').modal('hide');
+        })
+        window.Livewire.on('updatedBanner',()=>{
+            $('#EditBanner').modal('hide');
+        })
         //event fired to livewire called delete
-        window.Livewire.on('confirmDelete',function (e) {
+        window.Livewire.on('confirmDeleteBanner',function (e) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                     confirmButton: 'btn btn-success mx-2',
@@ -82,7 +74,7 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.value == true) {
-                    window.Livewire.emit('delete',e)
+                    window.Livewire.emit('deleteBanner',e)
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel

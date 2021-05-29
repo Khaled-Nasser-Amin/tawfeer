@@ -15,6 +15,7 @@ use App\Http\Controllers\front\Dashboard;
 use App\Http\Livewire\Admin\ProductsManagement\Models\Models;
 use App\Http\Livewire\Front\Products\ProductDetails;
 use App\Http\Livewire\Admin\ProductsManagement\Vendors\Vendors;
+use App\Http\Livewire\Admin\ProductsManagement\Banners\Banners;
 use App\Http\Controllers\front\AuthController as FrontAuthController;
 use App\Http\Controllers\front\products\ProductController as FrontProductController;
 
@@ -55,6 +56,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::get('/categories', Categories::class);
         Route::get('/models', Models::class);
         Route::get('/vendors', Vendors::class);
+        Route::get('/banners',Banners::class);
         Route::get('/category/{category}-{slug}', [CategoryController::class,'show'])->name('category.show');
         Route::get('/products', Products::class);
         Route::get('/product-add', [ProductController::class,'addNewProduct']);

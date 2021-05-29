@@ -1,24 +1,20 @@
-<div class="wrap-main-slide">
-    <div id="carouselExampleIndicators" class="carousel slide my-5" data-ride="carousel">
+<div class="wrap-main-slide my-4" style="height: 400px">
+    <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            @for ($i = 0; $i < \App\Models\Banner::count(); $i++)
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" class="{{$i == 0 ? 'active' : ''}}"></li>
+            @endfor
         </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{asset('/images/1.jpg')}}" alt="" class="img-slide w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="{{asset('/images/2.jpg')}}" alt="" class="img-slide w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="{{asset('/images/3.jpg')}}" alt="" class="img-slide w-100" >
-            </div>
-            <div class="carousel-item">
-                <img src="{{asset('/images/4.jpg')}}" alt="" class="img-slide w-100">
-            </div>
+        <div class="carousel-inner h-100">
+            @foreach(\App\Models\Banner::where('show_in','home')->get() as $banner)
+                <div class="carousel-item {{$loop->index == 0 ? 'active' : ''}} img-slide w-100  h-100" style="background-image: url('{{$banner->image}}');background-size: cover;background-repeat: no-repeat">
+                   @if ($banner->url)
+                        <a class="btn  banner_url " href="{{$banner->url}}" >@lang('text.View')</a>
+
+                    @endif
+                </div>
+            @endforeach
+
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

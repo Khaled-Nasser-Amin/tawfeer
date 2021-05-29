@@ -6,7 +6,7 @@
         <div class="row col-12 py-2 all-products">
             @forelse($products as $product)
                 <div class="product product-style-2 equal-elem ">
-                    <div class="product-thumnail">
+                    <div class="product-thumnail h-75">
                         <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
                             <figure><img src="{{$product->image}}" width="800" height="800" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                         </a>

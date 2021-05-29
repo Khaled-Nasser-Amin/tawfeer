@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         $this->call(UserSeeder::class);
+        $this->call(BannerSeeder::class);
         Category::create([
             'name_ar' => 'انواع اخرى',
             'name_en' => 'Other cars',

@@ -29,16 +29,18 @@ class ProductController extends Controller
             }
 
         })->where(function ($q) use($request){
-            $q->  when($request->input('input_search'),function ($q)use($request){
-                $q->where('products.name_ar','like','%'.$request->input('input_search').'%')
-                    ->orWhere('products.name_en','like','%'.$request->input('input_search').'%')
-                    ->orWhere('products.price',$request->input('input_search'))
-                    ->orWhere('products.sale','like',$request->input('input_search'));
-            });
-        })->latest('products.created_at')->paginate(12);
+            $q-> when($request->input('spare_name'),function ($q)use($request){
+                return $q->where('products.name_ar','like','%'.$request->input('spare_name').'%')
+                    ->orWhere('products.name_en','like','%'.$request->input('spare_name').'%');
+            })->when($request->input('yearOfManufacture'),function ($q)use($request){
+                    return   $q->where('products.YearOfManufacture','like','%'.$request->input('yearOfManufacture').'%');
+                });
+        })
+        ->latest('products.created_at')->paginate(12);
 
         return view('front.products.search',compact('products'));
     }
+
     public function getALlModelsForCategory(Category $category){
         return $category->models->pluck('id','name');
     }
@@ -82,6 +84,7 @@ class ProductController extends Controller
                 $product->categories()->detach();
             }
             $product->categories()->syncWithoutDetaching($request['categoriesIds']);
+            $product->models()->detach();
             if($request['models']){
                 $product->models()->syncWithoutDetaching($request['models']);
             }

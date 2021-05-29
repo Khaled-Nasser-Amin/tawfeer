@@ -118,8 +118,7 @@
 function getModels(id){
     if (id == 'all'){
         $('.models_added').remove();
-    }else if(id != ''){
-        console.log(id)
+    }else if(id != '' && id != null && id != undefined && id != 1){
         $('.models_added').remove();
         $.ajax({
             method:'get',
@@ -137,9 +136,8 @@ function getModels(id){
     }
 
 }
-
 $(document).ready(function (){
-    getModels($('#product-cate').val());
+    getModels({{request()->query('product-cate')}});
 })
 
 </script>

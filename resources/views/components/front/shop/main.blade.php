@@ -8,9 +8,9 @@
 
     <div class="wrap-shop-control">
 
-        <div class="wrap-right row justify-content-center w-100">
+        <div class="wrap-right row mx-0 justify-content-center w-100">
 
-            <div class="sort-item orderby ">
+            <div class="sort-item  col-4 ">
                 <select name="orderby" class="form-control" wire:model="sort">
                     <option value="date-newest" selected="selected">@lang('text.Default Sorting by newest')</option>
                     <option value="popularity">@lang('text.Sort by popularity')</option>
@@ -20,7 +20,7 @@
                 </select>
             </div>
 
-            <div class="sort-item product-per-page">
+            <div class="sort-item col-4 ">
                 <select name="post-per-page" class="form-control" wire:model="pagination">
                     <option value="12" selected="selected">@lang('text.Show') 12 @lang('text.per page')</option>
                     <option value="16">@lang('text.Show') 16 @lang('text.per page')</option>
@@ -32,7 +32,7 @@
                 </select>
             </div>
             @if(count($models) > 0)
-            <div class="sort-item product-per-page">
+            <div class="sort-item col-4">
                 <select name="post-per-page" class="form-control" wire:model="model_id">
                     <option value="" selected="selected">@lang('text.All Models')</option>
                     @foreach($models as $model)
@@ -43,6 +43,13 @@
             </div>
             @endif
 
+            <div class="sort-item col-4 ">
+                <input type="text" wire:model="spare_name"  class="form-control"  placeholder="{{__('text.Spare\'s name')}}...">
+            </div>
+            <div class="sort-item col-4">
+                <input type="text" wire:model="yearOfManufacture"  class="form-control" placeholder="{{__('text.Year of Manufacture')}}...">
+            </div>
+
 
         </div>
 
@@ -52,9 +59,9 @@
 
         <ul class="product-list grid-products equal-container row">
             @forelse($products as $product)
-                <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+                <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
                     <div class="product product-style-3 equal-elem ">
-                        <div class="product-thumnail">
+                        <div class="product-thumnail h-75" >
                             <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" title="{{app()->getLocale() == 'ar' ?$product->description_ar:$product->description_en}}">
                                 <figure><img src="{{$product->image}}" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>

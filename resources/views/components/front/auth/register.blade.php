@@ -40,7 +40,7 @@
                             <button class="btn btn-sign d-block mx-auto"  wire:loading.attr="disabled">{{__('text.Register')}}</button>
                         </form>
                     @else
-                        <form wire:submit.prevent="store" class="form-stl" name="frm-login" >
+                        <form wire:submit.prevent="create" class="form-stl" name="frm-login" >
                             {{session()->get('code')}}
                             <div class="row form-group">
                                 <div class=" w-100 row justify-content-between align-items-center">
@@ -102,7 +102,7 @@
 
                                 <x-general.input-error for="code" />
                             </div>
-                            <button class="btn btn-sign d-block mx-auto" wire:click.prevent="create"  wire:loading.attr="disabled">{{__('text.Login')}}</button>
+                            <button class="btn btn-sign d-block mx-auto"  wire:loading.attr="disabled">{{__('text.Login')}}</button>
                         </form>
                     @endif
                 </div>

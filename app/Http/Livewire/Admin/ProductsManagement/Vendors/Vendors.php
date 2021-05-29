@@ -26,7 +26,7 @@ class Vendors extends Component
         $users=Vendor::when($this->search,function ($q){
              $q->where('name','like','%'.$this->search.'%')
                 ->orWhere('phone','like','%'.$this->search.'%');
-        })->latest()->paginate(1);
+        })->latest()->paginate(10);
         return view('admin.productManagement.vendors.index',compact('users'))->extends('admin.layouts.appLogged')->section('content');
     }
 }

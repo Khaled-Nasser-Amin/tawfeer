@@ -3,15 +3,24 @@
 namespace App\Http\Livewire\Front\Auth;
 
 use App\Models\Vendor;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ForgetPassword extends Component
 {
+    use WithRateLimiting;
     public $phone,$code,$password,$password_confirmation;
 
     public function sendSMS(){
 
+        try {
+            $this->rateLimit(10);
+        } catch (TooManyRequestsException $exception) {
+            $this->setErrorBag(["phone"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.')]);
+            return ;
+        }
         $data=$this->validate([
             'phone' => 'required|exists:vendors|numeric'
         ]);
@@ -22,6 +31,12 @@ class ForgetPassword extends Component
     }
 
     public function activeSetNewPassword(){
+        try {
+            $this->rateLimit(5);
+        } catch (TooManyRequestsException $exception) {
+            $this->setErrorBag(["code"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'),"phone"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.')]);
+            return ;
+        }
         if (session()->has('time') && time() < (session()->get('time')+(5*60)) ){
             if(session()->has('code') && session()->get('code') == $this->code){
                 if(session()->has('phone')){
@@ -30,11 +45,11 @@ class ForgetPassword extends Component
                    $this->code=null;
                 }
             }else{
-                $this->addError('code',__('text.Invalid Code!'));
+                $this->setErrorBag(['code'=>__('text.Invalid Code!')]);
                 $this->dispatchBrowserEvent('danger',__('text.Invalid Code!'));
             }
         }else{
-            $this->addError('code',__('text.CODE EXPIRED,please resend the activation code or cancel the operation.'));
+            $this->setErrorBag(['code'=>__('text.CODE EXPIRED,please resend the activation code or cancel the operation.')]);
             $this->dispatchBrowserEvent('danger',__('text.CODE EXPIRED,please resend the activation code or cancel the operation.'));
         }
     }
@@ -61,8 +76,14 @@ class ForgetPassword extends Component
     }
 
     public function resend(){
+        try {
+            $this->rateLimit(3);
+        } catch (TooManyRequestsException $exception) {
+            $this->setErrorBag(["code"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.'),"phone"=> __('text.Slow down! Please wait another'). $exception->secondsUntilAvailable." ". __('text.seconds to send again.')]);
+            return ;
+        }
         $code=implode('',array_rand([0,1,2,3,4,5,6,7,8,9],6));
-        /*        send_sms('+201025070424',__('text.Your activation code is:')." ".$code);*/
+        send_sms('+2'.$this->phone,__('text.Your activation code is:')." ".$code);
         session()->put('code',$code);
         session()->put('phone',session()->get('phone'));
         session()->put('activeCodeField','');
@@ -71,7 +92,6 @@ class ForgetPassword extends Component
         $this->dispatchBrowserEvent('refreshCode',session()->get('time'));
 
     }
-
 
 
     public function cancel(){

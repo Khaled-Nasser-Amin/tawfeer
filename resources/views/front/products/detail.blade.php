@@ -106,9 +106,9 @@
                             <li><span class="text-pink">{{__('text.Models')}}</span></li>
                             <ul class="slimscroll listCatScroll" >
                                 @foreach($product->models as $model)
-                                    <li>
+                                    <li class="d-inline-block">
                                         | <span class="text-pink">
-                                        <a href="#" class="cate_name" data-cate-id="{{$model->category_id}}">{{$model->name}}</a></span> |
+                                        <a href="#" class="model_name" data-model-id="{{$model->id}}">{{$model->name}}</a></span> |
                                     </li>
                                 @endforeach
                             </ul>
@@ -132,12 +132,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
         {{--//reviews--}}
 
                 <div class="advance-info">
@@ -256,6 +250,23 @@
                 },
                 success:function (){
                     window.location='/shop'
+                }
+            })
+
+        })
+        $('.model_name').on('click',function (e){
+            e.preventDefault();
+            let model_id=$(this).data('model-id');
+            $.ajax({
+                url:"{{route('front.shopSetCategory')}}",
+                method:"post",
+                data:{
+                    '_token':"{{csrf_token()}}",
+                    'model_id':model_id
+                },
+                success:function (){
+                    window.location='/shop'
+
                 }
             })
 
