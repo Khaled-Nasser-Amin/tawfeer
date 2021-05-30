@@ -1,7 +1,7 @@
 <div class="wrap-main-slide my-4" style="height: 400px">
     <div id="carouselExampleIndicators" class="carousel slide h-100" data-ride="carousel">
         <ol class="carousel-indicators">
-            @for ($i = 0; $i < \App\Models\Banner::count(); $i++)
+            @for ($i = 0; $i < \App\Models\Banner::where('show_in','home')->count(); $i++)
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" class="{{$i == 0 ? 'active' : ''}}"></li>
             @endfor
         </ol>

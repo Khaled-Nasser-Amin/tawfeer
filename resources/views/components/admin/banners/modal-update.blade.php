@@ -11,19 +11,19 @@
 
             <div class="modal-body">
 
-                <form  id="addNewCat">
+                <form  id="editBanner" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name1" class="control-label">{{__('text.Name')}}</label>
-                                <input type="text" wire:model="name" class="form-control" id="name1" >
+                                <label for="name" class="control-label">{{__('text.Name')}}</label>
+                                <input type="text" wire:model="name" class="form-control" id="name" >
                                 <x-general.input-error for="name" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="showIn1" class="control-label">{{__('text.Show in')}}</label>
-                                <select wire:model="show_in" id="showIn1" class="form-control">
+                                <label for="showIn" class="control-label">{{__('text.Show in')}}</label>
+                                <select wire:model="show_in" id="showIn" class="form-control">
                                     <option value="home">@lang('text.Dashboard')</option>
                                     <option value="shop">@lang('text.Shop')</option>
                                 </select>
@@ -32,10 +32,17 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="form-group mb-4">
+                            <label>{{__('text.Add Image')}}</label>
+                            <input type="file"  wire:model="image"  data-height="210" />
+                            <x-general.input-error for="image" />
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="url1" class="control-label">{{__('text.Url')}}</label>
-                                <input type="text" wire:model="url" class="form-control" id="url1" >
+                                <label for="url" class="control-label">{{__('text.Url')}}</label>
+                                <input type="text" wire:model="url" class="form-control" id="url" >
                                 <x-general.input-error for="url" />
                             </div>
                         </div>
@@ -43,14 +50,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group no-margin">
-                                <label for="date1" class="control-label">{{__('text.Expired date')}}</label>
-                                <input type="date" wire:model="expired_at" class="form-control" id="date1">
-                                <x-general.input-error for="expired_at" />
-                            </div>
-                            <div class="form-group mb-4">
-                                <label>{{__('text.Add Image')}}</label>
-                                <input type="file"  wire:model="image"  data-height="210" />
-                                <x-general.input-error for="image" />
+                                <label for="date" class="control-label">{{__('text.Expired date')}}</label>
+                                <input type="datetime-local" wire:model="expire_at" class="form-control" id="date">
+                                <x-general.input-error for="expire_at" />
                             </div>
 
                         </div>

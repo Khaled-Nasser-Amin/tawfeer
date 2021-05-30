@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\ProductsManagement\Banners;
 use App\Models\Banner;
 use App\Models\Vendor;
 use App\Traits\ImageTrait;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,19 +14,35 @@ use Livewire\WithPagination;
 class Banners extends Component
 {
     use WithPagination,ImageTrait,WithFileUploads;
-    public $search,$url,$name,$image,$show_in,$expired_at,$ids;
+    public $search,$url,$name,$image,$show_in,$expire_at,$ids;
 
     protected $listeners=['deleteBanner'];
 
     public function store(){
-       $data= $this->validateData();
-       $data= $this->livewireAddSingleImage($data,$data,'banners');
-       Banner::create($data);
-       session()->flash('success', __('text.Banner Created Successfully'));
-       $this->resetVariables();
+        if($this->show_in == 'home'){
+            if(Banner::where('show_in','home')->count() >= 15 )
+            {
+                session()->flash('danger', __('text.You have just 15 banners in home page'));
+                $this->emit('addedBanner');
+                return ;
+            }
+        }elseif ($this->show_in == 'shop'){
+            if(Banner::where('show_in','shop')->count() >= 15 )
+            {
+                session()->flash('danger', __('text.You have just 15 banners in shop page'));
+                $this->emit('addedBanner');
+                return ;
+            }
+        }
+        $data= $this->validateData();
+        $data= $this->livewireAddSingleImage($data,$data,'banners');
+        Banner::create($data);
+        session()->flash('success', __('text.Banner Created Successfully'));
+        $this->resetVariables();
         $this->emit('addedBanner');
 
     }
+
     public function validateData()
     {
         return $this->validate([
@@ -33,7 +50,7 @@ class Banners extends Component
             'show_in' => 'required|string|max:255|in:home,shop',
             'url' => 'nullable|url|max:255',
             'image' => 'required|mimes:jpg,png,jpeg,gif',
-            'expired_at' => 'nullable|date|after:today',
+            'expire_at' => 'nullable|date|after_or_equal:today',
         ]);
     }
     public function edit($id){
@@ -41,17 +58,18 @@ class Banners extends Component
         $banner=Banner::findOrFail($id);
         $this->name= $banner->name;
         $this->url=$banner->url;
-        $this->expired_at=$banner->expired_at;
+        $this->expire_at=$banner->expire_at;
         $this->show_in=$banner->show_in;
     }
 
     public function update(){
         $data= $this->UpdateBannerRequestValidate($this->ids);
         $banner=Banner::findOrFail($this->ids);
-        $data=array_filter( $data);
         if ($this->image != null){
             $this->livewireDeleteSingleImage($banner,'banners');
             $data= $this->livewireAddSingleImage($data,$data,'banners');
+        }else{
+            $data=collect($data)->except('image')->toArray();
         }
         $banner->update($data);
         $banner->save();
@@ -66,7 +84,7 @@ class Banners extends Component
             'show_in' => 'required|string|max:255|in:home,shop',
             'url' => 'nullable|url|max:255',
             'image' => 'nullable|mimes:jpg,png,jpeg,gif',
-            'expired_at' => 'nullable|date|after:today',
+            'expire_at' => 'nullable|date|after_or_equal:today',
         ]);
 
     }
@@ -92,7 +110,7 @@ class Banners extends Component
     public function resetVariables(){
         $this->name= null;
         $this->url=null;
-        $this->expired_at = null;
+        $this->expire_at = null;
         $this->image=null;
         $this->show_in=null;
     }

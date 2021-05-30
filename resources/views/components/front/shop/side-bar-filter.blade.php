@@ -24,7 +24,7 @@
 
     <div class="widget mercado-widget filter-widget price-filter">
         <h2 class="widget-title">@lang('text.Price')</h2>
-        <div class="widget-content row">
+        <div class="widget-content row mx-0">
             <div class="form-group">
                 <label for="amount-1">@lang('text.Min Price'):</label>
                 <input type="text" id="amount-1" class="form-control" wire:model="min_price">

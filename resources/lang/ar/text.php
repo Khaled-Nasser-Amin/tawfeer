@@ -3,6 +3,8 @@
 return [
     //front end
     'Home' => 'الرئيسية',
+    'You have just 15 banners in home page' => 'يمكنك اضافة 15 بانر فقط في الصفحة الرئيسية',
+    'You have just 15 banners in shop page' => 'يمكنك اضافة 15 بانر فقط في صفحة المتجر',
     'All Cars' => 'كل السيارات',
     'Number of Spares' => 'عدد القطع',
     'Register New Account?' => 'تسجيل حساب جديد؟',
@@ -122,7 +124,6 @@ return [
     'Product' => 'منتج',
     'Parent Category' => 'تصنيف رئيسي',
     'Image' => 'صورة',
-    'My Products' => 'منتجاتي',
     'Action' => 'اجراء',
     'Edit' => 'تعديل',
     'Delete' => 'حذف',

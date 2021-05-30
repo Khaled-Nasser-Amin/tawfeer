@@ -3,6 +3,8 @@
 return [
     //front end
     'Home' => 'Home',
+    'You have just 15 banners in home page' => 'You just can add only 15 banners in home page',
+    'You have just 15 banners in shop page' => 'You just can add only 15 banners in shop page',
     'All Cars' => 'All Cars',
     'Number of Spares' => 'Number of Spares',
     'Register New Account?' => 'Register New Account?',

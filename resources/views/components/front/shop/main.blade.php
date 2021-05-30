@@ -1,8 +1,29 @@
-<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
+<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area mx-0 " style="overflow-y: scroll ">
 
-    <div class="banner-shop">
-        <a href="#" class="banner-link">
-            <figure><img src="{{asset('images/5.jpg')}}" alt=""></figure>
+    <div id="carouselExampleIndicators" class="carousel slide h-25" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @for ($i = 0; $i < \App\Models\Banner::where('show_in','shop')->count(); $i++)
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" class="{{$i == 0 ? 'active' : ''}}"></li>
+            @endfor
+        </ol>
+        <div class="carousel-inner h-100">
+            @foreach(\App\Models\Banner::where('show_in','shop')->get() as $banner)
+                <div class="carousel-item {{$loop->index == 0 ? 'active' : ''}} img-slide w-100  h-100" style="background-image: url('{{$banner->image}}');background-size: cover;background-repeat: no-repeat">
+                    @if ($banner->url)
+                        <a class="btn  banner_url " href="{{$banner->url}}" >@lang('text.View')</a>
+
+                    @endif
+                </div>
+            @endforeach
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
         </a>
     </div>
 
@@ -10,7 +31,7 @@
 
         <div class="wrap-right row mx-0 justify-content-center w-100">
 
-            <div class="sort-item  col-4 ">
+            <div class="sort-item  col-md-4 col-sm-12 ">
                 <select name="orderby" class="form-control" wire:model="sort">
                     <option value="date-newest" selected="selected">@lang('text.Default Sorting by newest')</option>
                     <option value="popularity">@lang('text.Sort by popularity')</option>
@@ -20,7 +41,7 @@
                 </select>
             </div>
 
-            <div class="sort-item col-4 ">
+            <div class="sort-item col-md-4 col-sm-12">
                 <select name="post-per-page" class="form-control" wire:model="pagination">
                     <option value="12" selected="selected">@lang('text.Show') 12 @lang('text.per page')</option>
                     <option value="16">@lang('text.Show') 16 @lang('text.per page')</option>
@@ -43,10 +64,10 @@
             </div>
             @endif
 
-            <div class="sort-item col-4 ">
+            <div class="sort-item col-md-4 col-sm-12">
                 <input type="text" wire:model="spare_name"  class="form-control"  placeholder="{{__('text.Spare\'s name')}}...">
             </div>
-            <div class="sort-item col-4">
+            <div class="sort-item col-md-4 col-sm-12">
                 <input type="text" wire:model="yearOfManufacture"  class="form-control" placeholder="{{__('text.Year of Manufacture')}}...">
             </div>
 
@@ -55,9 +76,9 @@
 
     </div><!--end wrap shop control-->
 
-    <div class="row mt-3">
+    <div class="row mx-0 mt-3">
 
-        <ul class="product-list grid-products equal-container row">
+        <ul class="product-list grid-products equal-container row mx-0">
             @forelse($products as $product)
                 <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
                     <div class="product product-style-3 equal-elem ">

@@ -19,7 +19,6 @@
             <li class="breadcrumb-item " aria-current="page">{{__('text.Shop')}}</li>
         </ol>
     </div>
-
         @livewire('front.shop.shop')
 
 @endsection

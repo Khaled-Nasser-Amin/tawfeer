@@ -2294,7 +2294,7 @@ li.menu-item .nav-label.sale-label::before{
     padding: 4.5px 0;
     background: #f5f5f5;
     margin-top: 33px;
-    height: 92px;
+    height: auto;
 
 }
 .wrap-shop-control .shop-title{
@@ -6168,7 +6168,10 @@ background-color: #888888;
 }
 
 @media (min-width: 991px){
-	.container {
+    .wrap-shop-control {
+        height: 90px!important;
+    }
+    .container {
 		padding: 0;
 	}
 }

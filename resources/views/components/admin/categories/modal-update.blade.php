@@ -26,16 +26,18 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="form-group mb-4">
+                            <label>{{__('text.Add Image')}}</label>
+                            <input type="file"  wire:model="image"  data-height="210" />
+                            <x-general.input-error for="image" />
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group no-margin">
                                 <label for="slug" class="control-label">{{__('text.Slug')}}</label>
                                 <input type="text" class="form-control" id="slug"  wire:model="slug">
                                 <x-general.input-error for="slug" />
-                            </div>
-                            <div class="form-group mb-4">
-                                <label>{{__('text.Add Image')}}</label>
-                                <input type="file" class="form-control" wire:model="image"  data-height="210" />
-                                <x-general.input-error for="image" />
                             </div>
                         </div>
                     </div>

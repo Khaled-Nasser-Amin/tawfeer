@@ -11,7 +11,7 @@
 
             <div class="modal-body">
 
-                <form  id="addNewCat" >
+                <form  id="addNewBanner" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -33,6 +33,13 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="form-group mb-4">
+                            <label>{{__('text.Add Image')}}</label>
+                            <input type="file"  wire:model="image"  data-height="210" />
+                            <x-general.input-error for="image" />
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="url1" class="control-label">{{__('text.Url')}}</label>
@@ -45,15 +52,9 @@
                         <div class="col-md-12">
                             <div class="form-group no-margin">
                                 <label for="date1" class="control-label">{{__('text.Expired date')}}</label>
-                                <input type="date" wire:model="expired_at" class="form-control" id="date1">
-                                <x-general.input-error for="expired_at" />
+                                <input type="datetime-local" wire:model="expire_at" class="form-control" id="date1">
+                                <x-general.input-error for="expire_at" />
                             </div>
-                            <div class="form-group mb-4">
-                                <label>{{__('text.Add Image')}}</label>
-                                <input type="file"  wire:model="image"  data-height="210" />
-                                <x-general.input-error for="image" />
-                            </div>
-
                         </div>
                     </div>
                 </form>
