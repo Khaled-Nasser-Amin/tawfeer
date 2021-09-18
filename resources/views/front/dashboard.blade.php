@@ -11,16 +11,15 @@
         .banner-item:hover{
             cursor: pointer;
         }
-        .owl-item{
-            right:5px;
-        }
-        @if(app()->getLocale() == 'ar')
-        .carousel-item{
+    </style>
+    @if(app()->getLocale() == 'ar')
+    <style>
+             .carousel-item{
             margin-left: 0!important;
                 float: left!important;
         }
-        @endif
     </style>
+    @endif
 @endpush
 @section('content')
     <x-front.dashboard.main-slider />

@@ -159,6 +159,6 @@
     <!-- end row -->
 
     <div class="text-center">
-        <button type="submit" class="btn btn-success waves-effect waves-light">{{__('text.Submit')}}</button>
+        <button type="submit" wire:loading.attr='disabled' wire:target="image,groupImage" class="btn btn-success waves-effect waves-light">{{__('text.Submit')}}</button>
     </div>
 </form>

@@ -107,7 +107,7 @@ class ProductController extends Controller
     public function addNewProduct(){
         if (auth()->guard('vendor')->check())
             return view('front.products.create');
-        return view('front.Auth.login');
+        return view('front.auth.login');
     }
     public function updateProduct(Product $product){
         $this->authorize('UpdateProductVendor',$product);

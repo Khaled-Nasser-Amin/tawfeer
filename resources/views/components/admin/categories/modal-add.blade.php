@@ -29,9 +29,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4 mx-2 px-0">
                             <label>{{__('text.Add Image')}}</label>
                             <input type="file"  wire:model="image"  data-height="210" />
+                            <br>
                             <x-general.input-error for="image" />
                         </div>
                     </div>
@@ -45,32 +46,12 @@
 
                         </div>
                     </div>
-                    {{--<div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="parent" class="control-label">{{__('text.Parent Category')}}</label>
-                            <select class="form-control" wire:model="parent">
-                                <option value="" selected>{{__('text.Main Category')}}</option>
-                                @foreach(\App\Models\Category::all() as $category)
-                                    <option value="{{$category->id}}">{{app()->getLocale() == 'ar' ? $category->name_ar : $category->name_en}}</option>
-                                @endforeach
-                            </select>
-                            <x-general.input-error for="parent" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="type" class="control-label">{{__('text.Show As')}}</label>
-                            <select class="form-control" name="type"  wire:model="type">
-                                <option selected value="">~~{{__('text.Choose Show')}}~~</option>
-                                <option value="Category">{{__('text.Category')}}</option>
-                                <option value="Product">{{__('text.Product')}}</option>
-                            </select>
-                            <x-general.input-error for="type" />
-                        </div>
-                    </div>--}}
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">{{__('text.Close')}}</button>
-                <button type="button" class="btn btn-info waves-effect waves-light" wire:click.prevent="store">{{__('text.Save')}}</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" wire:click.prevent="store" wire:loading.attr="disabled" wire:target="image">{{__('text.Save')}}</button>
             </div>
         </div>
     </div>

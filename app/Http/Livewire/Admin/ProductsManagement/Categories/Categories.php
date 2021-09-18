@@ -16,8 +16,7 @@ class Categories extends Component
     public $name_ar;
     public $name_en;
     public $image;
-    /*public $parent;
-    public $type;*/
+
     public $slug;
     public $ids;
     public $search;
@@ -44,9 +43,6 @@ class Categories extends Component
         $this->name_ar= $cat->name_ar;
         $this->name_en=$cat->name_en;
         $this->slug=$cat->slug;
-        /*$this->parent=$cat->parent_id;
-        $this->type=$cat->type;*/
-
     }
 
     public function update(){
@@ -72,7 +68,7 @@ class Categories extends Component
 
     public function render()
     {
-        $categories=Category::/*with('child_categories')->*/where('id','!=',1)->when($this->search,function ($q){
+        $categories=Category::where('id','!=',1)->when($this->search,function ($q){
             return $q->where('name_ar','like','%'.$this->search.'%')
                 ->orWhere('name_en','like','%'.$this->search.'%');
         })->paginate(10);
@@ -86,8 +82,7 @@ class Categories extends Component
             'name_en' => 'required|string|max:255|unique:categories|unique:categories,name_ar',
             'slug' => 'nullable|string|max:255',
            'image' => 'required|mimes:jpg,png,jpeg,gif',
-            /*'parent' => 'nullable|exists:categories,id',
-            'type' => ['required',Rule::in(['Category','Product'])],*/
+
         ]);
     }
 
@@ -97,21 +92,14 @@ class Categories extends Component
             'name_en' =>['required' , Rule::unique('categories','name_ar')->ignore($categoryId), Rule::unique('categories','name_en')->ignore($categoryId)],
             'slug' => 'nullable|string|max:255',
             'image' => 'nullable|mimes:jpg,png,jpeg,gif',
-           /* 'parent' => ['nullable',Rule::exists('categories','id')->whereNot('id',$categoryId)],
-            'type' => ['required',Rule::in(['Category','Product'])],*/
+
         ]);
 
     }
 
 
     public function resetVariables(){
-        $this->name_ar= null;
-        $this->name_en=null;
-        $this->image = null;
-        $this->slug=null;
-        /*$this->parent=null;
-        $this->type=null;*/
-        $this->ids=null;
+        $this->reset(['name_ar','name_en','image','slug','ids']);
     }
 
     public function setSlug($data){

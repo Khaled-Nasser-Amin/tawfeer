@@ -5,7 +5,7 @@
         <div class="wrap-products">
             <div class="wrap-product-tab tab-style-1">
                 <div class="tab-contents">
-                    <div class="tab-content-item active p-0 pl-2" id="digital_1a">
+                    <div class="tab-content-item active" id="digital_1a">
                         <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}' >
 
                             @foreach($latestProducts as $product)

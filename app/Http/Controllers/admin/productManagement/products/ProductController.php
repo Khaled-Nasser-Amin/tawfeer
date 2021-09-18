@@ -69,11 +69,11 @@ class ProductController extends Controller
     }
 
     public function addNewProduct(){
-        return view('admin.ProductManagement.products.create');
+        return view('admin.productManagement.products.create');
     }
     public function updateProduct(Product $product){
         $this->authorize('view',$product);
-        return view('admin.ProductManagement.products.edit',compact('product'));
+        return view('admin.productManagement.products.edit',compact('product'));
     }
 
 

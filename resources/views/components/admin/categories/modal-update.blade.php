@@ -26,47 +26,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4 mx-2">
                             <label>{{__('text.Add Image')}}</label>
                             <input type="file"  wire:model="image"  data-height="210" />
+                            <br>
                             <x-general.input-error for="image" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group no-margin">
+                            <div class="form-group no-margin" wire:ignore>
                                 <label for="slug" class="control-label">{{__('text.Slug')}}</label>
                                 <input type="text" class="form-control" id="slug"  wire:model="slug">
                                 <x-general.input-error for="slug" />
                             </div>
                         </div>
                     </div>
-                    {{--<div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="parent" class="control-label">{{__('text.Parent Category')}}</label>
-                            <select class="form-control" id="parent" wire:model="parent">
-                                <option value="" selected>{{__('text.Main Category')}}</option>
-                            @foreach(\App\Models\Category::all() as $cat)
-                                    <option value="{{$cat->id}}">{{app()->getLocale() == 'ar' ? $cat->name_ar : $cat->name_en}}</option>
-                                @endforeach
-                            </select>
-                            <x-general.input-error for="parent" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="type" class="control-label">{{__('text.Show As')}}</label>
-                            <select class="form-control" id="type" wire:model="type">
-                                <option value="">~~{{__('text.Choose Show')}}~~</option>
-                                <option value="Category">{{__('text.Category')}}</option>
-                                <option value="Product">{{__('text.Product')}}</option>
-                            </select>
-                            <x-general.input-error for="type" />
-                        </div>
-                    </div>--}}
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">{{__('text.Close')}}</button>
-                <button type="button" class="btn btn-info waves-effect waves-light" wire:click.prevent="update">{{__('text.Submit')}}</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" wire:click.prevent="update" wire:loading.attr="disabled" wire:target="image">{{__('text.Submit')}}</button>
             </div>
         </div>
     </div>

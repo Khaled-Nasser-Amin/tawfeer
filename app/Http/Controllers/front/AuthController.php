@@ -15,13 +15,13 @@ class AuthController extends Controller
         return redirect('/'.app()->getLocale());
     }
     public function loginView(){
-        return view('front.Auth.login');
+        return view('front.auth.login');
     }
     public function registerView(){
-        return view('front.Auth.register');
+        return view('front.auth.register');
     }
     public function forgetPassword(){
-        return view('front.Auth.forget-password');
+        return view('front.auth.forget-password');
     }
 
 }

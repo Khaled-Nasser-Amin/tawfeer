@@ -1,6 +1,7 @@
 @extends('admin.layouts.appLogged')
 @section('title',__('text.Dashboard'))
-@push('css_en')
+@push('css')
+
 @endpush
 @section('content')
     <div class="content">

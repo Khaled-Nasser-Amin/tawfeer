@@ -1,13 +1,17 @@
+@php
+$banners= \App\Models\Banner::where('show_in','shop')->where(function($q){
+    return $q->where('expire_at','>',Carbon\Carbon::now()->toDateTimeString())->orWhere('expire_at',null);
+});
+@endphp
 <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area mx-0 " style="overflow-y: scroll ">
-
-    <div id="carouselExampleIndicators" class="carousel slide h-25" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide h-25 {{ $banners->count() > 0 ? '' : 'd-none' }}" data-ride="carousel">
         <ol class="carousel-indicators">
-            @for ($i = 0; $i < \App\Models\Banner::where('show_in','shop')->count(); $i++)
+            @for ($i = 0; $i < $banners->count(); $i++)
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" class="{{$i == 0 ? 'active' : ''}}"></li>
             @endfor
         </ol>
         <div class="carousel-inner h-100">
-            @foreach(\App\Models\Banner::where('show_in','shop')->get() as $banner)
+            @foreach($banners->get() as $banner)
                 <div class="carousel-item {{$loop->index == 0 ? 'active' : ''}} img-slide w-100  h-100" style="background-image: url('{{$banner->image}}');background-size: cover;background-repeat: no-repeat">
                     @if ($banner->url)
                         <a class="btn  banner_url " href="{{$banner->url}}" >@lang('text.View')</a>
@@ -81,8 +85,8 @@
         <ul class="product-list grid-products equal-container row mx-0">
             @forelse($products as $product)
                 <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                    <div class="product product-style-3 equal-elem ">
-                        <div class="product-thumnail h-75" >
+                    <div class="product product-style-3 equal-elem h-100">
+                        <div class="product-thumnail h-75">
                             <a href="{{route('front.viewDetail',[$product->id,$product->slug])}}" title="{{app()->getLocale() == 'ar' ?$product->description_ar:$product->description_en}}">
                                 <figure><img src="{{$product->image}}" alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                             </a>

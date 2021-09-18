@@ -182,20 +182,10 @@ use WithFileUploads;
 
     }
     public function resetVariables(){
-        $this->name_ar= null;
-        $this->name_en=null;
-        $this->description_ar=null;
-        $this->description_en=null;
-        $this->image = null;
-        $this->price=null;
-        $this->slug=null;
-        $this->type=null;
-        $this->sale=null;
-        $this->phone=null;
-        $this->whatsapp=null;
-        $this->YearOfManufacture=null;
+        $this->reset(['name_ar','name_en','description_ar',
+        'description_en','image','price','slug','type',
+        'sale','phone','whatsapp','YearOfManufacture','groupImage',]);
         $this->categoriesIds=[];
-        $this->groupImage=null;
         $this->productsIndex=[];
         $this->models=[];
     }

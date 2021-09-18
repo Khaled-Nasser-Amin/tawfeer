@@ -30,6 +30,13 @@
     @if ( LaravelLocalization::getCurrentLocale() == 'ar')
         <link href="{{asset('css/app-rtl.min.css')}}" rel="stylesheet" type="text/css" />
     @endif
+    @if(app()->getLocale() == 'en')
+    <style>
+        .dropdown-menu-right{
+            left:0px!important;
+        }
+    </style>
 
+    @endif
     <!-- Scripts -->
 </head>

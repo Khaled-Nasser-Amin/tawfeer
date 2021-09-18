@@ -141,6 +141,6 @@ class UpdateProfileInformationForm extends Component
      */
     public function render()
     {
-        return view('front.Profile.update-Profile-information-form');
+        return view('front.Profile.update-profile-information-form');
     }
 }

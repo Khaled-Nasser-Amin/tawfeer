@@ -29,8 +29,8 @@
                         </div>
                     </div>
                     @if ($product->vendor_id == auth()->guard('vendor')->user()->id)
-                        <div class="news-grid-box p-0">
-                            <div class="dropdown float-right">
+                        <div class="news-grid-box p-0 d-flex flex-row justify-content-center align-items-center">
+                            <div class="dropdown ">
                                 <a href="#" class="dropdown-toggle card-drop arrow-none text-white" data-toggle="dropdown" aria-expanded="false">
                                     <div><i class="fas fa-ellipsis-h h4 m-0 text-dark"></i></div>
                                 </a>

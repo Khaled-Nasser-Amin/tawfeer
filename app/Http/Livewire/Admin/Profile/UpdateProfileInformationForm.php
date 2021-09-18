@@ -79,6 +79,6 @@ class UpdateProfileInformationForm extends Component
      */
     public function render()
     {
-        return view('admin.Profile.update-Profile-information-form');
+        return view('admin.Profile.update-profile-information-form');
     }
 }

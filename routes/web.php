@@ -34,7 +34,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
     //login
     Route::get('/admin', function () {
-        return view('admin.Auth.login');
+        return view('admin.auth.login');
     })->middleware('guest');
     Route::get('/admin/login',[AuthController::class,'index'])->name('index');
     Route::post('/admin/login',[AuthController::class,'login'])->name('login')->middleware("throttle:6,2");

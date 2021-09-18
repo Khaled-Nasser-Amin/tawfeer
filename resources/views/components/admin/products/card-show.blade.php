@@ -1,3 +1,4 @@
+
 @forelse($products as $product)
     <div class="col-4">
         <div class="news-grid">
@@ -20,8 +21,8 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="news-grid-box">
-                    <div class="dropdown float-right">
+                <div class="news-grid-box d-flex flex-row justify-content-center align-items-center">
+                    <div class="dropdown ">
                         <a href="#" class="dropdown-toggle card-drop arrow-none text-white" data-toggle="dropdown" aria-expanded="false">
                             <div><i class="mdi mdi-dots-horizontal h4 m-0 text-muted"></i></div>
                         </a>
