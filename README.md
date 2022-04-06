@@ -2,3 +2,5 @@
 2- composer update then composer dump-autoload <br /> 
 3- php artisan migrate:fresh --seed  <br />
 4- Set mail configuration in .env file. 
+5- make sure that the livewire library works fine
+
